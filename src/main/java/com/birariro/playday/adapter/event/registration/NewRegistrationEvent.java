@@ -1,4 +1,4 @@
-package com.birariro.playday.service.registration;
+package com.birariro.playday.adapter.event.registration;
 
 import com.birariro.playday.config.BaseEvent;
 import lombok.AllArgsConstructor;
@@ -6,6 +6,6 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class RegistrationEvent extends BaseEvent {
+public class NewRegistrationEvent extends BaseEvent {
     private String email;
 }

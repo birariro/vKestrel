@@ -1,6 +1,6 @@
 package com.birariro.playday.service.registration;
 
-import com.birariro.playday.config.Events;
+import com.birariro.playday.adapter.event.registration.RegistrationEventAdapter;
 import com.birariro.playday.domain.Email;
 import com.birariro.playday.domain.Member;
 import com.birariro.playday.domain.MemberRepository;
@@ -17,13 +17,13 @@ import java.util.regex.Pattern;
 public class RegistrationService {
 
     private final MemberRepository memberRepository;
-
+    private final RegistrationEventAdapter registrationEventAdapter;
     public void registration(String email){
 
         checkEmail(email);
         save(email);
 
-        Events.raise(new RegistrationEvent(email));
+        registrationEventAdapter.newRegistrationPublish(email);
     }
 
     private void checkEmail(String email){
