@@ -1,4 +1,4 @@
-package com.birariro.playday.config;
+package com.birariro.playday.config.event;
 
 import org.springframework.context.ApplicationEventPublisher;
 

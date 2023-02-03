@@ -1,4 +1,4 @@
-package com.birariro.playday.config;
+package com.birariro.playday.adapter.event;
 
 public class BaseEvent {
     private long timestamp;

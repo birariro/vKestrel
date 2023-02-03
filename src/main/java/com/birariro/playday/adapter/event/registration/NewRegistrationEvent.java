@@ -1,6 +1,6 @@
 package com.birariro.playday.adapter.event.registration;
 
-import com.birariro.playday.config.BaseEvent;
+import com.birariro.playday.adapter.event.BaseEvent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

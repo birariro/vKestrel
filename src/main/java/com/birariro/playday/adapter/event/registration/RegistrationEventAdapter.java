@@ -1,6 +1,6 @@
 package com.birariro.playday.adapter.event.registration;
 
-import com.birariro.playday.config.Events;
+import com.birariro.playday.config.event.Events;
 import org.springframework.stereotype.Component;
 
 @Component
