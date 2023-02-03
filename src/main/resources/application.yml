@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: play-day
+
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://127.0.0.1:6633/play-day-db
+    username: root
+    password: '0000'
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+      #ddl-auto: none
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+
+Loggin:
+  level:
+    org.hibernate.SQL: debug
