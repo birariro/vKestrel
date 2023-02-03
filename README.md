@@ -17,3 +17,12 @@ a Docker Compose setup is provided. It comes with the following databases:
 - JPA
 - AOP
 - p6spy (v1.5.7)
+
+
+### Hooks
+Provision of commit-msg.sh for git commit convention
+
+Active
+```
+cp hooks/commit-msg.sh .git/hooks/commit-msg
+```

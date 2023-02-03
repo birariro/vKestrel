@@ -26,6 +26,7 @@ public class RegistrationService {
         checkEmail(email);
         save(email);
 
+        //todo 메일 보내는것을 대기 하는 문제 해결 필요
         registrationEventAdapter.newRegistrationPublish(email);
     }
 
