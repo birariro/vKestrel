@@ -11,3 +11,9 @@ a Docker Compose setup is provided. It comes with the following databases:
 ```
  $ docker-compose up -d
 ```
+
+
+### Environment
+- JPA
+- AOP
+- p6spy (v1.5.7)

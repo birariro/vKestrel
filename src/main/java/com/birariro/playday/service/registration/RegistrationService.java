@@ -1,6 +1,7 @@
 package com.birariro.playday.service.registration;
 
 import com.birariro.playday.adapter.event.registration.RegistrationEventAdapter;
+import com.birariro.playday.annotation.AopExecutionTime;
 import com.birariro.playday.domain.Email;
 import com.birariro.playday.domain.Member;
 import com.birariro.playday.domain.MemberRepository;
@@ -18,6 +19,8 @@ public class RegistrationService {
 
     private final MemberRepository memberRepository;
     private final RegistrationEventAdapter registrationEventAdapter;
+
+    @AopExecutionTime
     public void registration(String email){
 
         checkEmail(email);
