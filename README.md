@@ -11,4 +11,3 @@ a Docker Compose setup is provided. It comes with the following databases:
 ```
  $ docker-compose up -d
 ```
-

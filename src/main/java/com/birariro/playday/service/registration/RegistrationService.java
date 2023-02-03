@@ -1,5 +1,6 @@
-package com.birariro.playday.service;
+package com.birariro.playday.service.registration;
 
+import com.birariro.playday.config.Events;
 import com.birariro.playday.domain.Email;
 import com.birariro.playday.domain.Member;
 import com.birariro.playday.domain.MemberRepository;
@@ -22,7 +23,7 @@ public class RegistrationService {
         checkEmail(email);
         save(email);
 
-        //todo email 발송
+        Events.raise(new RegistrationEvent(email));
     }
 
     private void checkEmail(String email){

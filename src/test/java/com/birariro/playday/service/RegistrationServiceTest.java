@@ -1,5 +1,6 @@
 package com.birariro.playday.service;
 
+import com.birariro.playday.service.registration.RegistrationService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
