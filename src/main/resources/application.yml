@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    include: key
   application:
     name: play-day
 
@@ -20,3 +22,4 @@ spring:
 Loggin:
   level:
     org.hibernate.SQL: debug
+
