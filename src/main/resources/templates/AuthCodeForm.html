@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <title>Play-Day AuthCode</title>
 </head>
+
 <body>
-<h1>인증을 해주세요</h1>
+<div style="display: flex; flex-direction: column;  align-items: center">
+    <h2>인증을 해주세요</h2>
 
-<form th:action="@{/reg/auth}" method="get">
-    <a href="https://www.naver.com"> click! </a>
-</form>
+    <form th:action="${result_url}" method="get">
+        <p th:text="${title}"></p>
+        <button style="background-color: #CB9FFD; color: white; border: 0px" type="submit">Click Here</button>
 
+    </form>
+</div>
 </body>
+
 </html>

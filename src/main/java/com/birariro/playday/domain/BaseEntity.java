@@ -1,14 +1,10 @@
 package com.birariro.playday.domain;
 
 import lombok.Getter;
-import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.EntityListeners;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @EntityListeners(AuditingEntityListener.class)
@@ -20,7 +16,7 @@ public class BaseEntity {
     private LocalDateTime createAt;
 
     @Column(name = "state")
-    @Convert(converter = StateConverter.class)
+    @Enumerated(EnumType.STRING)
     private State state;
 
     public BaseEntity setState(State state) {

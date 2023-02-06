@@ -28,7 +28,7 @@ public class RegistrationController {
     @GetMapping("/reg/auth")
     public ResponseEntity enableRegistration(){
 
-        log.info("registration auth");
+        log.info("registration auth!!!!");
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
