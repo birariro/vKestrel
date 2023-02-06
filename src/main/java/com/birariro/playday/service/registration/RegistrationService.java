@@ -10,6 +10,7 @@ import com.birariro.playday.domain.member.MemberRepository;
 import com.birariro.playday.domain.member.event.NewRegistrationEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,8 @@ public class RegistrationService {
     private final MemberRepository memberRepository;
     private final AuthAdapter authAdapter;
 
+
+    @Async
     @AopExecutionTime
     @Transactional
     public void registration(String email){
@@ -31,7 +34,6 @@ public class RegistrationService {
         checkEmail(email);
         save(email);
 
-        //todo 메일 보내는것을 대기 하는 문제 해결 필요
         String uuid = UUID.randomUUID().toString();
         Events.raise(new NewRegistrationEvent(email, uuid));
     }
