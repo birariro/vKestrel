@@ -27,3 +27,14 @@ Active
 ```
 cp hooks/commit-msg.sh .git/hooks/commit-msg
 ```
+
+
+###Usage
+
+### redis
+```
+> redis-cli 
+    > keys * 
+    > get [key]
+    > flushall 
+```

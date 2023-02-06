@@ -26,6 +26,10 @@ public class Member extends BaseEntity{
 
     public Member(Email email) {
         this.email = email;
+        this.setState(State.INACTIVE);
+    }
+
+    public void active(){
         this.setState(State.ACTIVE);
     }
 }

@@ -26,6 +26,7 @@ public class RegistrationController {
     public ResponseEntity enableRegistration(@PathVariable("authCode") String authCode){
 
         log.info("registration auth : "+ authCode);
+        registrationService.registrationAuthCode(authCode);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

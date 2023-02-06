@@ -1,5 +1,6 @@
 package com.birariro.playday.service.registration;
 
+import com.birariro.playday.adapter.auth.AuthAdapter;
 import com.birariro.playday.config.event.Events;
 
 import com.birariro.playday.annotation.AopExecutionTime;
@@ -9,7 +10,6 @@ import com.birariro.playday.domain.member.MemberRepository;
 import com.birariro.playday.domain.member.event.NewRegistrationEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,8 +22,7 @@ import java.util.regex.Pattern;
 public class RegistrationService {
 
     private final MemberRepository memberRepository;
-
-    private final RedisTemplate<String, Integer> redisTemplate;
+    private final AuthAdapter authAdapter;
 
     @AopExecutionTime
     @Transactional
@@ -35,6 +34,19 @@ public class RegistrationService {
         //todo 메일 보내는것을 대기 하는 문제 해결 필요
         String uuid = UUID.randomUUID().toString();
         Events.raise(new NewRegistrationEvent(email, uuid));
+    }
+
+    @AopExecutionTime
+    @Transactional
+    public void registrationAuthCode(String authCode){
+
+        String authCodeEmail = authAdapter.getAuthCodeEmail(authCode);
+        Member member = memberRepository.findByEmail(new Email(authCodeEmail))
+                .orElseThrow(() -> new IllegalStateException("not exist auth code"));
+
+
+        log.info(member.getEmail().getValue() + "인증 성공");
+        member.active();
     }
 
 

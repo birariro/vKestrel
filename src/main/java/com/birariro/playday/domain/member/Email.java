@@ -13,9 +13,9 @@ import javax.persistence.Embeddable;
 public class Email {
 
     @Column(name = "email")
-    private String email;
+    private String value;
 
     public Email(String email) {
-        this.email = email;
+        this.value = email;
     }
 }
