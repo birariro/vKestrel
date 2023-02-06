@@ -1,4 +1,4 @@
-package com.birariro.playday.domain;
+package com.birariro.playday.domain.member;
 
 
 public enum State {

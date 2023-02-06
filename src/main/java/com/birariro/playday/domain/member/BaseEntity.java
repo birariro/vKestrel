@@ -1,4 +1,4 @@
-package com.birariro.playday.domain;
+package com.birariro.playday.domain.member;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

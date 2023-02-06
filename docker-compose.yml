@@ -3,7 +3,7 @@ version: '3.8'
 services:
 
   main-db:
-    container_name: play-day-db-container
+    container_name: play-day-db
     image: mariadb:10.8.3
     ports:
       - "6633:3306"
@@ -13,7 +13,7 @@ services:
     command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
 
   redis:
-    container_name: pgrp-redis
+    container_name: play-day-redis
     image: redis:7.0.4
     ports:
       - "6379:6379"

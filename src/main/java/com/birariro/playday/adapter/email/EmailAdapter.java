@@ -21,10 +21,12 @@ public class EmailAdapter {
     private final TemplateEngine templateEngine;
 
     private final JavaMailSender sender;
-    public void authenticationCodeSend(String email){
+
+
+    public void authenticationCodeSend(String email, String authCode){
 
         log.info(email+" 로 인증 코드 발행");
-        String template = getTemplate();
+        String template = getTemplate(authCode);
 
         MimeMessagePreparator message =
                 mimeMessage -> {
@@ -38,10 +40,10 @@ public class EmailAdapter {
         sender.send(message);
     }
 
-    private String getTemplate(){
+    private String getTemplate(String authCode){
         Context context = new Context();
         context.setVariable("title","hello title");
-        context.setVariable("result_url","http://localhost:8080/reg/auth/");
+        context.setVariable("result_url","http://localhost:8080/reg/auth/"+authCode);
 
         String autoCodeForm = templateEngine.process("AuthCodeForm.html", context);
         return autoCodeForm;

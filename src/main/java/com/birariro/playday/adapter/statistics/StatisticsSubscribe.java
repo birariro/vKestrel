@@ -1,6 +1,6 @@
-package com.birariro.playday.service.statistics;
+package com.birariro.playday.adapter.statistics;
 
-import com.birariro.playday.adapter.event.registration.NewRegistrationEvent;
+import com.birariro.playday.domain.member.event.NewRegistrationEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class MemberStatisticsService {
+public class StatisticsSubscribe {
 
     @EventListener(NewRegistrationEvent.class)
     public void event(NewRegistrationEvent event){
