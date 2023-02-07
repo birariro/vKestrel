@@ -48,8 +48,13 @@ dependencies {
 	//redis client lettuce
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis:2.3.1.RELEASE'
 
+	//validation
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.5.2'
+
 	//RSS rome
 	implementation ("com.rometools:rome:1.10.0")
+
+
 
 }
 
