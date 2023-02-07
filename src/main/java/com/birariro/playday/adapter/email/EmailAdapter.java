@@ -42,7 +42,6 @@ public class EmailAdapter {
 
     private String getTemplate(String authCode){
         Context context = new Context();
-        context.setVariable("title","hello title");
         context.setVariable("result_url","http://localhost:8080/reg/auth/"+authCode);
 
         String autoCodeForm = templateEngine.process("AuthCodeForm.html", context);
