@@ -6,8 +6,8 @@ spring:
 
   sql:
     init:
-      data-locations: classpath:data.sql # data.sql ??
-      mode: always # data.sql ??
+      data-locations: classpath:data.sql # data.sql 위치
+      mode: always # data.sql 허용
 
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
@@ -23,7 +23,7 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
-    defer-datasource-initialization: true # data.sql ??
+    defer-datasource-initialization: true # data.sql 허용
 
   redis:
     host: localhost
