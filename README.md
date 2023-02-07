@@ -18,6 +18,9 @@ a Docker Compose setup is provided. It comes with the following databases:
 - JPA
 - AOP
 - p6spy (v1.5.7)
+- validation (v2.5.2)
+- spring-batch
+- spring-scheduling
 
 
 ### Hooks

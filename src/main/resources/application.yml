@@ -4,6 +4,12 @@ spring:
   application:
     name: daily-dev-blog-assemble
 
+  batch:
+    job:
+      enabled: false
+    jdbc:
+      initialize-schema: always
+
   sql:
     init:
       data-locations: classpath:data.sql # data.sql 위치
