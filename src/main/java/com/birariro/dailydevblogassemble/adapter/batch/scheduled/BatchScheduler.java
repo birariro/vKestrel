@@ -22,7 +22,7 @@ public class BatchScheduler {
     private final Job job;
     private final JobLauncher jobLauncher;
 
-    @Scheduled(fixedDelay = 60* 1000L) //1분
+    @Scheduled(fixedDelay = 60* 1000L) //6분
     public void executeJob() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
 
         log.debug("job run");

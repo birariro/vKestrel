@@ -1,14 +1,9 @@
 package com.birariro.dailydevblogassemble.adapter.batch;
 
-import com.birariro.dailydevblogassemble.domain.library.Document;
 import com.birariro.dailydevblogassemble.domain.library.Library;
 import com.birariro.dailydevblogassemble.domain.library.LibraryRepository;
-import com.birariro.dailydevblogassemble.domain.library.UrlType;
-import com.birariro.dailydevblogassemble.domain.member.State;
 import lombok.RequiredArgsConstructor;
-import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.ItemProcessor;
@@ -18,57 +13,44 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
-import java.util.UUID;
 
 @Configuration
 @RequiredArgsConstructor
-public class JobConfig {
-    private final JobBuilderFactory jobBuilderFactory;
+public class NotificationStep {
     private final StepBuilderFactory stepBuilderFactory;
     private final LibraryRepository libraryRepository;
 
     @Bean
-    public Job startJob(){
-        return jobBuilderFactory.get("startJob")
-                .start(jobStep())
-                .build();
-    }
-
-    @Bean
-    public Step jobStep(){
-        return stepBuilderFactory.get("jobStep")
+    public Step notificationJobStep(){
+        return stepBuilderFactory.get("documentJobStep")
                 .<Library, Library> chunk(10)
-                .reader(libraryReader())
-                .processor(libraryProcessor())
-                .writer(libraryWriter())
+                .reader(notificationReader())
+                .processor(notificationProcessor())
+                .writer(notificationWriter())
                 .build();
     }
 
 
     @Bean
     @StepScope
-    public ListItemReader<Library> libraryReader(){
+    public ListItemReader<Library> notificationReader(){
         List<Library> libraries = libraryRepository.findAll();
         libraries.forEach(item->{
-            System.out.println("item = " + item.toString());
+            System.out.println("ToDayDocumentBatch = " + item.toString());
         });
         return new ListItemReader<>(libraries);
     }
 
 
-    public ItemProcessor<Library,Library> libraryProcessor(){
+    public ItemProcessor<Library,Library> notificationProcessor(){
         return item ->{
-            String s = UUID.randomUUID().toString();
-            Document document = new Document("title" + s, "url" + s, "author " + s);
-            item.addDocument(document);
             return item;
         };
     }
 
-    public ItemWriter<Library> libraryWriter(){
+    public ItemWriter<Library> notificationWriter(){
         return items -> {
-            libraryRepository.saveAll(items);
+            return ;
         };
     }
-
 }
