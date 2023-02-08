@@ -5,4 +5,4 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
-rootProject.name = 'play-day'
+rootProject.name = 'daily-dev-blog-assemble'

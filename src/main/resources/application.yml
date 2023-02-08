@@ -2,11 +2,22 @@ spring:
   profiles:
     include: key
   application:
-    name: play-day
+    name: daily-dev-blog-assemble
+
+  batch:
+    job:
+      enabled: false
+    jdbc:
+      initialize-schema: always
+
+  sql:
+    init:
+      data-locations: classpath:data.sql # data.sql 위치
+      mode: always # data.sql 허용
 
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://127.0.0.1:6633/play-day-db
+    url: jdbc:mariadb://127.0.0.1:6633/daily-dev-blog-assemble-db
     username: root
     password: '0000'
 
@@ -18,6 +29,7 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
+    defer-datasource-initialization: true # data.sql 허용
 
   redis:
     host: localhost
