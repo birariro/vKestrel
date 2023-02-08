@@ -1,4 +1,4 @@
-package com.birariro.dailydevblogassemble.adapter.batch.scheduled;
+package com.birariro.dailydevblogassemble.adapter.batch;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,7 @@ public class BatchScheduler {
     private final Job job;
     private final JobLauncher jobLauncher;
 
-    @Scheduled(fixedDelay = 10 * 1000L) //6분
+    @Scheduled(fixedDelay = 10 * 1000L) //10 초
     public void executeJob() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
 
         log.debug("job run");

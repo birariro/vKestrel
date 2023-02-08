@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Entity
@@ -46,6 +47,13 @@ public class Library extends BaseEntity {
         this.setState(State.ACTIVE);
     }
 
+    public boolean existDocument(Document document){
+
+        return this.documents.stream()
+                .filter(item -> item.getTitle().equals(document.getTitle()))
+                .findFirst()
+                .isPresent();
+    }
     public void addDocument(Document document){
         this.documents.add(document);
         document.initLibrary(this);

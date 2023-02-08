@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Configuration
 @Slf4j
@@ -47,9 +48,16 @@ public class ParserStep {
     public ItemProcessor<Library,Library> libraryProcessor(){
         return item ->{
 
+            log.info("RSS parser target name : " +item.getName());
             List<Document> documents = rssParser.getDocument(item.getUrl());
-            documents.forEach(document -> {
-                log.info(item.getName() + ": "+document.getTitle());
+
+            List<Document> newDocuments = documents.stream()
+                                                    .filter(target -> item.existDocument(target) == false)
+                                                    .collect(Collectors.toList());
+
+
+            newDocuments.forEach(document -> {
+                log.info("[add document] " + item.getName() + ": "+document.getTitle());
                 item.addDocument(document);
             });
             return item;
