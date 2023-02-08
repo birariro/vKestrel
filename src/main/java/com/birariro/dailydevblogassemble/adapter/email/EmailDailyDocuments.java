@@ -16,14 +16,17 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class EmailToDayDocuments {
+public class EmailDailyDocuments {
     @Value("${mail.username}")
     private String from;
+
+    private final TemplateEngine templateEngine;
 
     private final JavaMailSender sender;
 
     public void execute(List<Document> documentList){
 
+        String template = getTemplate(documentList);
 
         MimeMessagePreparator message =
                 mimeMessage -> {
@@ -31,10 +34,18 @@ public class EmailToDayDocuments {
                     helper.setFrom(from);
                     helper.setTo("vps32@naver.com");
                     helper.setSubject("today document");
-                    helper.setText(documentList.toString());
+                    helper.setText(template,true);
                 };
 
         sender.send(message);
+    }
+
+    private String getTemplate(List<Document> documentList){
+        Context context = new Context();
+        context.setVariable("documents",documentList);
+
+        String autoCodeForm = templateEngine.process("DailyDocumentsForm.html", context);
+        return autoCodeForm;
     }
 
 }

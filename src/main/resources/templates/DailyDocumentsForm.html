@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>[Daily Dev Blog Assemble] Documents</title>
+</head>
+
+<body>
+<div style="display: flex; flex-direction: column;  align-items: center">
+    <h2>Daily Dev Blog</h2>
+
+    <div th:each="item : ${documents}">
+        <a th:href="${item.getUrl()}" th:text="${item.getTitle()}"></a>
+    </div>
+
+</div>
+</body>
+
+</html>
