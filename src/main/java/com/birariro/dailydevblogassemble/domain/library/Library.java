@@ -5,16 +5,18 @@ import com.birariro.dailydevblogassemble.domain.member.State;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "tb_library")
+@Where(clause = "state = 'ACTIVE'")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class Library extends BaseEntity {
@@ -53,6 +55,13 @@ public class Library extends BaseEntity {
                 .filter(item -> item.getTitle().equals(document.getTitle()))
                 .findFirst()
                 .isPresent();
+    }
+
+    public List<Document> getWaitDocuments(){
+
+        return this.documents.stream()
+                .filter(item -> item.getSendState() == SendState.WAITING)
+                .collect(Collectors.toList());
     }
     public void addDocument(Document document){
         this.documents.add(document);

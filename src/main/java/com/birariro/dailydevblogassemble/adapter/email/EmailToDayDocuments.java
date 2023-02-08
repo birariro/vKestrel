@@ -16,19 +16,25 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class EmailAdapter {
+public class EmailToDayDocuments {
+    @Value("${mail.username}")
+    private String from;
 
-    private final EmailAuthCode emailAuthCode;
-    private final EmailToDayDocuments emailToDayDocuments;
+    private final JavaMailSender sender;
+
+    public void execute(List<Document> documentList){
 
 
-    public void authenticationCodeSend(String email, String authCode){
+        MimeMessagePreparator message =
+                mimeMessage -> {
+                    final MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+                    helper.setFrom(from);
+                    helper.setTo("vps32@naver.com");
+                    helper.setSubject("today document");
+                    helper.setText(documentList.toString());
+                };
 
-        emailAuthCode.execute(email,authCode);
-    }
-
-    public void toDayDocumentsSend(List<Document> documentList){
-        emailToDayDocuments.execute(documentList);
+        sender.send(message);
     }
 
 }
