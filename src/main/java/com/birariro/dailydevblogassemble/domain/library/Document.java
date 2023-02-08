@@ -3,6 +3,7 @@ package com.birariro.dailydevblogassemble.domain.library;
 import com.birariro.dailydevblogassemble.domain.member.BaseEntity;
 import com.birariro.dailydevblogassemble.domain.member.State;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.Fetch;
@@ -14,6 +15,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "tb_document")
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Document extends BaseEntity {
 
@@ -27,6 +29,10 @@ public class Document extends BaseEntity {
     private String url;
     private String author;
 
+    @Column(name = "send_state")
+    @Enumerated(EnumType.STRING)
+    private SendState sendState;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Library library;
 
@@ -36,6 +42,7 @@ public class Document extends BaseEntity {
         this.url = url;
         this.author = author;
         this.setState(State.ACTIVE);
+        this.sendState = SendState.WAITING;
     }
     public void initLibrary(Library library){
         this.library = library;

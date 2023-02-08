@@ -15,6 +15,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "tb_library")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class Library extends BaseEntity {
 
     @Id
