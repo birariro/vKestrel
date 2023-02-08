@@ -1,4 +1,4 @@
-package com.birariro.dailydevblogassemble.adapter.batch;
+package com.birariro.dailydevblogassemble.adapter.batch.step;
 
 import com.birariro.dailydevblogassemble.domain.library.Library;
 import com.birariro.dailydevblogassemble.domain.library.LibraryRepository;
@@ -19,10 +19,12 @@ import java.util.List;
 public class NotificationStep {
     private final StepBuilderFactory stepBuilderFactory;
     private final LibraryRepository libraryRepository;
+    private final CustomStepExecutionListener customStepExecutionListener;
 
     @Bean
     public Step notificationJobStep(){
-        return stepBuilderFactory.get("documentJobStep")
+        return stepBuilderFactory.get("notificationJobStep")
+                .listener(customStepExecutionListener)
                 .<Library, Library> chunk(10)
                 .reader(notificationReader())
                 .processor(notificationProcessor())

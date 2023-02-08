@@ -1,4 +1,4 @@
-package com.birariro.dailydevblogassemble.adapter.batch;
+package com.birariro.dailydevblogassemble.adapter.batch.step;
 
 import com.birariro.dailydevblogassemble.adapter.parser.RSSParser;
 import com.birariro.dailydevblogassemble.domain.library.Document;
@@ -25,10 +25,12 @@ public class ParserStep {
     private final StepBuilderFactory stepBuilderFactory;
     private final LibraryRepository libraryRepository;
     private final RSSParser rssParser;
+    private final CustomStepExecutionListener customStepExecutionListener;
 
     @Bean
     public Step parserJobStep(){
         return stepBuilderFactory.get("parserJobStep")
+                .listener(customStepExecutionListener)
                 .<Library, Library> chunk(10)
                 .reader(libraryReader())
                 .processor(libraryProcessor())

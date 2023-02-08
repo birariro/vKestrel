@@ -1,5 +1,7 @@
-package com.birariro.dailydevblogassemble.adapter.batch;
+package com.birariro.dailydevblogassemble.adapter.batch.job;
 
+import com.birariro.dailydevblogassemble.adapter.batch.step.NotificationStep;
+import com.birariro.dailydevblogassemble.adapter.batch.step.ParserStep;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
