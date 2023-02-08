@@ -1,11 +1,10 @@
 package com.birariro.dailydevblogassemble.domain.library;
 
-import com.birariro.dailydevblogassemble.domain.member.BaseEntity;
-import com.birariro.dailydevblogassemble.domain.member.State;
+import com.birariro.dailydevblogassemble.domain.BaseEntity;
+import com.birariro.dailydevblogassemble.domain.EntityState;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -45,7 +44,7 @@ public class Library extends BaseEntity {
         this.url = url;
         this.origin = origin;
         this.type = type;
-        this.setState(State.ACTIVE);
+        this.setEntityState(EntityState.ACTIVE);
     }
 
     public boolean existDocument(Document document){

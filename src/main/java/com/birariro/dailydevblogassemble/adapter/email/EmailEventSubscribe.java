@@ -1,5 +1,6 @@
 package com.birariro.dailydevblogassemble.adapter.email;
 
+import com.birariro.dailydevblogassemble.adapter.batch.step.event.DailyDocumentEvent;
 import com.birariro.dailydevblogassemble.domain.member.event.NewRegistrationEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,5 +18,10 @@ public class EmailEventSubscribe {
     public void event(NewRegistrationEvent event){
         log.info("RegistrationEvent email : "+event.getEmail());
         emailAdapter.authenticationCodeSend(event.getEmail(), event.getAuthCode());
+    }
+
+    @EventListener(DailyDocumentEvent.class)
+    public void sendDailyDocument(DailyDocumentEvent event){
+        emailAdapter.toDayDocumentsSend(event.getDocuments());
     }
 }
