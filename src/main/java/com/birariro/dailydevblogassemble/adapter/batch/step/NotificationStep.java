@@ -46,7 +46,10 @@ public class NotificationStep {
         List<Document> collect = libraries.stream().flatMap(library -> library.getWaitDocuments().stream())
                 .collect(Collectors.toList());
 
-        emailAdapter.toDayDocumentsSend(collect);
+        if(collect.size() > 0){
+            emailAdapter.toDayDocumentsSend(collect);
+        }
+
         return new ListItemReader<>(collect);
     }
 
