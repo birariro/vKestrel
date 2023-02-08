@@ -42,7 +42,7 @@ public class ParserStep {
     @Bean
     @StepScope
     public ListItemReader<Library> libraryReader(){
-        List<Library> libraries = libraryRepository.findAll();
+        List<Library> libraries = libraryRepository.findActiveByAll();
         return new ListItemReader<>(libraries);
     }
 

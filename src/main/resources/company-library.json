@@ -64,6 +64,12 @@
     "home": "https://medium.com/prnd",
     "url" : "https://medium.com/feed/prnd",
     "type" : "RSS"
+  },
+  {
+    "name" : "뱅크샐러드",
+    "home": "https://blog.banksalad.com/",
+    "url" : "https://blog.banksalad.com/rss.xml",
+    "type" : "RSS"
   }
 
 ]

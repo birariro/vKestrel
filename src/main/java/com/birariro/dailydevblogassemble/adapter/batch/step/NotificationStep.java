@@ -31,7 +31,7 @@ public class NotificationStep {
     public Step notificationJobStep(){
         return stepBuilderFactory.get("notificationJobStep")
                 .listener(customStepExecutionListener)
-                .<Document, Document> chunk(10)
+                .<Document, Document> chunk(100)
                 .reader(notificationReader())
                 .processor(notificationProcessor())
                 .writer(notificationWriter())
@@ -42,7 +42,7 @@ public class NotificationStep {
     @Bean
     @StepScope
     public ListItemReader<Document> notificationReader(){
-        List<Library> libraries = libraryRepository.findAll();
+        List<Library> libraries = libraryRepository.findActiveByAll();
         List<Document> collect = libraries.stream().flatMap(library -> library.getWaitDocuments().stream())
                 .collect(Collectors.toList());
 
@@ -62,7 +62,6 @@ public class NotificationStep {
     }
 
     public ItemWriter<Document> notificationWriter(){
-        //todo chunk 사이즈 10 으로 인해 10개의 데이터만 수정되는 문제 해결
         return items -> {
             log.info("[notificationWriter] items count : "+items.size());
             for (Document item : items) {

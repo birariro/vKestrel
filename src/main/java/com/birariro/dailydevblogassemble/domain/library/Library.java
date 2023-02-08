@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "tb_library")
-@Where(clause = "state = 'ACTIVE'")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class Library extends BaseEntity {

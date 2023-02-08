@@ -38,6 +38,13 @@ public class InitController {
 
         List<Library> libraries = new ArrayList<>();
         for (CompanyJsonDto companyJsonDto : companyJsonDtos) {
+
+            log.info("[init] library : "+ companyJsonDto.getName());
+            if( libraryRepository.existsByName(companyJsonDto.getName())) {
+                log.info("[init] 존재하는 library : "+ companyJsonDto.getName());
+                continue;
+            }
+
             Library library = new Library(companyJsonDto.getName(), companyJsonDto.getUrl(), companyJsonDto.getHome(), UrlType.valueOf(companyJsonDto.getType()));
             libraries.add(library);
         }

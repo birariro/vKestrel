@@ -1,6 +1,9 @@
 package com.birariro.dailydevblogassemble.adapter.email;
 
 import com.birariro.dailydevblogassemble.domain.library.Document;
+import com.birariro.dailydevblogassemble.domain.member.Email;
+import com.birariro.dailydevblogassemble.domain.member.Member;
+import com.birariro.dailydevblogassemble.domain.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +15,7 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -23,21 +27,30 @@ public class EmailDailyDocuments {
     private final TemplateEngine templateEngine;
 
     private final JavaMailSender sender;
+    private final MemberRepository memberRepository;
 
     public void execute(List<Document> documentList){
 
         String template = getTemplate(documentList);
 
-        MimeMessagePreparator message =
-                mimeMessage -> {
-                    final MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-                    helper.setFrom(from);
-                    helper.setTo("vps32@naver.com");
-                    helper.setSubject("today document");
-                    helper.setText(template,true);
-                };
+        List<Email> collect = memberRepository.findActiveByAll().stream()
+                .map(Member::getEmail)
+                .collect(Collectors.toList());
 
-        sender.send(message);
+        for (Email email : collect) {
+            log.info("[daily document email send] target Email Address : "+email.getValue());
+            MimeMessagePreparator message =
+                    mimeMessage -> {
+                        final MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+                        helper.setFrom(from);
+                        helper.setTo(email.getValue());
+                        helper.setSubject("today document");
+                        helper.setText(template,true);
+                    };
+
+            sender.send(message);
+        }
+
     }
 
     private String getTemplate(List<Document> documentList){
