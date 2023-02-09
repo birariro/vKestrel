@@ -1,5 +1,7 @@
 package com.birariro.dailydevblogassemble.adapter.batch;
 
+import com.birariro.dailydevblogassemble.adapter.batch.step.event.BatchActionEvent;
+import com.birariro.dailydevblogassemble.config.event.Events;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -22,10 +24,12 @@ public class BatchScheduler {
     private final Job job;
     private final JobLauncher jobLauncher;
 
-    @Scheduled(fixedDelay = 600 * 1000L) // 10분
+    //@Scheduled(fixedDelay = 600 * 1000L) // 10분
+    @Scheduled(cron="0 0 10 * * ?", zone="Asia/Seoul")// 매일 오전 10시 0분 0초
     public void executeJob() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
 
-        log.debug("job run");
+        log.info("job run");
+        Events.raise(new BatchActionEvent(false,"[batch start]"));
         jobLauncher.run(job,new JobParametersBuilder().addString("datetime", LocalDateTime.now().toString())
                 .toJobParameters());
     }

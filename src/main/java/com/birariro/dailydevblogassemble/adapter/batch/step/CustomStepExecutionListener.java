@@ -1,7 +1,6 @@
 package com.birariro.dailydevblogassemble.adapter.batch.step;
 
-import com.birariro.dailydevblogassemble.adapter.batch.step.event.DailyDocumentErrorEvent;
-import com.birariro.dailydevblogassemble.adapter.batch.step.event.DailyDocumentEvent;
+import com.birariro.dailydevblogassemble.adapter.batch.step.event.BatchActionEvent;
 import com.birariro.dailydevblogassemble.config.event.Events;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.ExitStatus;
@@ -33,7 +32,7 @@ public class CustomStepExecutionListener implements StepExecutionListener {
 
 
         if(exitStatus.getExitCode().equals("FAILED")){
-            Events.raise(new DailyDocumentErrorEvent(errorMessage));
+            Events.raise(new BatchActionEvent(true,errorMessage));
         }else{
             log.info(errorMessage);
         }
