@@ -42,7 +42,7 @@ public class SlackAdapter {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (Document document : documentList) {
-            String format = String.format("%s [%s] (%s)", document.getTitle(), document.getUrl(), document.getAuthor());
+            String format = String.format("%s [%s]", document.getTitle(), document.getUrl());
             stringBuilder.append(format);
             stringBuilder.append("\n");
         }

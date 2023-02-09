@@ -48,7 +48,8 @@ public class BatchDailyDocumentExtractStep {
     @StepScope
     public ListItemReader<Document> dailyDocumentExtractReader(){
         List<Library> libraries = libraryRepository.findActiveByAll();
-        List<Document> collect = libraries.stream().flatMap(library -> library.getWaitDocuments().stream())
+        List<Document> collect = libraries.stream()
+                .flatMap(library -> library.getWaitDocuments().stream())
                 .collect(Collectors.toList());
 
         if(collect.size() > 0){

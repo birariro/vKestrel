@@ -36,7 +36,7 @@ public class BatchLibraryDocumentParsingStep {
     public Step libraryDocumentParsingStep(){
         return stepBuilderFactory.get("libraryDocumentParsingStep")
                 .listener(customStepExecutionListener)
-                .<Library, Library> chunk(10)
+                .<Library, Library> chunk(100)
                 .reader(libraryDocumentParsingReader())
                 .processor(libraryDocumentParsingProcessor())
                 .writer(libraryDocumentParsingWriter())

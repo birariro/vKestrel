@@ -26,11 +26,16 @@ public class SlackErrorAdapter {
 
     public void sendMessage(String text) throws SlackApiException, IOException {
 
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("님들아 님들아 큰일났어요 !!!\n");
+        stringBuilder.append("배치에서 에러 발생 했어요");
+        stringBuilder.append(text);
+
 
         MethodsClient methods = Slack.getInstance().methods(token);
         ChatPostMessageRequest request = ChatPostMessageRequest.builder()
                 .channel(channel)
-                .text(text)
+                .text(stringBuilder.toString())
                 .build();
 
         methods.chatPostMessage(request);
