@@ -19,9 +19,9 @@ import java.util.List;
 public class SlackErrorAdapter {
 
 
-    @Value("${slack.guard.token}")
+    @Value("${slack.error.token}")
     String token;
-    @Value("${slack.guard.channel}")
+    @Value("${slack.error.channel}")
     String channel;
 
     public void sendMessage(String text) throws SlackApiException, IOException {

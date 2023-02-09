@@ -15,10 +15,12 @@ public class RSSParser {
     @Test
     public void test() throws IOException, FeedException {
         //
-        String _url = "https://engineering.linecorp.com/ko/feed/";
+        String _url = "https://j-k4keye.tistory.com/rss";
         URL url = new URL(_url);
         SyndFeedInput syndFeedInput = new SyndFeedInput();
-        SyndFeed build = syndFeedInput.build(new XmlReader(url));
+        XmlReader xmlReader = new XmlReader(url);
+
+        SyndFeed build = syndFeedInput.build(xmlReader);
         String title = build.getTitle();
         System.out.println("title = " + title);
         build.getEntries().stream().forEach(item -> {

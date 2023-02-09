@@ -21,9 +21,9 @@ import java.util.List;
 public class SlackAdapter {
 
 
-    @Value("${slack.token}")
+    @Value("${slack.bot.token}")
     String token;
-    @Value("${slack.channel}")
+    @Value("${slack.bot.channel}")
     String channel;
 
     public void sendMessage(List<Document> documents) throws SlackApiException, IOException {

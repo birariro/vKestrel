@@ -29,12 +29,12 @@ public class InitController {
     public ResponseEntity init() throws IOException {
 
 
-        ClassPathResource resource = new ClassPathResource("company-library.json");
+        ClassPathResource companyResource = new ClassPathResource("company-library.json");
 
-        FileReader fileReader =  new FileReader(resource.getFile());
+
 
         ObjectMapper objectMapper = new ObjectMapper();
-        CompanyJsonDto[] companyJsonDtos = objectMapper.readValue(fileReader, CompanyJsonDto[].class);
+        CompanyJsonDto[] companyJsonDtos = objectMapper.readValue(new FileReader(companyResource.getFile()) , CompanyJsonDto[].class);
 
         List<Library> libraries = new ArrayList<>();
         for (CompanyJsonDto companyJsonDto : companyJsonDtos) {
@@ -48,6 +48,24 @@ public class InitController {
             Library library = new Library(companyJsonDto.getName(), companyJsonDto.getUrl(), companyJsonDto.getHome(), UrlType.valueOf(companyJsonDto.getType()));
             libraries.add(library);
         }
+
+
+        ClassPathResource alonResource = new ClassPathResource("alon-library.json");
+        ObjectMapper objectMapper2 = new ObjectMapper();
+        CompanyJsonDto[] alonJsonDtos = objectMapper2.readValue(new FileReader(alonResource.getFile()) , CompanyJsonDto[].class);
+        for (CompanyJsonDto alonJsonDto : alonJsonDtos) {
+
+            log.info("[init] library : "+ alonJsonDto.getName());
+            if( libraryRepository.existsByName(alonJsonDto.getName())) {
+                log.info("[init] 존재하는 library : "+ alonJsonDto.getName());
+                continue;
+            }
+
+            Library library = new Library(alonJsonDto.getName(), alonJsonDto.getUrl(), alonJsonDto.getHome(), UrlType.valueOf(alonJsonDto.getType()));
+            libraries.add(library);
+        }
+
+
 
         libraryRepository.saveAll(libraries);
 

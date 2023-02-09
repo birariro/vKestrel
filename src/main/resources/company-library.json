@@ -77,6 +77,12 @@
     "home": "https://engineering.linecorp.com/ko/blog",
     "url" : "https://engineering.linecorp.com/ko/feed/",
     "type" : "RSS"
+  },
+  {
+    "name" : "넷마블 기술 블로그",
+    "home": "https://netmarble.engineering/",
+    "url" : "https://netmarble.engineering/feed/",
+    "type" : "RSS"
   }
 ]
 

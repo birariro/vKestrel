@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
-public class BatchDailyDocumentExtractStep {
+public class DailyDocumentStep {
     private final StepBuilderFactory stepBuilderFactory;
     private final LibraryRepository libraryRepository;
     private final CustomStepExecutionListener customStepExecutionListener;
@@ -69,7 +69,7 @@ public class BatchDailyDocumentExtractStep {
 
     public ItemWriter<Document> dailyDocumentExtractWriter(){
         return items -> {
-            log.info("[notificationWriter] items count : "+items.size());
+            log.info("[dailyDocumentExtractWriter] items count : "+items.size());
             for (Document item : items) {
                 item.sendComplete();
             }
