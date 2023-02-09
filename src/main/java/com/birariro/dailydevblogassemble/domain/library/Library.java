@@ -50,6 +50,7 @@ public class Library extends BaseEntity {
 
     public boolean existDocument(Document document){
 
+        if(documents.size() == 0) return false;
         return this.documents.stream()
                 .filter(item -> item.getTitle().equals(document.getTitle()))
                 .findFirst()

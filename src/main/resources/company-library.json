@@ -47,8 +47,37 @@
     "home": "https://blog.banksalad.com",
     "url" : "https://blog.banksalad.com/rss.xml",
     "type" : "RSS"
+  },
+  {
+    "name" : "당근마켓",
+    "home": "https://medium.com/daangn",
+    "url" : "https://medium.com/feed/daangn",
+    "type" : "RSS"
+  },
+  {
+    "name" : "데일리호텔",
+    "home": "https://dailyhotel.io/",
+    "url" : "https://dailyhotel.io/feed",
+    "type" : "RSS"
+  },
+  {
+    "name" : "딜리셔스",
+    "home": "https://dealicious-inc.github.io/",
+    "url" : "https://dealicious-inc.github.io/feed.xml",
+    "type" : "RSS"
+  },
+  {
+    "name" : "리모트몬스터",
+    "home": "https://blog.remotemonster.com/",
+    "url" : "https://blog.remotemonster.com/feed",
+    "type" : "RSS"
+  },
+  {
+    "name" : "라인",
+    "home": "https://engineering.linecorp.com/ko/blog",
+    "url" : "https://engineering.linecorp.com/ko/feed/",
+    "type" : "RSS"
   }
-
 ]
 
 

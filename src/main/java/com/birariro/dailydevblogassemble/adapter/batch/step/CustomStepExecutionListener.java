@@ -1,5 +1,8 @@
 package com.birariro.dailydevblogassemble.adapter.batch.step;
 
+import com.birariro.dailydevblogassemble.adapter.batch.step.event.DailyDocumentErrorEvent;
+import com.birariro.dailydevblogassemble.adapter.batch.step.event.DailyDocumentEvent;
+import com.birariro.dailydevblogassemble.config.event.Events;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.StepExecution;
@@ -28,8 +31,7 @@ public class CustomStepExecutionListener implements StepExecutionListener {
 
         String format = String.format("[batch step end] [%s] %s", stepName, exitStatus.getExitCode());
         if(exitStatus.getExitCode().equals("FAILED")){
-            log.error(format);
-            //todo 알림
+            Events.raise(new DailyDocumentErrorEvent("배치 에러 발생 ㅠㅠ : "+format));
         }else{
             log.info(format);
         }
