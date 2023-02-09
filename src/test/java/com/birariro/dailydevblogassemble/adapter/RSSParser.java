@@ -17,13 +17,16 @@ public class RSSParser {
     public void test() throws IOException, FeedException {
         //
 
-        URL url = new URL("https://www.44bits.io/ko/feed/posts");
+        URL url = new URL("https://tosslab.github.io/feed.xml");
         SyndFeedInput syndFeedInput = new SyndFeedInput();
         SyndFeed build = syndFeedInput.build(new XmlReader(url));
+        String title = build.getTitle();
+        System.out.println("title = " + title);
         build.getEntries().stream().forEach(item -> {
-
             System.out.println("item.getTitle() = " + item.getTitle());
             System.out.println("item.getLink() = " + item.getLink());
+            System.out.println("item.getLink() = " + item.getUri());
+            System.out.println("item.getLink() = " + item.getUri());
         });
     }
 }

@@ -12,6 +12,6 @@ public interface LibraryRepository extends JpaRepository<Library, UUID> {
 
     boolean existsByName(String name);
 
-    @Query("select l from Library l where l.state = 'ACTIVE'")
+    @Query("select l from Library l where l.entityState = 'ACTIVE'")
     List<Library> findActiveByAll();
 }

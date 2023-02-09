@@ -12,16 +12,16 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class EmailEventSubscribe {
 
-    private final EmailAdapter emailAdapter;
+    private final EmailService emailService;
 
     @EventListener(NewRegistrationEvent.class)
     public void event(NewRegistrationEvent event){
         log.info("RegistrationEvent email : "+event.getEmail());
-        emailAdapter.authenticationCodeSend(event.getEmail(), event.getAuthCode());
+        emailService.authenticationCodeSend(event.getEmail(), event.getAuthCode());
     }
 
     @EventListener(DailyDocumentEvent.class)
     public void sendDailyDocument(DailyDocumentEvent event){
-        emailAdapter.toDayDocumentsSend(event.getDocuments());
+        emailService.toDayDocumentsSend(event.getDocuments());
     }
 }

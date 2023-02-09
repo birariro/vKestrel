@@ -36,6 +36,7 @@ public class Library extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private UrlType type;
 
+
     @OneToMany(mappedBy = "library", cascade = CascadeType.ALL)
     List<Document> documents = new ArrayList<>();
 

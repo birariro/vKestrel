@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class EmailAdapter {
+public class EmailService {
 
     private final EmailAuthCode emailAuthCode;
     private final EmailDailyDocuments emailDailyDocuments;

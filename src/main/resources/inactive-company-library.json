@@ -1,0 +1,33 @@
+[
+  { //RSS 파싱 실패
+    "name" : "월요일 오후 9시",
+    "home": "https://medium.com/monday-9-pm",
+    "url" : "https://medium.com/feed/monday-9-pm",
+    "type" : "RSS"
+  },
+  {//RSS 파싱 실패
+    "name" : "화해",
+    "home": "https://blog.hwahae.co.kr/category/all/tech",
+    "url" : "https://blog.hwahae.co.kr/category/all/tech/feed/",
+    "type" : "RSS"
+  },
+  {//RSS 파싱 실패
+    "name" : "쿠팡",
+    "home": "https://medium.com/coupang-tech",
+    "url" : "https://medium.com/feed/coupang-tech",
+    "type" : "RSS"
+  },
+  {//RSS url 가 원하는 정보가 아님
+    "name" : "토스랩",
+    "home": "https://tosslab.github.io",
+    "url" : "https://tosslab.github.io/feed.xml",
+    "type" : "RSS"
+  }
+]
+
+
+
+
+
+
+

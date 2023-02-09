@@ -1,50 +1,32 @@
 [
   {
     "name" : "44bits",
-    "home": "https://www.44bits.io/",
+    "home": "https://www.44bits.io",
     "url" : "https://www.44bits.io/ko/feed/posts",
     "type" : "RSS"
   },
   {
     "name" : "42Seoul",
-    "home": "https://42place.innovationacademy.kr/",
+    "home": "https://42place.innovationacademy.kr",
     "url" : "https://42place.innovationacademy.kr/feed",
     "type" : "RSS"
   },
   {
     "name" : "가비아",
-    "home": "https://library.gabia.com/",
+    "home": "https://library.gabia.com",
     "url" : "https://library.gabia.com/feed",
     "type" : "RSS"
   },
   {
     "name" : "우아한형제들",
-    "home": "https://woowabros.github.io/",
+    "home": "https://woowabros.github.io",
     "url" : "https://woowabros.github.io/feed.xml",
     "type" : "RSS"
   },
   {
-    "name" : "월요일 오후 9시",
-    "home": "https://medium.com/monday-9-pm",
-    "url" : "https://medium.com/feed/monday-9-pm",
-    "type" : "RSS"
-  },
-  {
     "name" : "카카오스타일",
-    "home": "https://devblog.kakaostyle.com/ko/",
+    "home": "https://devblog.kakaostyle.com/ko",
     "url" : "https://devblog.kakaostyle.com/ko/index.xml",
-    "type" : "RSS"
-  },
-  {
-    "name" : "쿠팡",
-    "home": "https://medium.com/coupang-tech",
-    "url" : "https://medium.com/feed/coupang-tech",
-    "type" : "RSS"
-  },
-  {
-    "name" : "토스랩",
-    "home": "https://tosslab.github.io/",
-    "url" : "https://tosslab.github.io/feed.xml",
     "type" : "RSS"
   },
   {
@@ -53,12 +35,7 @@
     "url" : "https://tosslab.github.io/feed.xml",
     "type" : "RSS"
   },
-  {
-    "name" : "화해",
-    "home": "https://blog.hwahae.co.kr/category/all/tech/",
-    "url" : "https://blog.hwahae.co.kr/category/all/tech/feed/",
-    "type" : "RSS"
-  },
+
   {
     "name" : "헤이딜러",
     "home": "https://medium.com/prnd",
@@ -67,7 +44,7 @@
   },
   {
     "name" : "뱅크샐러드",
-    "home": "https://blog.banksalad.com/",
+    "home": "https://blog.banksalad.com",
     "url" : "https://blog.banksalad.com/rss.xml",
     "type" : "RSS"
   }

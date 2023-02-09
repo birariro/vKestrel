@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 @Configuration
 @Slf4j
 @RequiredArgsConstructor
-public class LibraryDocumentParsingStep {
+public class BatchLibraryDocumentParsingStep {
     private final StepBuilderFactory stepBuilderFactory;
     private final LibraryRepository libraryRepository;
     private final RSSParser rssParser;

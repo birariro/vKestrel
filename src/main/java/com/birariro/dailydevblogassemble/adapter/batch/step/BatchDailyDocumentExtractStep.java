@@ -1,7 +1,6 @@
 package com.birariro.dailydevblogassemble.adapter.batch.step;
 
 import com.birariro.dailydevblogassemble.adapter.batch.step.event.DailyDocumentEvent;
-import com.birariro.dailydevblogassemble.adapter.email.EmailAdapter;
 import com.birariro.dailydevblogassemble.config.event.Events;
 import com.birariro.dailydevblogassemble.domain.library.Document;
 import com.birariro.dailydevblogassemble.domain.library.Library;
@@ -27,11 +26,11 @@ import java.util.stream.Collectors;
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
-public class DailyDocumentExtractStep {
+public class BatchDailyDocumentExtractStep {
     private final StepBuilderFactory stepBuilderFactory;
     private final LibraryRepository libraryRepository;
     private final CustomStepExecutionListener customStepExecutionListener;
-    private final EmailAdapter emailAdapter;
+
 
     @Bean
     public Step dailyDocumentExtractStep(){

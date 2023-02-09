@@ -13,6 +13,6 @@ public interface MemberRepository extends JpaRepository<Member, UUID> {
 
     Optional<Member> findByEmail(Email email);
 
-    @Query("select m from Member m where m.state = 'ACTIVE'")
+    @Query("select m from Member m where m.entityState = 'ACTIVE'")
     List<Member> findActiveByAll();
 }

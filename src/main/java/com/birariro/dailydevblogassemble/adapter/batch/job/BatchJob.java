@@ -1,7 +1,7 @@
 package com.birariro.dailydevblogassemble.adapter.batch.job;
 
-import com.birariro.dailydevblogassemble.adapter.batch.step.DailyDocumentExtractStep;
-import com.birariro.dailydevblogassemble.adapter.batch.step.LibraryDocumentParsingStep;
+import com.birariro.dailydevblogassemble.adapter.batch.step.BatchDailyDocumentExtractStep;
+import com.birariro.dailydevblogassemble.adapter.batch.step.BatchLibraryDocumentParsingStep;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
@@ -12,14 +12,14 @@ import org.springframework.context.annotation.Configuration;
 @RequiredArgsConstructor
 public class BatchJob {
     private final JobBuilderFactory jobBuilderFactory;
-    private final LibraryDocumentParsingStep libraryDocumentParsingStep;
-    private final DailyDocumentExtractStep dailyDocumentExtractStep;
+    private final BatchLibraryDocumentParsingStep batchLibraryDocumentParsingStep;
+    private final BatchDailyDocumentExtractStep batchDailyDocumentExtractStep;
 
     @Bean
     public Job startJob(){
         return jobBuilderFactory.get("startJob")
-                .start(libraryDocumentParsingStep.libraryDocumentParsingStep())
-                .next(dailyDocumentExtractStep.dailyDocumentExtractStep())
+                .start(batchLibraryDocumentParsingStep.libraryDocumentParsingStep())
+                .next(batchDailyDocumentExtractStep.dailyDocumentExtractStep())
                 .build();
     }
 
