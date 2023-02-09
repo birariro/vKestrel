@@ -2,6 +2,8 @@ package com.birariro.dailydevblogassemble.adapter.slack;
 
 import com.birariro.dailydevblogassemble.adapter.batch.step.event.BatchActionEvent;
 import com.birariro.dailydevblogassemble.adapter.batch.step.event.DailyDocumentEvent;
+import com.birariro.dailydevblogassemble.adapter.slack.bot.SlackCommonBot;
+import com.birariro.dailydevblogassemble.adapter.slack.bot.SlackErrorBot;
 import com.slack.api.methods.SlackApiException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,22 +15,22 @@ import java.io.IOException;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class SlackSubscribe {
+public class SlackConfiguration {
 
-    private final SlackAdapter slackAdapter;
-    private final SlackMessageAdapter slackMessageAdapter;
+    private final SlackCommonBot slackCommonBot;
+    private final SlackErrorBot slackErrorBot;
     @EventListener(DailyDocumentEvent.class)
     public void sendDailyDocument(DailyDocumentEvent event) throws SlackApiException, IOException {
-        slackAdapter.sendMessage(event.getDocuments());
+        slackCommonBot.sendDocument(event.getDocuments());
     }
 
     @EventListener(BatchActionEvent.class)
     private void batchEvent(BatchActionEvent event) throws SlackApiException, IOException {
 
         if(event.isError()){
-            slackMessageAdapter.sendErrorMessage(event.getMessage());
+            slackErrorBot.sendErrorMessage(event.getMessage());
             return;
         }
-        slackMessageAdapter.sendMessage(event.getMessage());
+        slackCommonBot.sendCommonMessage(event.getMessage());
     }
 }

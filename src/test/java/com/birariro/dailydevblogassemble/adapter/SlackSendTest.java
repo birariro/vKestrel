@@ -1,6 +1,6 @@
 package com.birariro.dailydevblogassemble.adapter;
 
-import com.birariro.dailydevblogassemble.adapter.slack.SlackAdapter;
+import com.birariro.dailydevblogassemble.adapter.slack.bot.SlackCommonBot;
 import com.birariro.dailydevblogassemble.domain.library.Document;
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
@@ -17,7 +17,7 @@ import java.util.List;
 public class SlackSendTest {
 
     @Autowired
-    SlackAdapter slackAdapter;
+    SlackCommonBot slackCommonBot;
 
     @Test
     public void sendTest() {
@@ -25,7 +25,7 @@ public class SlackSendTest {
         Document document = new Document("title", "test", "test");
         Document document2 = new Document("title2", "test2", "test2");
         try {
-            slackAdapter.sendMessage(List.of(document,document2));
+            slackCommonBot.sendDocument(List.of(document,document2));
         } catch (SlackApiException e) {
             e.printStackTrace();
         } catch (IOException e) {

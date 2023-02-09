@@ -19,8 +19,8 @@ a Docker Compose setup is provided. It comes with the following databases:
 - AOP
 - p6spy (v1.5.7)
 - validation (v2.5.2)
+- SlackBot (v1.27.3)
 - spring-batch
-- spring-scheduling
 
 
 ### Hooks

@@ -1,4 +1,4 @@
-package com.birariro.dailydevblogassemble.adapter.slack;
+package com.birariro.dailydevblogassemble.adapter.slack.bot;
 
 import com.birariro.dailydevblogassemble.domain.library.Document;
 import com.slack.api.Slack;
@@ -9,8 +9,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.Context;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,21 +16,34 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class SlackAdapter {
+public class SlackCommonBot {
 
 
-    @Value("${slack.bot.token}")
+    @Value("${slack.bot.common.token}")
     String token;
-    @Value("${slack.bot.channel}")
+    @Value("${slack.bot.common.channel}")
     String channel;
 
-    public void sendMessage(List<Document> documents) throws SlackApiException, IOException {
+    public void sendDocument(List<Document> documents) throws SlackApiException, IOException {
 
         String text = getString(documents);
         MethodsClient methods = Slack.getInstance().methods(token);
         ChatPostMessageRequest request = ChatPostMessageRequest.builder()
                 .channel(channel)
                 .text(text)
+                .build();
+
+        methods.chatPostMessage(request);
+    }
+    public void sendCommonMessage(String text) throws SlackApiException, IOException {
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(text);
+
+        MethodsClient methods = Slack.getInstance().methods(token);
+        ChatPostMessageRequest request = ChatPostMessageRequest.builder()
+                .channel(channel)
+                .text(stringBuilder.toString())
                 .build();
 
         methods.chatPostMessage(request);

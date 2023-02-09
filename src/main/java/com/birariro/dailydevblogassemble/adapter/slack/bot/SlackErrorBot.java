@@ -1,4 +1,4 @@
-package com.birariro.dailydevblogassemble.adapter.slack;
+package com.birariro.dailydevblogassemble.adapter.slack.bot;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
@@ -14,12 +14,12 @@ import java.io.IOException;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class SlackMessageAdapter {
+public class SlackErrorBot {
 
 
-    @Value("${slack.error.token}")
+    @Value("${slack.bot.error.token}")
     String token;
-    @Value("${slack.error.channel}")
+    @Value("${slack.bot.error.channel}")
     String channel;
 
     public void sendErrorMessage(String text) throws SlackApiException, IOException {
@@ -39,18 +39,6 @@ public class SlackMessageAdapter {
         methods.chatPostMessage(request);
     }
 
-    public void sendMessage(String text) throws SlackApiException, IOException {
 
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(text);
-
-        MethodsClient methods = Slack.getInstance().methods(token);
-        ChatPostMessageRequest request = ChatPostMessageRequest.builder()
-                .channel(channel)
-                .text(stringBuilder.toString())
-                .build();
-
-        methods.chatPostMessage(request);
-    }
 
 }
