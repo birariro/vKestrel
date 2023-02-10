@@ -4,6 +4,7 @@ import com.birariro.dailydevblogassemble.adapter.batch.step.event.BatchActionEve
 import com.birariro.dailydevblogassemble.adapter.batch.step.event.DailyDocumentEvent;
 import com.birariro.dailydevblogassemble.adapter.slack.bot.SlackCommonBot;
 import com.birariro.dailydevblogassemble.adapter.slack.bot.SlackErrorBot;
+import com.birariro.dailydevblogassemble.config.exception.ExceptionEvent;
 import com.slack.api.methods.SlackApiException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,5 +33,10 @@ public class SlackConfiguration {
             return;
         }
         slackCommonBot.sendCommonMessage(event.getMessage());
+    }
+
+    @EventListener(ExceptionEvent.class)
+    private void errorEvent(ExceptionEvent event) throws SlackApiException, IOException {
+        slackErrorBot.sendErrorMessage(event.getMessage());
     }
 }

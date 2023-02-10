@@ -26,7 +26,7 @@ public class SlackErrorBot {
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("님들아 님들아 큰일났어요 !!!\n");
-        stringBuilder.append("배치에서 에러 발생 했어요");
+        stringBuilder.append("에러가 발생 했어요\n");
         stringBuilder.append(text);
 
 
