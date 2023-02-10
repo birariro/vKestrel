@@ -10,20 +10,23 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.io.IOException;
 import java.net.URL;
 
-@SpringBootTest
 public class RSSParser {
 
     @Test
     public void test() throws IOException, FeedException {
         //
-
-        URL url = new URL("https://www.44bits.io/ko/feed/posts");
+        String _url = "https://j-k4keye.tistory.com/rss";
+        URL url = new URL(_url);
         SyndFeedInput syndFeedInput = new SyndFeedInput();
-        SyndFeed build = syndFeedInput.build(new XmlReader(url));
-        build.getEntries().stream().forEach(item -> {
+        XmlReader xmlReader = new XmlReader(url);
 
+        SyndFeed build = syndFeedInput.build(xmlReader);
+        String title = build.getTitle();
+        System.out.println("title = " + title);
+        build.getEntries().stream().forEach(item -> {
             System.out.println("item.getTitle() = " + item.getTitle());
             System.out.println("item.getLink() = " + item.getLink());
+            System.out.println("item.getLink() = " + item.getUri());
         });
     }
 }

@@ -1,4 +1,4 @@
-package com.birariro.dailydevblogassemble.domain.member;
+package com.birariro.dailydevblogassemble.domain;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
@@ -17,10 +17,10 @@ public class BaseEntity {
 
     @Column(name = "state")
     @Enumerated(EnumType.STRING)
-    private State state;
+    private EntityState entityState;
 
-    public BaseEntity setState(State state) {
-        this.state = state;
+    public BaseEntity setEntityState(EntityState entityState) {
+        this.entityState = entityState;
         return this;
     }
 }

@@ -1,5 +1,7 @@
 package com.birariro.dailydevblogassemble.adapter.batch.step;
 
+import com.birariro.dailydevblogassemble.adapter.batch.step.event.BatchActionEvent;
+import com.birariro.dailydevblogassemble.config.event.Events;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.StepExecution;
@@ -26,12 +28,13 @@ public class CustomStepExecutionListener implements StepExecutionListener {
         String stepName = stepExecution.getStepName();
         ExitStatus exitStatus = stepExecution.getExitStatus();
 
-        String format = String.format("[batch step end] [%s] %s", stepName, exitStatus.getExitCode());
+        String errorMessage = String.format("[batch step end] [%s] %s \n %s", stepName, exitStatus.getExitCode(),exitStatus.getExitDescription());
+
+
         if(exitStatus.getExitCode().equals("FAILED")){
-            log.error(format);
-            //todo 알림
+            Events.raise(new BatchActionEvent(true,errorMessage));
         }else{
-            log.info(format);
+            log.info(errorMessage);
         }
 
         return exitStatus;

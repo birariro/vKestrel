@@ -58,6 +58,11 @@ dependencies {
 	//RSS rome
 	implementation ("com.rometools:rome:1.10.0")
 
+	//slack
+	implementation("com.slack.api:bolt:1.27.3")
+	implementation("com.slack.api:bolt-servlet:1.27.3")
+	implementation("com.slack.api:bolt-jetty:1.27.3")
+
 
 
 }

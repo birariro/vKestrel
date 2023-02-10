@@ -18,36 +18,40 @@ import org.springframework.context.annotation.Configuration;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * 하루에 한번
+ * 각 사이트에서 게시글을 파싱한다.
+ */
 @Configuration
 @Slf4j
 @RequiredArgsConstructor
-public class ParserStep {
+public class DocumentParsingStep {
     private final StepBuilderFactory stepBuilderFactory;
     private final LibraryRepository libraryRepository;
     private final RSSParser rssParser;
     private final CustomStepExecutionListener customStepExecutionListener;
 
     @Bean
-    public Step parserJobStep(){
-        return stepBuilderFactory.get("parserJobStep")
+    public Step libraryDocumentParsingStep(){
+        return stepBuilderFactory.get("libraryDocumentParsingStep")
                 .listener(customStepExecutionListener)
-                .<Library, Library> chunk(10)
-                .reader(libraryReader())
-                .processor(libraryProcessor())
-                .writer(libraryWriter())
+                .<Library, Library> chunk(100)
+                .reader(libraryDocumentParsingReader())
+                .processor(libraryDocumentParsingProcessor())
+                .writer(libraryDocumentParsingWriter())
                 .build();
     }
 
 
     @Bean
     @StepScope
-    public ListItemReader<Library> libraryReader(){
-        List<Library> libraries = libraryRepository.findAll();
+    public ListItemReader<Library> libraryDocumentParsingReader(){
+        List<Library> libraries = libraryRepository.findActiveByAll();
         return new ListItemReader<>(libraries);
     }
 
 
-    public ItemProcessor<Library,Library> libraryProcessor(){
+    public ItemProcessor<Library,Library> libraryDocumentParsingProcessor(){
         return item ->{
 
             log.info("RSS parser target name : " +item.getName());
@@ -66,7 +70,7 @@ public class ParserStep {
         };
     }
 
-    public ItemWriter<Library> libraryWriter(){
+    public ItemWriter<Library> libraryDocumentParsingWriter(){
         return items -> {
             libraryRepository.saveAll(items);
         };

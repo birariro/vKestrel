@@ -1,7 +1,7 @@
 package com.birariro.dailydevblogassemble.domain.library;
 
-import com.birariro.dailydevblogassemble.domain.member.BaseEntity;
-import com.birariro.dailydevblogassemble.domain.member.State;
+import com.birariro.dailydevblogassemble.domain.BaseEntity;
+import com.birariro.dailydevblogassemble.domain.EntityState;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -10,8 +10,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "tb_library")
@@ -36,6 +36,7 @@ public class Library extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private UrlType type;
 
+
     @OneToMany(mappedBy = "library", cascade = CascadeType.ALL)
     List<Document> documents = new ArrayList<>();
 
@@ -44,15 +45,23 @@ public class Library extends BaseEntity {
         this.url = url;
         this.origin = origin;
         this.type = type;
-        this.setState(State.ACTIVE);
+        this.setEntityState(EntityState.ACTIVE);
     }
 
     public boolean existDocument(Document document){
 
+        if(documents.size() == 0) return false;
         return this.documents.stream()
                 .filter(item -> item.getTitle().equals(document.getTitle()))
                 .findFirst()
                 .isPresent();
+    }
+
+    public List<Document> getWaitDocuments(){
+
+        return this.documents.stream()
+                .filter(item -> item.getSendState() == SendState.WAITING)
+                .collect(Collectors.toList());
     }
     public void addDocument(Document document){
         this.documents.add(document);

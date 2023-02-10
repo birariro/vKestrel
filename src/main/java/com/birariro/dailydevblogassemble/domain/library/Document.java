@@ -1,21 +1,23 @@
 package com.birariro.dailydevblogassemble.domain.library;
 
-import com.birariro.dailydevblogassemble.domain.member.BaseEntity;
-import com.birariro.dailydevblogassemble.domain.member.State;
+import com.birariro.dailydevblogassemble.domain.BaseEntity;
+import com.birariro.dailydevblogassemble.domain.EntityState;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
 @Table(name = "tb_document")
+@Where(clause = "state = 'ACTIVE'")
 @Getter
+@ToString(exclude = "library")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Document extends BaseEntity {
 
@@ -41,9 +43,14 @@ public class Document extends BaseEntity {
         this.title = title;
         this.url = url;
         this.author = author;
-        this.setState(State.ACTIVE);
+        this.setEntityState(EntityState.ACTIVE);
         this.sendState = SendState.WAITING;
     }
+
+    public void sendComplete(){
+        this.sendState = SendState.COMPLETE;
+    }
+
     public void initLibrary(Library library){
         this.library = library;
     }

@@ -13,8 +13,7 @@ import org.thymeleaf.context.Context;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class EmailAdapter {
-
+public class EmailAuthCode {
     @Value("${mail.username}")
     private String from;
 
@@ -22,8 +21,7 @@ public class EmailAdapter {
 
     private final JavaMailSender sender;
 
-
-    public void authenticationCodeSend(String email, String authCode){
+    public void execute(String email, String authCode){
 
         log.info(email+" 로 인증 코드 발행");
         String template = getTemplate(authCode);
