@@ -1,5 +1,6 @@
 package com.birariro.dailydevblogassemble.adapter.batch.step;
 
+import com.birariro.dailydevblogassemble.adapter.batch.step.event.BatchActionEvent;
 import com.birariro.dailydevblogassemble.adapter.batch.step.event.DailyDocumentEvent;
 import com.birariro.dailydevblogassemble.config.event.Events;
 import com.birariro.dailydevblogassemble.domain.library.Document;
@@ -52,9 +53,8 @@ public class DailyDocumentStep {
                 .flatMap(library -> library.getWaitDocuments().stream())
                 .collect(Collectors.toList());
 
-        if(collect.size() > 0){
-            Events.raise(new DailyDocumentEvent(collect));
-        }
+        if(collect.size() > 0) Events.raise(new DailyDocumentEvent(collect));
+        else Events.raise(new BatchActionEvent(false,"오늘은 볼것이 없습니다."));
 
         return new ListItemReader<>(collect);
     }

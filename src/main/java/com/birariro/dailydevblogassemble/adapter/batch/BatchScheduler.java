@@ -29,7 +29,7 @@ public class BatchScheduler {
     public void executeJob() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
 
         log.info("job run");
-        Events.raise(new BatchActionEvent(false,"[batch start]"));
+        Events.raise(new BatchActionEvent(false,"[오늘의 뉴스]"));
         jobLauncher.run(job,new JobParametersBuilder().addString("datetime", LocalDateTime.now().toString())
                 .toJobParameters());
     }
