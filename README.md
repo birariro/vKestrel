@@ -1,5 +1,8 @@
-# PlayDay
+# Visit Knowledge
 
+Knowledge comes to you every morning.
+
+---
 
 ### Docker Compose setup
 You will need to install Docker and docker-compose.

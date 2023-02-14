@@ -3,17 +3,17 @@ version: '3.8'
 services:
 
   main-db:
-    container_name: daily-dev-blog-assemble-db
+    container_name: visit-knowledge-db
     image: mariadb:10.8.3
     ports:
       - "6633:3306"
     environment: # 환경 변수 전달
       MYSQL_ROOT_PASSWORD: "0000" # root 패스워드 지정
-      MYSQL_DATABASE: "daily-dev-blog-assemble-db" # 초기 디비 생성
+      MYSQL_DATABASE: "visit-knowledge-db" # 초기 디비 생성
     command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
 
   redis:
-    container_name: daily-dev-blog-assemble-redis
+    container_name: visit-knowledge-redis
     image: redis:7.0.4
     ports:
       - "6379:6379"
