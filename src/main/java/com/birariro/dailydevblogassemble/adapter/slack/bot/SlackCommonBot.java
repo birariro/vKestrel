@@ -51,7 +51,7 @@ public class SlackCommonBot {
     private String getString(List<Document> documentList){
 
         StringBuilder stringBuilder = new StringBuilder();
-
+        stringBuilder.append("[오늘의 뉴스] \n");
         for (Document document : documentList) {
             String format = String.format("%s [%s]", document.getTitle(), document.getUrl());
             stringBuilder.append(format);

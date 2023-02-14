@@ -83,6 +83,12 @@
     "home": "https://netmarble.engineering/",
     "url" : "https://netmarble.engineering/feed/",
     "type" : "RSS"
+  },
+  {
+    "name" : "벨로그",
+    "home": "https://velog.io/",
+    "url" : "https://velog.io/",
+    "type" : "VELOG"
   }
 ]
 

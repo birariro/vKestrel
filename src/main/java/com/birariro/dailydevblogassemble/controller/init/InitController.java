@@ -55,9 +55,9 @@ public class InitController {
         CompanyJsonDto[] alonJsonDtos = objectMapper2.readValue(new FileReader(alonResource.getFile()) , CompanyJsonDto[].class);
         for (CompanyJsonDto alonJsonDto : alonJsonDtos) {
 
-            log.info("[init] library : "+ alonJsonDto.getName());
+            log.info("[init] alon library : "+ alonJsonDto.getName());
             if( libraryRepository.existsByName(alonJsonDto.getName())) {
-                log.info("[init] 존재하는 library : "+ alonJsonDto.getName());
+                log.info("[init] 존재하는 alon library : "+ alonJsonDto.getName());
                 continue;
             }
 

@@ -1,5 +1,5 @@
 package com.birariro.dailydevblogassemble.domain.library;
 
 public enum UrlType {
-    RSS,TEST
+    RSS, VELOG ,TEST
 }

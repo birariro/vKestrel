@@ -1,9 +1,11 @@
 package com.birariro.dailydevblogassemble.adapter.batch.step;
 
 import com.birariro.dailydevblogassemble.adapter.parser.RSSParser;
+import com.birariro.dailydevblogassemble.adapter.parser.VelogParser;
 import com.birariro.dailydevblogassemble.domain.library.Document;
 import com.birariro.dailydevblogassemble.domain.library.Library;
 import com.birariro.dailydevblogassemble.domain.library.LibraryRepository;
+import com.birariro.dailydevblogassemble.domain.library.UrlType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Step;
@@ -15,6 +17,7 @@ import org.springframework.batch.item.support.ListItemReader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,6 +32,7 @@ public class DocumentParsingStep {
     private final StepBuilderFactory stepBuilderFactory;
     private final LibraryRepository libraryRepository;
     private final RSSParser rssParser;
+    private final VelogParser velogParser;
     private final CustomStepExecutionListener customStepExecutionListener;
 
     @Bean
@@ -55,7 +59,15 @@ public class DocumentParsingStep {
         return item ->{
 
             log.info("RSS parser target name : " +item.getName());
-            List<Document> documents = rssParser.getDocument(item.getUrl());
+
+            List<Document> documents = new ArrayList<>();
+            if(item.getType() == UrlType.RSS){
+                documents = rssParser.getDocument(item.getUrl());
+            }
+            if( item.getType() == UrlType.VELOG){
+                documents = velogParser.getDocument(item.getUrl());
+            }
+
 
             List<Document> newDocuments = documents.stream()
                                                     .filter(target -> item.existDocument(target) == false)
