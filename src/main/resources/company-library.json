@@ -85,6 +85,24 @@
     "type" : "RSS"
   },
   {
+    "name" : "왓챠",
+    "home": "https://medium.com/watcha",
+    "url" : "https://medium.com/feed/watcha",
+    "type" : "RSS"
+  },
+  {
+    "name" : "컬리",
+    "home": "https://helloworld.kurly.com/",
+    "url" : "https://thefarmersfront.github.io/feed.xml",
+    "type" : "RSS"
+  },
+  {
+    "name" : "NHN Cloud",
+    "home": "https://meetup.nhncloud.com/",
+    "url" : "https://meetup.nhncloud.com/rss",
+    "type" : "RSS"
+  },
+  {
     "name" : "벨로그",
     "home": "https://velog.io/",
     "url" : "https://velog.io/",

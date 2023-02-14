@@ -45,6 +45,7 @@ public class InitController {
                 continue;
             }
 
+            log.info("[init] add library : "+ companyJsonDto.getName());
             Library library = new Library(companyJsonDto.getName(), companyJsonDto.getUrl(), companyJsonDto.getHome(), UrlType.valueOf(companyJsonDto.getType()));
             libraries.add(library);
         }
