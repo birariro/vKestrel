@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Component
 @Slf4j
-public class VelogParser {
+class VelogParser {
 
     public List<Document> getDocument(String url) throws IOException {
 

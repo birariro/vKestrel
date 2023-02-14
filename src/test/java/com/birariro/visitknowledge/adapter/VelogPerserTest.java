@@ -1,6 +1,7 @@
 package com.birariro.visitknowledge.adapter;
 
-import com.birariro.visitknowledge.adapter.parser.VelogParser;
+import com.birariro.visitknowledge.adapter.parser.ParserAdapter;
+import com.birariro.visitknowledge.domain.library.UrlType;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 @SpringBootTest
 public class VelogPerserTest {
     @Autowired
-    VelogParser velogParser;
+    ParserAdapter parserAdapter;
     @Test
     public void velogHtml(){
         WebClient webClient = WebClient.create("https://velog.io/");
@@ -78,7 +79,7 @@ public class VelogPerserTest {
 
     @Test
     public void test() throws IOException {
-        List<com.birariro.visitknowledge.domain.library.Document> document = velogParser.getDocument("https://velog.io/");
+        List<com.birariro.visitknowledge.domain.library.Document> document = parserAdapter.getDocuments("https://velog.io/", UrlType.VELOG);
         document.stream().forEach(System.out::println);
     }
 }

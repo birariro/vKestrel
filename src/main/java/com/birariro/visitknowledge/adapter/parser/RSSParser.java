@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Component
 @Slf4j
-public class RSSParser {
+class RSSParser {
 
     public List<Document> getDocument(String resUrl) throws IOException, FeedException {
         URL url = new URL(resUrl);

@@ -1,13 +1,10 @@
 package com.birariro.visitknowledge.adapter.batch.step;
 
-import com.birariro.visitknowledge.adapter.batch.step.event.BatchActionEvent;
-import com.birariro.visitknowledge.adapter.parser.RSSParser;
-import com.birariro.visitknowledge.adapter.parser.VelogParser;
-import com.birariro.visitknowledge.adapter.message.event.Events;
+
+import com.birariro.visitknowledge.adapter.parser.ParserAdapter;
 import com.birariro.visitknowledge.domain.library.Document;
 import com.birariro.visitknowledge.domain.library.Library;
 import com.birariro.visitknowledge.domain.library.LibraryRepository;
-import com.birariro.visitknowledge.domain.library.UrlType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Step;
@@ -19,7 +16,6 @@ import org.springframework.batch.item.support.ListItemReader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,8 +29,7 @@ import java.util.stream.Collectors;
 public class DocumentParsingStep {
     private final StepBuilderFactory stepBuilderFactory;
     private final LibraryRepository libraryRepository;
-    private final RSSParser rssParser;
-    private final VelogParser velogParser;
+    private final ParserAdapter parserAdapter;
     private final CustomStepExecutionListener customStepExecutionListener;
 
     @Bean
@@ -62,20 +57,8 @@ public class DocumentParsingStep {
 
             log.info("RSS parser target name : " +item.getName());
 
-            List<Document> documents = new ArrayList<>();
-
-            try {
-                if(item.getType() == UrlType.RSS){
-                    documents = rssParser.getDocument(item.getUrl());
-                }
-                if( item.getType() == UrlType.VELOG){
-                    documents = velogParser.getDocument(item.getUrl());
-                }
-            }catch (Exception e){
-                Events.raise(new BatchActionEvent(true,e.getMessage()));
-                return item;
-            }
-
+            List<Document> documents = parserAdapter
+                    .getDocuments(item.getUrl(), item.getType());
 
 
             List<Document> newDocuments = documents.stream()
