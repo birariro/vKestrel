@@ -1,4 +1,4 @@
-package com.birariro.visitknowledge.adapter.slack.bot;
+package com.birariro.visitknowledge.adapter.message.slack.bot;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;

@@ -1,4 +1,4 @@
-package com.birariro.visitknowledge.adapter.email;
+package com.birariro.visitknowledge.adapter.message.email;
 
 import com.birariro.visitknowledge.adapter.batch.step.event.DailyDocumentEvent;
 import com.birariro.visitknowledge.domain.member.event.NewRegistrationEvent;

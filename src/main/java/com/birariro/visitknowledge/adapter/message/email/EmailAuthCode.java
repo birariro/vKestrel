@@ -1,4 +1,4 @@
-package com.birariro.visitknowledge.adapter.email;
+package com.birariro.visitknowledge.adapter.message.email;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

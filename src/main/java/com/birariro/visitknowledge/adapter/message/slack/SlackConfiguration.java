@@ -1,9 +1,9 @@
-package com.birariro.visitknowledge.adapter.slack;
+package com.birariro.visitknowledge.adapter.message.slack;
 
 import com.birariro.visitknowledge.adapter.batch.step.event.BatchActionEvent;
 import com.birariro.visitknowledge.adapter.batch.step.event.DailyDocumentEvent;
-import com.birariro.visitknowledge.adapter.slack.bot.SlackCommonBot;
-import com.birariro.visitknowledge.adapter.slack.bot.SlackErrorBot;
+import com.birariro.visitknowledge.adapter.message.slack.bot.SlackCommonBot;
+import com.birariro.visitknowledge.adapter.message.slack.bot.SlackErrorBot;
 import com.birariro.visitknowledge.config.exception.ExceptionEvent;
 import com.slack.api.methods.SlackApiException;
 import lombok.RequiredArgsConstructor;

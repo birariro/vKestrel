@@ -1,7 +1,7 @@
 package com.birariro.visitknowledge.service.registration;
 
-import com.birariro.visitknowledge.adapter.auth.AuthAdapter;
-import com.birariro.visitknowledge.config.event.Events;
+import com.birariro.visitknowledge.adapter.persistence.auth.AuthAdapter;
+import com.birariro.visitknowledge.adapter.message.event.Events;
 
 import com.birariro.visitknowledge.annotation.AopExecutionTime;
 import com.birariro.visitknowledge.domain.member.Email;

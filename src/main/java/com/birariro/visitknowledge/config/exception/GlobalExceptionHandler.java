@@ -1,6 +1,6 @@
 package com.birariro.visitknowledge.config.exception;
 
-import com.birariro.visitknowledge.config.event.Events;
+import com.birariro.visitknowledge.adapter.message.event.Events;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

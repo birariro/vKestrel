@@ -1,7 +1,7 @@
 package com.birariro.visitknowledge.adapter.batch;
 
 import com.birariro.visitknowledge.adapter.batch.step.event.BatchActionEvent;
-import com.birariro.visitknowledge.config.event.Events;
+import com.birariro.visitknowledge.adapter.message.event.Events;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;

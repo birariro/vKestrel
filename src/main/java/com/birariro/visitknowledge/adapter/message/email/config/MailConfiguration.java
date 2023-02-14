@@ -1,4 +1,4 @@
-package com.birariro.visitknowledge.config.email;
+package com.birariro.visitknowledge.adapter.message.email.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

@@ -2,7 +2,7 @@ package com.birariro.visitknowledge.adapter.batch.step;
 
 import com.birariro.visitknowledge.adapter.batch.step.event.BatchActionEvent;
 import com.birariro.visitknowledge.adapter.batch.step.event.DailyDocumentEvent;
-import com.birariro.visitknowledge.config.event.Events;
+import com.birariro.visitknowledge.adapter.message.event.Events;
 import com.birariro.visitknowledge.domain.library.Document;
 import com.birariro.visitknowledge.domain.library.Library;
 import com.birariro.visitknowledge.domain.library.LibraryRepository;

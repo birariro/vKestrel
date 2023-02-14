@@ -1,4 +1,4 @@
-package com.birariro.visitknowledge.adapter.auth;
+package com.birariro.visitknowledge.adapter.persistence.auth;
 
 import com.birariro.visitknowledge.domain.member.event.NewRegistrationEvent;
 import lombok.RequiredArgsConstructor;

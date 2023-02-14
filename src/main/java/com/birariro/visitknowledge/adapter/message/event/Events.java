@@ -1,4 +1,4 @@
-package com.birariro.visitknowledge.config.event;
+package com.birariro.visitknowledge.adapter.message.event;
 
 import org.springframework.context.ApplicationEventPublisher;
 

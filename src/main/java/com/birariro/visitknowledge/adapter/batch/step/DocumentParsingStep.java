@@ -3,7 +3,7 @@ package com.birariro.visitknowledge.adapter.batch.step;
 import com.birariro.visitknowledge.adapter.batch.step.event.BatchActionEvent;
 import com.birariro.visitknowledge.adapter.parser.RSSParser;
 import com.birariro.visitknowledge.adapter.parser.VelogParser;
-import com.birariro.visitknowledge.config.event.Events;
+import com.birariro.visitknowledge.adapter.message.event.Events;
 import com.birariro.visitknowledge.domain.library.Document;
 import com.birariro.visitknowledge.domain.library.Library;
 import com.birariro.visitknowledge.domain.library.LibraryRepository;

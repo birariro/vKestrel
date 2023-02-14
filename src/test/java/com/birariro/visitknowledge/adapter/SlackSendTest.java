@@ -1,6 +1,6 @@
 package com.birariro.visitknowledge.adapter;
 
-import com.birariro.visitknowledge.adapter.slack.bot.SlackCommonBot;
+import com.birariro.visitknowledge.adapter.message.slack.bot.SlackCommonBot;
 import com.birariro.visitknowledge.domain.library.Document;
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
