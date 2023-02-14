@@ -1,7 +1,9 @@
 package com.birariro.dailydevblogassemble.adapter.batch.step;
 
+import com.birariro.dailydevblogassemble.adapter.batch.step.event.BatchActionEvent;
 import com.birariro.dailydevblogassemble.adapter.parser.RSSParser;
 import com.birariro.dailydevblogassemble.adapter.parser.VelogParser;
+import com.birariro.dailydevblogassemble.config.event.Events;
 import com.birariro.dailydevblogassemble.domain.library.Document;
 import com.birariro.dailydevblogassemble.domain.library.Library;
 import com.birariro.dailydevblogassemble.domain.library.LibraryRepository;
@@ -61,12 +63,19 @@ public class DocumentParsingStep {
             log.info("RSS parser target name : " +item.getName());
 
             List<Document> documents = new ArrayList<>();
-            if(item.getType() == UrlType.RSS){
-                documents = rssParser.getDocument(item.getUrl());
+
+            try {
+                if(item.getType() == UrlType.RSS){
+                    documents = rssParser.getDocument(item.getUrl());
+                }
+                if( item.getType() == UrlType.VELOG){
+                    documents = velogParser.getDocument(item.getUrl());
+                }
+            }catch (Exception e){
+                Events.raise(new BatchActionEvent(true,e.getMessage()));
+                return item;
             }
-            if( item.getType() == UrlType.VELOG){
-                documents = velogParser.getDocument(item.getUrl());
-            }
+
 
 
             List<Document> newDocuments = documents.stream()
