@@ -5,4 +5,4 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
-rootProject.name = 'daily-dev-blog-assemble'
+rootProject.name = 'visit-knowledge'
