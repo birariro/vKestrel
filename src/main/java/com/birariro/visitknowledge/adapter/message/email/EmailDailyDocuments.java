@@ -1,9 +1,9 @@
 package com.birariro.visitknowledge.adapter.message.email;
 
-import com.birariro.visitknowledge.domain.library.Document;
-import com.birariro.visitknowledge.domain.member.Email;
-import com.birariro.visitknowledge.domain.member.Member;
-import com.birariro.visitknowledge.domain.member.MemberRepository;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.Document;
+import com.birariro.visitknowledge.adapter.persistence.jpa.member.Email;
+import com.birariro.visitknowledge.adapter.persistence.jpa.member.Member;
+import com.birariro.visitknowledge.adapter.persistence.jpa.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

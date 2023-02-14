@@ -1,6 +1,6 @@
-package com.birariro.visitknowledge.adapter.persistence.auth;
+package com.birariro.visitknowledge.adapter.persistence.redis.auth;
 
-import com.birariro.visitknowledge.domain.member.event.NewRegistrationEvent;
+import com.birariro.visitknowledge.domain.event.NewRegistrationEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;

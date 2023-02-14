@@ -1,6 +1,6 @@
 package com.birariro.visitknowledge.adapter.message.slack.bot;
 
-import com.birariro.visitknowledge.domain.library.Document;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.Document;
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;

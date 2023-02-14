@@ -1,4 +1,4 @@
-package com.birariro.visitknowledge.domain.event;
+package com.birariro.visitknowledge.adapter.message.event;
 
 public class BaseEvent {
     private long timestamp;

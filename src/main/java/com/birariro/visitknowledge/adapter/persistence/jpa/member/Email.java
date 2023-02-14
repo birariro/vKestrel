@@ -1,4 +1,4 @@
-package com.birariro.visitknowledge.domain.member;
+package com.birariro.visitknowledge.adapter.persistence.jpa.member;
 
 import lombok.AccessLevel;
 import lombok.Getter;

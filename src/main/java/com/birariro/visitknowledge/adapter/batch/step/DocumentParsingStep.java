@@ -2,9 +2,9 @@ package com.birariro.visitknowledge.adapter.batch.step;
 
 
 import com.birariro.visitknowledge.adapter.parser.ParserAdapter;
-import com.birariro.visitknowledge.domain.library.Document;
-import com.birariro.visitknowledge.domain.library.Library;
-import com.birariro.visitknowledge.domain.library.LibraryRepository;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.Document;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.Library;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.LibraryRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Step;

@@ -1,4 +1,4 @@
-package com.birariro.visitknowledge.domain;
+package com.birariro.visitknowledge.adapter.persistence.jpa;
 
 
 public enum EntityState {

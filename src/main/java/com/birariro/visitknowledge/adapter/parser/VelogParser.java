@@ -1,6 +1,6 @@
 package com.birariro.visitknowledge.adapter.parser;
 
-import com.birariro.visitknowledge.domain.library.Document;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.Document;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;

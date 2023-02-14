@@ -2,8 +2,8 @@ package com.birariro.visitknowledge.adapter.parser;
 
 import com.birariro.visitknowledge.adapter.batch.step.event.BatchActionEvent;
 import com.birariro.visitknowledge.adapter.message.event.Events;
-import com.birariro.visitknowledge.domain.library.Document;
-import com.birariro.visitknowledge.domain.library.UrlType;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.Document;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.UrlType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

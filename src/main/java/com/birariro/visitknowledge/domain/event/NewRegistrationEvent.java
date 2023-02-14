@@ -1,6 +1,6 @@
-package com.birariro.visitknowledge.domain.member.event;
+package com.birariro.visitknowledge.domain.event;
 
-import com.birariro.visitknowledge.domain.event.BaseEvent;
+import com.birariro.visitknowledge.adapter.message.event.BaseEvent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

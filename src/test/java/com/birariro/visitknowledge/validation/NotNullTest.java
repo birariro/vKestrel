@@ -1,7 +1,7 @@
 package com.birariro.visitknowledge.validation;
 
-import com.birariro.visitknowledge.domain.library.Library;
-import com.birariro.visitknowledge.domain.library.LibraryRepository;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.Library;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.LibraryRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

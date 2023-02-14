@@ -1,13 +1,13 @@
 package com.birariro.visitknowledge.service.registration;
 
-import com.birariro.visitknowledge.adapter.persistence.auth.AuthAdapter;
+import com.birariro.visitknowledge.adapter.persistence.redis.auth.AuthAdapter;
 import com.birariro.visitknowledge.adapter.message.event.Events;
 
 import com.birariro.visitknowledge.annotation.AopExecutionTime;
-import com.birariro.visitknowledge.domain.member.Email;
-import com.birariro.visitknowledge.domain.member.Member;
-import com.birariro.visitknowledge.domain.member.MemberRepository;
-import com.birariro.visitknowledge.domain.member.event.NewRegistrationEvent;
+import com.birariro.visitknowledge.adapter.persistence.jpa.member.Email;
+import com.birariro.visitknowledge.adapter.persistence.jpa.member.Member;
+import com.birariro.visitknowledge.adapter.persistence.jpa.member.MemberRepository;
+import com.birariro.visitknowledge.domain.event.NewRegistrationEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;

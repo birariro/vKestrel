@@ -1,8 +1,8 @@
 package com.birariro.visitknowledge.library;
 
-import com.birariro.visitknowledge.domain.library.Library;
-import com.birariro.visitknowledge.domain.library.LibraryRepository;
-import com.birariro.visitknowledge.domain.library.UrlType;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.Library;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.LibraryRepository;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.UrlType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

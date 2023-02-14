@@ -1,8 +1,8 @@
 package com.birariro.visitknowledge.controller.init;
 
-import com.birariro.visitknowledge.domain.library.Library;
-import com.birariro.visitknowledge.domain.library.LibraryRepository;
-import com.birariro.visitknowledge.domain.library.UrlType;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.Library;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.LibraryRepository;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.UrlType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

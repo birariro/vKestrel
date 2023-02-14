@@ -1,6 +1,6 @@
 package com.birariro.visitknowledge.adapter.parser;
 
-import com.birariro.visitknowledge.domain.library.Document;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.Document;
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;

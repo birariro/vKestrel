@@ -1,4 +1,4 @@
-package com.birariro.visitknowledge.domain.library;
+package com.birariro.visitknowledge.adapter.persistence.jpa.library;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

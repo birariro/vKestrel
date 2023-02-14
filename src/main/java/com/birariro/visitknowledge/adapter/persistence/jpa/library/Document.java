@@ -1,7 +1,7 @@
-package com.birariro.visitknowledge.domain.library;
+package com.birariro.visitknowledge.adapter.persistence.jpa.library;
 
-import com.birariro.visitknowledge.domain.BaseEntity;
-import com.birariro.visitknowledge.domain.EntityState;
+import com.birariro.visitknowledge.adapter.persistence.jpa.BaseEntity;
+import com.birariro.visitknowledge.adapter.persistence.jpa.EntityState;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

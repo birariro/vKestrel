@@ -1,4 +1,4 @@
-package com.birariro.visitknowledge.domain.slackbot;
+package com.birariro.visitknowledge.adapter.persistence.jpa.slackbot;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

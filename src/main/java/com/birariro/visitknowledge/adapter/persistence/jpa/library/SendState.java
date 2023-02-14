@@ -1,4 +1,4 @@
-package com.birariro.visitknowledge.domain.library;
+package com.birariro.visitknowledge.adapter.persistence.jpa.library;
 
 public enum SendState {
     WAITING, //보내기 전

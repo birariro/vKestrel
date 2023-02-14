@@ -1,4 +1,4 @@
-package com.birariro.visitknowledge.adapter.persistence;
+package com.birariro.visitknowledge.adapter.persistence.redis;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.EnableCaching;

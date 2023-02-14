@@ -1,4 +1,4 @@
-package com.birariro.visitknowledge.adapter.persistence.auth;
+package com.birariro.visitknowledge.adapter.persistence.redis.auth;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

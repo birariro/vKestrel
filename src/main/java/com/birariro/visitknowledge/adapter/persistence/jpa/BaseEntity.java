@@ -1,4 +1,4 @@
-package com.birariro.visitknowledge.domain;
+package com.birariro.visitknowledge.adapter.persistence.jpa;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

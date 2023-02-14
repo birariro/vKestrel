@@ -1,6 +1,6 @@
-package com.birariro.visitknowledge.domain.slackbot;
+package com.birariro.visitknowledge.adapter.persistence.jpa.slackbot;
 
-import com.birariro.visitknowledge.domain.BaseEntity;
+import com.birariro.visitknowledge.adapter.persistence.jpa.BaseEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,4 +27,5 @@ public class SlackBot extends BaseEntity {
 
     private String token;
     private String channel;
+    private String errorChannel;;
 }
