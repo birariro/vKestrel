@@ -36,6 +36,33 @@ cp hooks/commit-msg.sh .git/hooks/commit-msg
 
 
 ###Usage
+create application-key.yml
+```
+mail:
+  host: [smtp host]
+  port: [smtp port]
+  username: [smtp id]
+  password: [smtp pwd]
+
+```
+
+Registration Email or SlackBot
+```
+[Email]
+POST /email/reg
+{
+    "email" : "[your email]"
+}
+
+[Slack]
+POST /slack/reg
+{
+  "normalBotToken" : "[your main bot token]",
+  "normalBotChannel" : "[your main bot Channel id]",
+  "errorBotToken" : "[your main bot token]",
+  "errorBotChannel" :  "[your main bot Channel id]"
+}
+```
 
 ### redis
 ```

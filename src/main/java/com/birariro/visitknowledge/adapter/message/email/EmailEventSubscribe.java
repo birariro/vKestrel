@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.event.TransactionalEventListener;
 
 @Component
 @RequiredArgsConstructor
@@ -15,7 +16,7 @@ public class EmailEventSubscribe {
 
     private final EmailService emailService;
 
-    @EventListener(NewRegistrationEvent.class)
+    @TransactionalEventListener(NewRegistrationEvent.class)
     public void event(NewRegistrationEvent event){
 
         if(event.getMember().getType() != MemberType.EMAIL) return;

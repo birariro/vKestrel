@@ -51,8 +51,7 @@ public class RegistrationService {
         Member member = memberRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("not exist auth code"));
 
-
-        log.info(member.getEmail().getValue() + "인증 성공");
+        log.info(member.getId() + "인증 성공");
         member.active();
     }
 

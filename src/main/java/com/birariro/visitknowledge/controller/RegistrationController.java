@@ -22,14 +22,6 @@ public class RegistrationController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("/email/reg/auth/{authCode}")
-    public ResponseEntity emailEnableRegistration(@PathVariable("authCode") String authCode){
-
-        log.info("email registration auth : "+ authCode);
-        registrationService.registrationAuthCode(authCode);
-        return ResponseEntity.status(HttpStatus.OK).build();
-    }
-
     @PostMapping("/slack/reg")
     public ResponseEntity slackRegistration(@RequestBody SlackRegRequest slackRegRequest){
 
@@ -41,4 +33,14 @@ public class RegistrationController {
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    @GetMapping("/reg/auth/{authCode}")
+    public ResponseEntity enableRegistration(@PathVariable("authCode") String authCode){
+
+        log.info("registration auth : "+ authCode);
+        registrationService.registrationAuthCode(authCode);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+
 }

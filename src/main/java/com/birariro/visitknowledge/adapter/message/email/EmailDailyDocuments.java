@@ -1,9 +1,11 @@
 package com.birariro.visitknowledge.adapter.message.email;
 
+import com.birariro.visitknowledge.adapter.persistence.jpa.EntityState;
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.Document;
 import com.birariro.visitknowledge.adapter.persistence.jpa.member.Email;
 import com.birariro.visitknowledge.adapter.persistence.jpa.member.Member;
 import com.birariro.visitknowledge.adapter.persistence.jpa.member.MemberRepository;
+import com.birariro.visitknowledge.adapter.persistence.jpa.member.MemberType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,7 +35,9 @@ public class EmailDailyDocuments {
 
         String template = getTemplate(documentList);
 
-        List<Email> collect = memberRepository.findActiveByAll().stream()
+        List<Email> collect = memberRepository.findAll().stream()
+                .filter(item -> item.getEntityState() == EntityState.ACTIVE)
+                .filter(item -> item.getType() == MemberType.EMAIL)
                 .map(Member::getEmail)
                 .collect(Collectors.toList());
 

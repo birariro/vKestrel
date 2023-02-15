@@ -1,5 +1,10 @@
 package com.birariro.visitknowledge.adapter.message.slack.bot;
 
+import com.birariro.visitknowledge.adapter.persistence.jpa.EntityState;
+import com.birariro.visitknowledge.adapter.persistence.jpa.member.Member;
+import com.birariro.visitknowledge.adapter.persistence.jpa.member.MemberRepository;
+import com.birariro.visitknowledge.adapter.persistence.jpa.member.MemberType;
+import com.birariro.visitknowledge.adapter.persistence.jpa.member.SlackBot;
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
@@ -10,33 +15,39 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
 @Slf4j
 public class SlackErrorBot {
 
-
-    @Value("${slack.bot.error.token}")
-    String token;
-    @Value("${slack.bot.error.channel}")
-    String channel;
+    private final MemberRepository memberRepository;
 
     public void sendErrorMessage(String text) throws SlackApiException, IOException {
 
+        List<SlackBot> collect = memberRepository.findAll().stream()
+                .filter(item -> item.getEntityState() == EntityState.ACTIVE)
+                .filter(item -> item.getType() == MemberType.SLACK)
+                .map(Member::getSlackBot)
+                .collect(Collectors.toList());
+
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("님들아 님들아 큰일났어요 !!!\n");
-        stringBuilder.append("에러가 발생 했어요\n");
+        stringBuilder.append("[ERROR]\n");
         stringBuilder.append(text);
+        for (SlackBot slackBot : collect) {
+
+            MethodsClient methods = Slack.getInstance().methods(slackBot.getErrorBotToken());
+            ChatPostMessageRequest request = ChatPostMessageRequest.builder()
+                    .channel(slackBot.getErrorBotChannel())
+                    .text(stringBuilder.toString())
+                    .build();
+
+            methods.chatPostMessage(request);
+        }
 
 
-        MethodsClient methods = Slack.getInstance().methods(token);
-        ChatPostMessageRequest request = ChatPostMessageRequest.builder()
-                .channel(channel)
-                .text(stringBuilder.toString())
-                .build();
-
-        methods.chatPostMessage(request);
     }
 
 

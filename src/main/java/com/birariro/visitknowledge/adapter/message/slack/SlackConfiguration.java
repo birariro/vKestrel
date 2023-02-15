@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.event.TransactionalEventListener;
 
 import java.io.IOException;
 
@@ -45,7 +46,7 @@ public class SlackConfiguration {
     }
 
 
-    @EventListener(NewRegistrationEvent.class)
+    @TransactionalEventListener(NewRegistrationEvent.class)
     public void newRegistrationEvent(NewRegistrationEvent event) throws SlackApiException, IOException {
 
         if(event.getMember().getType() != MemberType.SLACK) return;
@@ -53,6 +54,7 @@ public class SlackConfiguration {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[visit-knowledge] slackBot 연결 요청");
         stringBuilder.append("- 수락하기 : "+ "http://localhost:8080/reg/auth/"+event.getAuthCode());
+
         slackCommonBot.sendCommonMessage(stringBuilder.toString());
     }
 }

@@ -13,8 +13,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Email {
 
-    @NotNull
-    @Column(name = "email", nullable = false)
+    @Column(name = "email")
     private String value;
 
     public Email(String email) {
