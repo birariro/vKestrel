@@ -19,7 +19,7 @@ public class BatchJob {
     public Job startJob(){
         return jobBuilderFactory.get("startJob")
                 .start(documentParsingStep.libraryDocumentParsingStep())
-                .next(dailyDocumentStep.dailyDocumentExtractStep())
+                //.next(dailyDocumentStep.dailyDocumentExtractStep())
                 .build();
     }
 
