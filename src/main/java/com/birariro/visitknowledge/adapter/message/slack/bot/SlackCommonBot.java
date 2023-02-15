@@ -52,9 +52,13 @@ public class SlackCommonBot {
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[Document] \n");
+
         for (Document document : documentList) {
             String format = String.format("%s [%s]", document.getTitle(), document.getUrl());
             stringBuilder.append(format);
+            if(!document.getAuthor().isBlank()){
+                stringBuilder.append(" - "+document.getAuthor());
+            }
             stringBuilder.append("\n");
         }
         return stringBuilder.toString();

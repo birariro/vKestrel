@@ -35,7 +35,7 @@ cp hooks/commit-msg.sh .git/hooks/commit-msg
 ```
 
 
-###Usage
+### Usage
 create application-key.yml
 ```
 mail:
