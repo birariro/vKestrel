@@ -17,6 +17,6 @@ public class AuthCodeSubscribe {
     public void event(NewRegistrationEvent event){
 
         log.info("AuthCodeService event uuid : "+event.getAuthCode());
-        authAdapter.saveAuthCode(event.getEmail(), event.getAuthCode());
+        authAdapter.saveAuthCode(event.getMember().getId(), event.getAuthCode());
     }
 }

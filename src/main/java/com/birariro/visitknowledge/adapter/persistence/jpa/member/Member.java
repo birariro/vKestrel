@@ -26,8 +26,21 @@ public class Member extends BaseEntity {
     @Embedded
     private Email email;
 
+    @Embedded
+    private SlackBot slackBot;
+
+    @Enumerated(EnumType.STRING)
+    MemberType type;
+
     public Member(Email email) {
         this.email = email;
+        this.type = MemberType.EMAIL;
+        this.setEntityState(EntityState.INACTIVE);
+    }
+
+    public Member(SlackBot slackBot) {
+        this.slackBot = slackBot;
+        this.type = MemberType.SLACK;
         this.setEntityState(EntityState.INACTIVE);
     }
 

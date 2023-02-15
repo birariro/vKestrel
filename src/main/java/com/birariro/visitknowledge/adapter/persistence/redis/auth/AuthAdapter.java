@@ -6,23 +6,25 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 @Slf4j
 @RequiredArgsConstructor
 public class AuthAdapter {
 
-    private final RedisTemplate<String, String> redisTemplate;
+    private final RedisTemplate<String, UUID> redisTemplate;
 
-    public void saveAuthCode(String email, String authCode){
+    public void saveAuthCode(UUID id, String authCode){
 
-        ValueOperations<String, String> stringStringValueOperations = redisTemplate.opsForValue();
-        stringStringValueOperations.set(authCode, email);
+        ValueOperations<String, UUID> stringStringValueOperations = redisTemplate.opsForValue();
+        stringStringValueOperations.set(authCode, id);
     }
 
-    public String getAuthCodeEmail(String authCode){
-        ValueOperations<String, String> stringStringValueOperations = redisTemplate.opsForValue();
-        String code = stringStringValueOperations.get(authCode);
+    public UUID getAuthCodeMemberId(String authCode){
+        ValueOperations<String, UUID> stringStringValueOperations = redisTemplate.opsForValue();
+        UUID id = stringStringValueOperations.get(authCode);
 
-        return code;
+        return id;
     }
 }

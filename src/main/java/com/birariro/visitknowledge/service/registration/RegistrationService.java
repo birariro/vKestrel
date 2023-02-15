@@ -1,5 +1,6 @@
 package com.birariro.visitknowledge.service.registration;
 
+import com.birariro.visitknowledge.adapter.persistence.jpa.member.SlackBot;
 import com.birariro.visitknowledge.adapter.persistence.redis.auth.AuthAdapter;
 import com.birariro.visitknowledge.adapter.message.event.Events;
 
@@ -25,25 +26,29 @@ public class RegistrationService {
     private final MemberRepository memberRepository;
     private final AuthAdapter authAdapter;
 
-
     @Async
     @AopExecutionTime
     @Transactional
     public void registration(String email){
 
         checkEmail(email);
-        save(email);
+        save(new Email(email));
+    }
 
-        String uuid = UUID.randomUUID().toString();
-        Events.raise(new NewRegistrationEvent(email, uuid));
+    @Async
+    @AopExecutionTime
+    @Transactional
+    public void registration(String normalBotToken, String normalBotChannel, String errorBotToken, String errorBotChannel){
+
+        save(new SlackBot(normalBotToken,normalBotChannel,errorBotToken,errorBotChannel));
     }
 
     @AopExecutionTime
     @Transactional
     public void registrationAuthCode(String authCode){
 
-        String authCodeEmail = authAdapter.getAuthCodeEmail(authCode);
-        Member member = memberRepository.findByEmail(new Email(authCodeEmail))
+        UUID id = authAdapter.getAuthCodeMemberId(authCode);
+        Member member = memberRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("not exist auth code"));
 
 
@@ -61,10 +66,23 @@ public class RegistrationService {
     }
 
     @Transactional
-    protected void save(String email){
+    protected void save(Email email){
 
-        Member member = new Member(new Email(email));
+        Member member = new Member(email);
         memberRepository.save(member);
+
+        String uuid = UUID.randomUUID().toString();
+        Events.raise(new NewRegistrationEvent(member, uuid));
+    }
+
+    @Transactional
+    protected void save(SlackBot slackBot){
+
+        Member member = new Member(slackBot);
+        memberRepository.save(member);
+
+        String uuid = UUID.randomUUID().toString();
+        Events.raise(new NewRegistrationEvent(member, uuid));
     }
 
 }
