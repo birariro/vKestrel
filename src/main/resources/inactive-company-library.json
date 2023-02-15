@@ -1,10 +1,5 @@
 [
-  { //RSS 파싱 실패
-    "name" : "월요일 오후 9시",
-    "home": "https://medium.com/monday-9-pm",
-    "url" : "https://medium.com/feed/monday-9-pm",
-    "type" : "RSS"
-  },
+
   {//RSS 파싱 실패
     "name" : "화해",
     "home": "https://blog.hwahae.co.kr/category/all/tech",
