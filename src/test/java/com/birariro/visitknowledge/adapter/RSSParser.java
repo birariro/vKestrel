@@ -14,7 +14,7 @@ public class RSSParser {
     @Test
     public void test() throws IOException, FeedException {
         //
-        String _url = "https://meetup.nhncloud.com/rss";
+        String _url = "https://medium.com/feed/@dev29cm";
         URL url = new URL(_url);
         SyndFeedInput syndFeedInput = new SyndFeedInput();
         XmlReader xmlReader = new XmlReader(url);
