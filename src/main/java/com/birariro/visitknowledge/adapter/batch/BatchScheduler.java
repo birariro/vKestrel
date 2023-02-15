@@ -25,11 +25,11 @@ public class BatchScheduler {
     private final JobLauncher jobLauncher;
 
     //@Scheduled(fixedDelay = 600 * 1000L) // 10분
-    @Scheduled(cron="0 0 10 * * ?", zone="Asia/Seoul")// 매일 오전 10시 0분 0초
+    @Scheduled(cron="0 43 15 * * ?", zone="Asia/Seoul")// 매일 오전 10시 0분 0초
     public void executeJob() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
 
         log.info("job run");
-        Events.raise(new BatchActionEvent(false,"두근 두근"));
+        //Events.raise(new BatchActionEvent(false,"두근 두근"));
         jobLauncher.run(job,new JobParametersBuilder().addString("datetime", LocalDateTime.now().toString())
                 .toJobParameters());
     }

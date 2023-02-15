@@ -12,10 +12,14 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemWriter;
+import org.springframework.batch.item.database.JpaPagingItemReader;
+import org.springframework.batch.item.database.builder.JdbcPagingItemReaderBuilder;
+import org.springframework.batch.item.database.builder.JpaPagingItemReaderBuilder;
 import org.springframework.batch.item.support.ListItemReader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.persistence.EntityManagerFactory;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,15 +32,17 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class DocumentParsingStep {
     private final StepBuilderFactory stepBuilderFactory;
+    private final EntityManagerFactory entityManagerFactory;
     private final LibraryRepository libraryRepository;
     private final ParserAdapter parserAdapter;
     private final CustomStepExecutionListener customStepExecutionListener;
 
+    private final int chunkSize = 10;
     @Bean
     public Step libraryDocumentParsingStep(){
         return stepBuilderFactory.get("libraryDocumentParsingStep")
                 .listener(customStepExecutionListener)
-                .<Library, Library> chunk(100)
+                .<Library, Library> chunk(chunkSize)
                 .reader(libraryDocumentParsingReader())
                 .processor(libraryDocumentParsingProcessor())
                 .writer(libraryDocumentParsingWriter())
@@ -46,9 +52,14 @@ public class DocumentParsingStep {
 
     @Bean
     @StepScope
-    public ListItemReader<Library> libraryDocumentParsingReader(){
-        List<Library> libraries = libraryRepository.findActiveByAll();
-        return new ListItemReader<>(libraries);
+    public JpaPagingItemReader<Library> libraryDocumentParsingReader(){
+
+        return new JpaPagingItemReaderBuilder<Library>()
+                .queryString("select l from Library l where l.entityState = 'ACTIVE'")
+                .pageSize(chunkSize)
+                .entityManagerFactory(entityManagerFactory)
+                .name("libraryPagingReader")
+                .build();
     }
 
 
