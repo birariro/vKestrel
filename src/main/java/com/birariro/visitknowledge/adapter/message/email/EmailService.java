@@ -24,5 +24,4 @@ public class EmailService {
     public void toDayDocumentsSend(List<Document> documentList){
         emailDailyDocuments.execute(documentList);
     }
-
 }

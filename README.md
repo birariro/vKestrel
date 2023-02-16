@@ -4,7 +4,7 @@ Knowledge comes to you every morning.
 
 ---
 
-### Docker Compose setup
+## Docker Compose setup
 You will need to install Docker and docker-compose.
 
 a Docker Compose setup is provided. It comes with the following databases:
@@ -17,16 +17,24 @@ a Docker Compose setup is provided. It comes with the following databases:
 ```
 
 
-### Environment
+## Environment
 - JPA
 - AOP
 - p6spy (v1.5.7)
 - validation (v2.5.2)
 - SlackBot (v1.27.3)
 - spring-batch
+- GitHub Actions
+
+## batch job
+- Operate at 10 a.m. every day
+- It performs three tasks.
+  1) Synchronize the library(resources/*.library.json) 
+  2) Bringing posts from the library
+  3) Announces newly added posts.
 
 
-### Hooks
+## Hooks
 Provision of commit-msg.sh for git commit convention
 
 Active
@@ -35,7 +43,9 @@ cp hooks/commit-msg.sh .git/hooks/commit-msg
 ```
 
 
-### Usage
+## Usage
+
+### setting
 create application-key.yml
 ```
 mail:
@@ -46,6 +56,7 @@ mail:
 
 ```
 
+### Registration
 Registration Email or SlackBot
 ```
 [Email]
@@ -64,7 +75,7 @@ POST /slack/reg
 }
 ```
 
-### redis
+### redis command
 ```
 > redis-cli 
     > keys * 

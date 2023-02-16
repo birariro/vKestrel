@@ -1,0 +1,119 @@
+# Repository의 Actions 탭에 나타날 이름으로 선택 옵션
+name: CI/CD
+
+# Workflow를 실행시키기 위한 Event 목록입니다.
+on:
+  # 하단 코드에 따라 develop 브랜치에 Push 또는 Pull Request 이벤트가 발생한 경우에 Workflow가 실행됩니다.
+  # 만약 브랜치 구분 없이 이벤트를 지정하고 싶을 경우에는 단순히 아래와 같이 작성도 가능합니다.
+  # on: [push, pull_request]
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+# 해당 Workflow의 하나 이상의 Job 목록입니다.
+jobs:
+  # Job 이름으로, build라는 이름으로 Job이 표시됩니다.
+  build:
+    if: ${{ !contains(github.event.head_commit.message, '[master action skip]') }}
+    runs-on: ubuntu-latest
+
+    # build Job 내의 step 목록입니다.
+    steps:
+      # name 키워드는 커맨드에 대한 설명으로 Workflow에 표시된다.
+      - name: Run Master Branch CI
+        run: echo Hello, CI!
+
+      - name: event slack send message
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
+          slack-message: "GitHub Action Event Trigger Master Branch\n - author: ${{ github.actor }}\n - commit: ${{ github.event.head_commit.message }}\n - commit url: ${{ github.event.head_commit.url }}"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+
+      # uses 키워드를 통해 Action을 불러올 수 있습니다.
+      # actions/checkout@v2 : 해당 레포지토리로 check-out하여 레포지토리에 접근할 수 있는 Action
+      - name: checkout action
+        uses: actions/checkout@v3
+      
+      - name: setup JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'zulu'
+        
+        
+      - name: Grant execute permission 
+        run: chmod +x gradlew
+        
+      - name: gradlew build
+        run: ./gradlew clean build --exclude-task test
+
+      - name: upload jar
+        uses: actions/upload-artifact@v1
+        with:
+          name: build
+          path: ./build
+
+      - name: upload dockerfile
+        uses: actions/upload-artifact@v1
+        with:
+          name: dockerfile
+          path: ./Dockerfile
+
+      - name: slack send message
+        if: ${{ always() }}
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
+          slack-message: "GitHub Action [build] result: ${{ job.status }}"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+  
+      
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: download jar
+        uses: actions/download-artifact@v1
+        with:
+          name: build
+
+      - name: download dockerfile
+        uses: actions/download-artifact@v1
+        with:
+          name: dockerfile
+
+      - name: echo root
+        run: ls -al
+
+      - name: echo build/libs dir
+        run: ls -al ./build/libs
+
+      - name: move dockerfile
+        run: mv dockerfile/Dockerfile .
+
+      - name: Docker Image Build
+        run: docker build -t k4keye/visit-knowledge .
+
+      - name: Docker Hub Login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_ID }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Docker Hub push
+        run: docker push k4keye/visit-knowledge
+
+      - name: slack send message
+        if: ${{ always() }}
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
+          slack-message: "GitHub Action [deploy] result: ${{ job.status }}"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+

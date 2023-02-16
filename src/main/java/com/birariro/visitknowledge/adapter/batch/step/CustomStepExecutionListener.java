@@ -28,13 +28,12 @@ public class CustomStepExecutionListener implements StepExecutionListener {
         String stepName = stepExecution.getStepName();
         ExitStatus exitStatus = stepExecution.getExitStatus();
 
-        String errorMessage = String.format("[batch step end] [%s] %s \n %s", stepName, exitStatus.getExitCode(),exitStatus.getExitDescription());
+        String errorMessage =
+                String.format("[batch step end] [%s] %s \n %s", stepName, exitStatus.getExitCode(),exitStatus.getExitDescription());
 
-
+        log.info(errorMessage);
         if(exitStatus.getExitCode().equals("FAILED")){
             Events.raise(new BatchActionEvent(true,errorMessage));
-        }else{
-            log.info(errorMessage);
         }
 
         return exitStatus;

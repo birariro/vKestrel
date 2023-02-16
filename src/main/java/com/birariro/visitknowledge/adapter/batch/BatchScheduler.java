@@ -30,7 +30,8 @@ public class BatchScheduler {
 
         log.info("job run");
         Events.raise(new BatchActionEvent(false,"두근 두근"));
-        jobLauncher.run(job,new JobParametersBuilder().addString("datetime", LocalDateTime.now().toString())
+        jobLauncher.run(job,new JobParametersBuilder()
+                .addString("datetime", LocalDateTime.now().toString())
                 .toJobParameters());
     }
 }

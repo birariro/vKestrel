@@ -64,8 +64,17 @@ public class Library extends BaseEntity {
                 .collect(Collectors.toList());
     }
     public void addDocument(Document document){
-        this.documents.add(document);
-        document.initLibrary(this);
+
+        boolean present = this.documents.stream()
+                .filter(item -> item.getTitle().equals(document.getTitle()))
+                .findFirst()
+                .isPresent();
+
+        if(! present){
+            this.documents.add(document);
+            document.initLibrary(this);
+        }
+
     }
 }
 
