@@ -28,7 +28,7 @@ jobs:
         uses: slackapi/slack-github-action@v1.23.0
         with:
           channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
-          slack-message: "GitHub Action Event Trigger Master Branch\n - author: ${{ github.actor }}\n - commit: ${{ github.event.head_commit.message }}\n - commit url: ${{ github.event.head_commit.url }}"
+          slack-message: "GitHub Action Event Trigger Master Branch\n - author: ${{ github.actor }}\n - commit: ${{ github.event.head_commit.message }}\n${{ github.event.head_commit.url }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
@@ -67,7 +67,7 @@ jobs:
         uses: slackapi/slack-github-action@v1.23.0
         with:
           channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
-          slack-message: "GitHub Action [build job] result: ${{ job.status }}"
+          slack-message: "GitHub Action build job ${{ job.status }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
   
@@ -111,7 +111,7 @@ jobs:
         uses: slackapi/slack-github-action@v1.23.0
         with:
           channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
-          slack-message: "GitHub Action [docker job] result: ${{ job.status }}"
+          slack-message: "GitHub Action docker job ${{ job.status }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
@@ -141,6 +141,6 @@ jobs:
         uses: slackapi/slack-github-action@v1.23.0
         with:
           channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
-          slack-message: "GitHub Action [deploy job] result: ${{ job.status }}"
+          slack-message: "GitHub Action deploy job ${{ job.status }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
