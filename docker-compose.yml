@@ -16,4 +16,4 @@ services:
     container_name: visit-knowledge-redis
     image: redis:7.0.4
     ports:
-      - "6379:6379"
+      - "7963:6379"

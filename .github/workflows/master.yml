@@ -67,12 +67,12 @@ jobs:
         uses: slackapi/slack-github-action@v1.23.0
         with:
           channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
-          slack-message: "GitHub Action [build] result: ${{ job.status }}"
+          slack-message: "GitHub Action [build job] result: ${{ job.status }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
   
       
-  deploy:
+  docker:
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -87,8 +87,6 @@ jobs:
         with:
           name: dockerfile
 
-      - name: echo root
-        run: ls -al
 
       - name: echo build/libs dir
         run: ls -al ./build/libs
@@ -113,7 +111,36 @@ jobs:
         uses: slackapi/slack-github-action@v1.23.0
         with:
           channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
-          slack-message: "GitHub Action [deploy] result: ${{ job.status }}"
+          slack-message: "GitHub Action [docker job] result: ${{ job.status }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
+
+  deploy:
+    needs: docker
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: deploy start
+        run: echo deploy start
+#      - name: deploy server accessq
+#        uses: appleboy/ssh-action@v0.1.6
+#        with:
+#          host: ${{ secrets.WAS_HOST }}
+#          username: ${{ secrets.WAS_USERNAME }}
+#          password: ${{ secrets.WAS_PASSWORD }}
+#          port: ${{ secrets.WAS_SSH_PORT }}
+#          script: |
+#            docker stop visit-knowledge
+#            docker rm visit-knowledge
+#            docker pull k4keye/visit-knowledge
+#            docker run -d -p 8080:8080 --name visit-knowledge k4keye/visit-knowledge
+
+      - name: slack send message
+        if: ${{ always() }}
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
+          slack-message: "GitHub Action [deploy job] result: ${{ job.status }}"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
