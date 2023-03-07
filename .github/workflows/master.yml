@@ -63,7 +63,7 @@ jobs:
           path: ./Dockerfile
 
       - name: slack send message
-        if: ${{ always() }}
+        if: ${{ failure() }}
         uses: slackapi/slack-github-action@v1.23.0
         with:
           channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
@@ -107,7 +107,7 @@ jobs:
         run: docker push k4keye/visit-knowledge
 
       - name: slack send message
-        if: ${{ always() }}
+        if: ${{ failure() }}
         uses: slackapi/slack-github-action@v1.23.0
         with:
           channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
