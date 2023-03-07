@@ -168,12 +168,6 @@
     "type" : "RSS"
   },
   {
-    "name" : "벨로그",
-    "home": "https://velog.io/",
-    "url" : "https://velog.io/",
-    "type" : "VELOG"
-  },
-  {
     "name" : "월요일 오후 9시",
     "home": "https://medium.com/monday-9-pm",
     "url" : "https://medium.com/feed/monday-9-pm",

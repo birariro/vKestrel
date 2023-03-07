@@ -17,6 +17,13 @@
     "home": "https://tosslab.github.io",
     "url" : "https://tosslab.github.io/feed.xml",
     "type" : "RSS"
+  },
+
+  {//불필요한 글이 많음
+    "name" : "벨로그",
+    "home": "https://velog.io/",
+    "url" : "https://velog.io/",
+    "type" : "VELOG"
   }
 ]
 

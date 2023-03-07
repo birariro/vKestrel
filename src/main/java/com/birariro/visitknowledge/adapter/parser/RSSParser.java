@@ -54,7 +54,9 @@ public class RSSParser {
                 .stream()
                 .map(item -> {
                     return new Document(item.getTitle(), item.getUri(), item.getAuthor());
-                }).collect(Collectors.toList());
+                })
+                .limit(10)
+                .collect(Collectors.toList());
 
         return collect;
     }

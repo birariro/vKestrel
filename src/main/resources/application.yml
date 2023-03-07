@@ -2,7 +2,6 @@ server:
   port: 8791
 spring:
   profiles:
-    include: key
     active: prod
   application:
     name: visit-knowledge

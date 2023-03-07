@@ -34,6 +34,8 @@ class VelogParser {
 
             Document _document = new Document(title.get().text(), href, "");
             collect.add(_document);
+
+            if(collect.size() >= 10) break;
         }
 
         return collect;
