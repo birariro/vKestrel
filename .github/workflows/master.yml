@@ -28,7 +28,7 @@ jobs:
         uses: slackapi/slack-github-action@v1.23.0
         with:
           channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
-          slack-message: "GitHub Action Event Trigger Master Branch\n - author: ${{ github.actor }}\n - commit: ${{ github.event.head_commit.message }}\n${{ github.event.head_commit.url }}"
+          slack-message: "CI/CD Event Trigger Master Branch\n - author: ${{ github.actor }}\n - commit: ${{ github.event.head_commit.message }}\n${{ github.event.head_commit.url }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
@@ -48,7 +48,7 @@ jobs:
         run: chmod +x gradlew
         
       - name: gradlew build
-        run: ./gradlew clean build --exclude-task test
+        run: ./gradlew clean build -Pprofile=prod --exclude-task test
 
       - name: upload jar
         uses: actions/upload-artifact@v1
@@ -134,7 +134,7 @@ jobs:
 #            docker stop visit-knowledge
 #            docker rm visit-knowledge
 #            docker pull k4keye/visit-knowledge
-#            docker run -d -p 8080:8080 --name visit-knowledge k4keye/visit-knowledge
+#            docker run -d -p 8791:8791 --name visit-knowledge k4keye/visit-knowledge
 
       - name: slack send message
         if: ${{ always() }}

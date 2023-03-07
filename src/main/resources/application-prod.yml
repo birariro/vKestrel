@@ -1,0 +1,37 @@
+server:
+  port: 8791
+spring:
+  profiles:
+    include: key
+  application:
+    name: visit-knowledge
+
+  batch:
+    job:
+      enabled: false
+    jdbc:
+      initialize-schema: always
+
+
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://visit-knowledge-db:6633/visit-knowledge-db
+    username: root
+    password: '0000'
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+
+  redis:
+    host: localhost
+    port: 7963
+
+Loggin:
+  level:
+    org.hibernate.SQL: debug
+

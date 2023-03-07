@@ -1,19 +1,28 @@
 version: '3.8'
 
+networks:
+  vk-net:
+    driver: bridge
+
 services:
 
   main-db:
     container_name: visit-knowledge-db
     image: mariadb:10.8.3
     ports:
-      - "6633:3306"
+      - "6633:6633"
     environment: # 환경 변수 전달
       MYSQL_ROOT_PASSWORD: "0000" # root 패스워드 지정
       MYSQL_DATABASE: "visit-knowledge-db" # 초기 디비 생성
+      MYSQL_TCP_PORT: 6633
     command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    networks:
+      - vk-net
 
   redis:
     container_name: visit-knowledge-redis
     image: redis:7.0.4
     ports:
       - "7963:6379"
+    networks:
+      - vk-net
