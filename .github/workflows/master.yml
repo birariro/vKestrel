@@ -15,7 +15,7 @@ on:
 jobs:
   # Job 이름으로, build라는 이름으로 Job이 표시됩니다.
   build:
-    if: ${{ !contains(github.event.head_commit.message, '[master action skip]') }}
+    if: ${{ !contains(github.event.head_commit.message, '[skip]') }}
     runs-on: ubuntu-latest
 
     # build Job 내의 step 목록입니다.

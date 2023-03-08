@@ -47,15 +47,23 @@ cp hooks/commit-msg.sh .git/hooks/commit-msg
 
 
 ### Registration
-Registration Email or SlackBot
+Registration SlackBot
 ```
 [Slack]
-POST /slack/reg
+POST /knowledge/reg
 {
-  "normalBotToken" : "[your main bot token]",
-  "normalBotChannel" : "[your main bot Channel id]",
-  "errorBotToken" : "[your main bot token]",
-  "errorBotChannel" :  "[your main bot Channel id]"
+  "token" : "[your bot token]",
+  "channel" : "[your bot Channel id]"
+}
+```
+
+option error alert SlackBot
+```
+[Slack]
+POST /error/reg
+{
+  "token" : "[your bot token]",
+  "channel" : "[your bot Channel id]"
 }
 ```
 
