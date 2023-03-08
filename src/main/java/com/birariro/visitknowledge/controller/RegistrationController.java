@@ -14,13 +14,6 @@ public class RegistrationController {
 
     private final RegistrationService registrationService;
 
-//    @PostMapping("/email/reg")
-//    public ResponseEntity emailRegistration(@RequestBody EmailRegRequest emailRegRequest){
-//
-//        log.info("email registration");
-//        registrationService.registration(emailRegRequest.getEmail());
-//        return ResponseEntity.status(HttpStatus.CREATED).build();
-//    }
 
     @PostMapping("/slack/reg")
     public ResponseEntity slackRegistration(@RequestBody SlackRegRequest slackRegRequest){

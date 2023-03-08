@@ -23,8 +23,6 @@ public class Member extends BaseEntity {
     @Type(type = "uuid-char")
     private UUID id;
 
-    @Embedded
-    private Email email;
 
     @Embedded
     private SlackBot slackBot;
@@ -32,11 +30,7 @@ public class Member extends BaseEntity {
     @Enumerated(EnumType.STRING)
     MemberType type;
 
-    public Member(Email email) {
-        this.email = email;
-        this.type = MemberType.EMAIL;
-        this.setEntityState(EntityState.INACTIVE);
-    }
+
 
     public Member(SlackBot slackBot) {
         this.slackBot = slackBot;

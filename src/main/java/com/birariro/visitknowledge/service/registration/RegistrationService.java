@@ -26,14 +26,7 @@ public class RegistrationService {
     private final MemberRepository memberRepository;
     private final AuthAdapter authAdapter;
 
-    @Async
-    @AopExecutionTime
-    @Transactional
-    public void registration(String email){
 
-        checkEmail(email);
-        save(new Email(email));
-    }
 
     @Async
     @AopExecutionTime
@@ -42,6 +35,7 @@ public class RegistrationService {
 
         save(new SlackBot(normalBotToken,normalBotChannel,errorBotToken,errorBotChannel));
     }
+
 
     @AopExecutionTime
     @Transactional
@@ -55,24 +49,6 @@ public class RegistrationService {
         member.active();
     }
 
-
-    private void checkEmail(String email){
-        String regex = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$";
-
-        if(! Pattern.matches(regex, email)){
-            throw new IllegalArgumentException();
-        }
-    }
-
-    @Transactional
-    protected void save(Email email){
-
-        Member member = new Member(email);
-        memberRepository.save(member);
-
-        String uuid = UUID.randomUUID().toString();
-        Events.raise(new NewRegistrationEvent(member, uuid));
-    }
 
     @Transactional
     protected void save(SlackBot slackBot){
