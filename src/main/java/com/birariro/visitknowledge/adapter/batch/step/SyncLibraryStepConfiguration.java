@@ -8,6 +8,7 @@ import com.birariro.visitknowledge.adapter.persistence.jpa.library.Library;
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.LibraryRepository;
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.UrlType;
 import com.birariro.visitknowledge.controller.init.CompanyJsonDto;
+import com.birariro.visitknowledge.service.registration.sync.LibrarySync;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,11 +20,7 @@ import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.support.ListItemReader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
-
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -33,6 +30,7 @@ public class SyncLibraryStepConfiguration {
     private final StepBuilderFactory stepBuilderFactory;
     private final LibraryRepository libraryRepository;
     private final CustomStepExecutionListener customStepExecutionListener;
+    private final LibrarySync librarySync;
 
 
     @Bean
@@ -50,27 +48,7 @@ public class SyncLibraryStepConfiguration {
     @StepScope
     public ListItemReader<Library> syncLibraryReader() throws IOException {
 
-        List<Library> libraries = new ArrayList<>();
-
-        ClassPathResource companyResource = new ClassPathResource("company-library.json");
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        CompanyJsonDto[] companyJsonDtoList = objectMapper.readValue(new FileReader(companyResource.getFile()) , CompanyJsonDto[].class);
-
-        for (CompanyJsonDto companyJsonDto : companyJsonDtoList) {
-
-            Library library = new Library(companyJsonDto.getName(), companyJsonDto.getUrl(), companyJsonDto.getHome(), UrlType.valueOf(companyJsonDto.getType()));
-            libraries.add(library);
-        }
-
-        ClassPathResource alonResource = new ClassPathResource("alon-library.json");
-        ObjectMapper objectMapper2 = new ObjectMapper();
-        CompanyJsonDto[] alonJsonDtoList = objectMapper2.readValue(new FileReader(alonResource.getFile()) , CompanyJsonDto[].class);
-        for (CompanyJsonDto alonJsonDto : alonJsonDtoList) {
-            Library library = new Library(alonJsonDto.getName(), alonJsonDto.getUrl(), alonJsonDto.getHome(), UrlType.valueOf(alonJsonDto.getType()));
-            libraries.add(library);
-        }
-
+        List<Library> libraries = librarySync.getSyncLibrary();
         return new ListItemReader<>(libraries);
     }
 

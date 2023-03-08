@@ -1,13 +1,10 @@
 package com.birariro.visitknowledge.service.registration;
 
-import com.birariro.visitknowledge.adapter.persistence.jpa.member.SlackBot;
+import com.birariro.visitknowledge.adapter.persistence.jpa.member.*;
 import com.birariro.visitknowledge.adapter.persistence.redis.auth.AuthAdapter;
 import com.birariro.visitknowledge.adapter.message.event.Events;
 
 import com.birariro.visitknowledge.annotation.AopExecutionTime;
-import com.birariro.visitknowledge.adapter.persistence.jpa.member.Email;
-import com.birariro.visitknowledge.adapter.persistence.jpa.member.Member;
-import com.birariro.visitknowledge.adapter.persistence.jpa.member.MemberRepository;
 import com.birariro.visitknowledge.domain.event.NewRegistrationEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,9 +28,9 @@ public class RegistrationService {
     @Async
     @AopExecutionTime
     @Transactional
-    public void registration(String normalBotToken, String normalBotChannel, String errorBotToken, String errorBotChannel){
+    public void registration(String token, String channel, MemberType type){
 
-        save(new SlackBot(normalBotToken,normalBotChannel,errorBotToken,errorBotChannel));
+        save(token, channel, type);
     }
 
 
@@ -51,9 +48,9 @@ public class RegistrationService {
 
 
     @Transactional
-    protected void save(SlackBot slackBot){
+    protected void save(String token, String channel, MemberType type){
 
-        Member member = new Member(slackBot);
+        Member member = new Member(token, channel, type);
         memberRepository.save(member);
 
         String uuid = UUID.randomUUID().toString();

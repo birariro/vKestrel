@@ -23,18 +23,18 @@ public class Member extends BaseEntity {
     @Type(type = "uuid-char")
     private UUID id;
 
-
-    @Embedded
-    private SlackBot slackBot;
+    private String token;
+    private String channel;
 
     @Enumerated(EnumType.STRING)
     MemberType type;
 
 
 
-    public Member(SlackBot slackBot) {
-        this.slackBot = slackBot;
-        this.type = MemberType.SLACK;
+    public Member(String token, String channel, MemberType type) {
+        this.token = token;
+        this.channel = channel;
+        this.type = type;
         this.setEntityState(EntityState.INACTIVE);
     }
 

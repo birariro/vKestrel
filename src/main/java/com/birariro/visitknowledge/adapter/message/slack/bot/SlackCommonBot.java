@@ -31,16 +31,15 @@ public class SlackCommonBot {
 
     public void sendCommonMessage(String text) throws SlackApiException, IOException {
 
-        List<SlackBot> collect = memberRepository.findAll().stream()
+        List<Member> collect = memberRepository.findAll().stream()
                 .filter(item -> item.getEntityState() == EntityState.ACTIVE)
-                .filter(item -> item.getType() == MemberType.SLACK)
-                .map(Member::getSlackBot)
+                .filter(item -> item.getType() == MemberType.KNOWLEDGE)
                 .collect(Collectors.toList());
 
-        for (SlackBot slackBot : collect) {
-            MethodsClient methods = Slack.getInstance().methods(slackBot.getNormalBotToken());
+        for (Member member : collect) {
+            MethodsClient methods = Slack.getInstance().methods(member.getToken());
             ChatPostMessageRequest request = ChatPostMessageRequest.builder()
-                    .channel(slackBot.getNormalBotChannel())
+                    .channel(member.getChannel())
                     .text(text)
                     .build();
 

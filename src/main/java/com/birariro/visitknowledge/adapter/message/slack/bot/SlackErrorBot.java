@@ -27,20 +27,19 @@ public class SlackErrorBot {
 
     public void sendErrorMessage(String text) throws SlackApiException, IOException {
 
-        List<SlackBot> collect = memberRepository.findAll().stream()
+        List<Member> collect = memberRepository.findAll().stream()
                 .filter(item -> item.getEntityState() == EntityState.ACTIVE)
-                .filter(item -> item.getType() == MemberType.SLACK)
-                .map(Member::getSlackBot)
+                .filter(item -> item.getType() == MemberType.ERROR)
                 .collect(Collectors.toList());
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[ERROR]\n");
         stringBuilder.append(text);
-        for (SlackBot slackBot : collect) {
+        for (Member member : collect) {
 
-            MethodsClient methods = Slack.getInstance().methods(slackBot.getErrorBotToken());
+            MethodsClient methods = Slack.getInstance().methods(member.getToken());
             ChatPostMessageRequest request = ChatPostMessageRequest.builder()
-                    .channel(slackBot.getErrorBotChannel())
+                    .channel(member.getChannel())
                     .text(stringBuilder.toString())
                     .build();
 
