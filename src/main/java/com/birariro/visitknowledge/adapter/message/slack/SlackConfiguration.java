@@ -49,7 +49,6 @@ public class SlackConfiguration {
     @TransactionalEventListener(NewRegistrationEvent.class)
     public void newRegistrationEvent(NewRegistrationEvent event) throws SlackApiException, IOException {
 
-        if(event.getMember().getType() != MemberType.SLACK) return;
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[visit-knowledge] slackBot 연결 요청");

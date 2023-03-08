@@ -1,5 +1,6 @@
 package com.birariro.visitknowledge.controller;
 
+import com.birariro.visitknowledge.adapter.persistence.jpa.member.MemberType;
 import com.birariro.visitknowledge.service.registration.RegistrationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,21 +15,23 @@ public class RegistrationController {
 
     private final RegistrationService registrationService;
 
-//    @PostMapping("/email/reg")
-//    public ResponseEntity emailRegistration(@RequestBody EmailRegRequest emailRegRequest){
-//
-//        log.info("email registration");
-//        registrationService.registration(emailRegRequest.getEmail());
-//        return ResponseEntity.status(HttpStatus.CREATED).build();
-//    }
 
-    @PostMapping("/slack/reg")
-    public ResponseEntity slackRegistration(@RequestBody SlackRegRequest slackRegRequest){
+    @PostMapping("/knowledge/reg")
+    public ResponseEntity slackKnowledgeRegistration(@RequestBody SlackRegRequest slackRegRequest){
 
-        log.info("slack registration");
+        log.info("slack knowledge registration");
         registrationService.registration(
-                slackRegRequest.getNormalBotToken(), slackRegRequest.getNormalBotChannel(),
-                slackRegRequest.getErrorBotToken(), slackRegRequest.getErrorBotChannel()
+                slackRegRequest.getToken(), slackRegRequest.getChannel(), MemberType.KNOWLEDGE
+        );
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+    @PostMapping("/error/reg")
+    public ResponseEntity slackErrorRegistration(@RequestBody SlackRegRequest slackRegRequest){
+
+        log.info("slack error registration");
+        registrationService.registration(
+                slackRegRequest.getToken(), slackRegRequest.getChannel(), MemberType.ERROR
         );
 
         return ResponseEntity.status(HttpStatus.CREATED).build();

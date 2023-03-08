@@ -3,8 +3,7 @@ package com.birariro.visitknowledge.adapter.persistence.jpa.member;
 
 public enum MemberType {
 
-    EMAIL,//이메일
-    SLACK, //슬랙 봇
+    KNOWLEDGE, //지식
+    ERROR; //에러
     ;
-
 }

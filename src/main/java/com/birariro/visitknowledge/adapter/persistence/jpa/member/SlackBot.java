@@ -20,3 +20,4 @@ public class SlackBot {
     private String errorBotToken;
     private String errorBotChannel;
 }
+
