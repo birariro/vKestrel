@@ -178,6 +178,12 @@
     "home": "https://news.hada.io/",
     "url" : "https://feeds.feedburner.com/geeknews-feed",
     "type" : "RSS"
+  },
+  {
+    "name" : "벨로그",
+    "home": "https://velog.io/",
+    "url" : "https://velog.io/",
+    "type" : "VELOG"
   }
 ]
 
