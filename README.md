@@ -7,10 +7,12 @@ Knowledge comes to you every morning.
 ## Docker Compose setup
 You will need to install Docker and docker-compose.
 
-a Docker Compose setup is provided. It comes with the following databases:
+a Docker Compose setup is provided. It comes with the following :
 
 - mariadb:10.8.3
 - redis:7.0.4
+- prometheus
+- grafana
 
 ```
  $ docker-compose up -d
@@ -25,6 +27,9 @@ a Docker Compose setup is provided. It comes with the following databases:
 - SlackBot (v1.27.3)
 - spring-batch
 - GitHub Actions
+- Spring Boot Actuator
+- prometheus
+- grafana
 
 ## batch job
 - Operate at 10 a.m. every day
