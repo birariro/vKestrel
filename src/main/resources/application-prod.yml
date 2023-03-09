@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://visit-knowledge-db:6633/visit-knowledge-db
+    url: jdbc:mariadb://vk-db:6633/vk-db
     username: root
     password: '0000'
 

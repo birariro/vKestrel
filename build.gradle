@@ -71,6 +71,10 @@ dependencies {
 	//jsoup
 	implementation 'org.jsoup:jsoup:1.14.2'
 
+	//Spring Boot Actuator
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+
 }
 
 tasks.named('test') {

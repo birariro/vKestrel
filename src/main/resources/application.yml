@@ -2,7 +2,7 @@ server:
   port: 8791
 spring:
   profiles:
-    active: prod
+    active: local
   application:
     name: visit-knowledge
 
@@ -17,6 +17,11 @@ spring:
 #      data-locations: classpath:data.sql # data.sql 위치
 #      mode: always # data.sql 허용
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
 
 Loggin:
   level:
