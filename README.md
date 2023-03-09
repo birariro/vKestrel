@@ -49,12 +49,15 @@ cp hooks/commit-msg.sh .git/hooks/commit-msg
 
 
 ## Usage
-
+```markdown
+actuator : http://localhost:8791/actuator  
+prometheus : http://localhost:9094
+grafana : http://localhost:3000 
+```
 
 ### Registration
 Registration SlackBot
 ```
-[Slack]
 POST /knowledge/reg
 {
   "token" : "[your bot token]",
@@ -64,7 +67,6 @@ POST /knowledge/reg
 
 option error alert SlackBot
 ```
-[Slack]
 POST /error/reg
 {
   "token" : "[your bot token]",

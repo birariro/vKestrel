@@ -31,7 +31,7 @@ services:
     container_name: vk-prometheus
     image: prom/prometheus
     ports:
-      - "9090:9090"
+      - "9094:9090"
     volumes:
       - ./mount/prometheus:/etc/prometheus
     networks:
