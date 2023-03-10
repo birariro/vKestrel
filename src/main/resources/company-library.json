@@ -184,6 +184,36 @@
     "home": "https://velog.io/",
     "url" : "https://velog.io/",
     "type" : "VELOG"
+  },
+  {
+    "name" : "사람인",
+    "home": "https://saramin.github.io/",
+    "url" : "https://saramin.github.io/feed.xml",
+    "type" : "RSS"
+  },
+  {
+    "name" : "AWS",
+    "home": "https://aws.amazon.com/ko/blogs/tech/",
+    "url" : "https://aws.amazon.com/ko/blogs/tech/feed/",
+    "type" : "RSS"
+  },
+  {
+    "name" : "스마일게이트AI",
+    "home": "https://smilegate.ai/",
+    "url" : "https://smilegate.ai/feed/",
+    "type" : "RSS"
+  },
+  {
+    "name" : "롯데ON",
+    "home": "https://techblog.lotteon.com/feed",
+    "url" : "https://techblog.lotteon.com/",
+    "type" : "RSS"
+  },
+  {
+    "name" : "카카오페이",
+    "home": "https://tech.kakaopay.com/",
+    "url" : "https://tech.kakaopay.com/rss",
+    "type" : "RSS"
   }
 ]
 

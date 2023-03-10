@@ -26,7 +26,7 @@ public class RSSParserTest {
     @Test
     public void test() throws IOException, FeedException {
         //
-        String _url = "https://blog.hwahae.co.kr/category/all/tech/feed/";
+        String _url = "https://saramin.github.io/feed.xml";
         URL url = new URL(_url);
 
         SyndFeedInput syndFeedInput = new SyndFeedInput();
@@ -48,7 +48,7 @@ public class RSSParserTest {
 
         try{
             WebClient webClient = WebClient.builder()
-                    .baseUrl("https://tosslab.github.io/feed.xml")
+                    .baseUrl("https://tech.kakaopay.com/rss")
                     .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024))
                     .build();
             String block = webClient.get()
@@ -65,7 +65,7 @@ public class RSSParserTest {
             build.getEntries().stream().forEach(item -> {
                 System.out.println("item.getTitle() = " + item.getTitle());
                 System.out.println("item.getLink() = " + item.getLink());
-                System.out.println("item.getLink() = " + item.getAuthor());
+                System.out.println("item.getAuthor() = " + item.getAuthor());
             });
         }catch (Exception e){
             e.printStackTrace();

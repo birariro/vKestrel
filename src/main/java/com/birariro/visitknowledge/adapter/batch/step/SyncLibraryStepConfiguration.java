@@ -62,13 +62,20 @@ public class SyncLibraryStepConfiguration {
     public ItemWriter<Library> syncLibraryWriter(){
         return items -> {
 
+            String addItemMessage = "";
             for (Library item : items) {
                 if(libraryRepository.existsByName(item.getName())){
                     log.info("[syncLibraryStep] duplicate site name : "+item.getName());
                     continue;
                 }
+                addItemMessage += item.getName() + " ";
                 libraryRepository.save(item);
             }
+            if(addItemMessage.length() > 10){
+                addItemMessage += "사이트가 새롭게 추가 되었습니다.";
+                Events.raise(new BatchActionEvent(false,addItemMessage));
+            }
+
         };
     }
 }
