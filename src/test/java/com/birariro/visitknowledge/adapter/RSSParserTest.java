@@ -48,7 +48,7 @@ public class RSSParserTest {
 
         try{
             WebClient webClient = WebClient.builder()
-                    .baseUrl("https://tech.kakaopay.com/rss")
+                    .baseUrl("https://aws.amazon.com/ko/blogs/tech/feed/")
                     .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024))
                     .build();
             String block = webClient.get()
@@ -65,6 +65,7 @@ public class RSSParserTest {
             build.getEntries().stream().forEach(item -> {
                 System.out.println("item.getTitle() = " + item.getTitle());
                 System.out.println("item.getLink() = " + item.getLink());
+                System.out.println("item.getUri() = " + item.getUri());
                 System.out.println("item.getAuthor() = " + item.getAuthor());
             });
         }catch (Exception e){

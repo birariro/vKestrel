@@ -205,8 +205,8 @@
   },
   {
     "name" : "롯데ON",
-    "home": "https://techblog.lotteon.com/feed",
-    "url" : "https://techblog.lotteon.com/",
+    "home": "https://techblog.lotteon.com",
+    "url" : "https://techblog.lotteon.com/feed",
     "type" : "RSS"
   },
   {
