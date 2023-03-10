@@ -30,12 +30,6 @@
     "type" : "RSS"
   },
   {
-    "name" : "테이블링",
-    "home": "https://medium.com/tabling-tech",
-    "url" : "https://tosslab.github.io/feed.xml",
-    "type" : "RSS"
-  },
-  {
     "name" : "헤이딜러",
     "home": "https://medium.com/prnd",
     "url" : "https://medium.com/feed/prnd",

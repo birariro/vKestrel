@@ -48,7 +48,7 @@ public class RSSParserTest {
 
         try{
             WebClient webClient = WebClient.builder()
-                    .baseUrl("https://aws.amazon.com/ko/blogs/tech/feed/")
+                    .baseUrl("https://tosslab.github.io/feed.xml")
                     .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024))
                     .build();
             String block = webClient.get()

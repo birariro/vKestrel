@@ -24,6 +24,13 @@
     "home": "https://velog.io/",
     "url" : "https://velog.io/",
     "type" : "VELOG"
+  },
+
+  { // url이 잘못 파싱됨
+    "name" : "테이블링",
+    "home": "https://medium.com/tabling-tech",
+    "url" : "https://tosslab.github.io/feed.xml",
+    "type" : "RSS"
   }
 ]
 

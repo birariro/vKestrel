@@ -58,7 +58,10 @@ public class RSSParser {
         List<Document> collect = build.getEntries()
                 .stream()
                 .map(item -> {
-                    return new Document(item.getTitle(), item.getUri(), item.getAuthor());
+                    String link = "";
+                    if(item.getUri().startsWith("http")) link = item.getUri();
+                    else if (item.getLink().startsWith("http")) link =  item.getLink();
+                    return new Document(item.getTitle(), link, item.getAuthor());
                 })
                 .limit(10)
                 .collect(Collectors.toList());
