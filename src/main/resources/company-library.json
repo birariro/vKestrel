@@ -208,6 +208,12 @@
     "home": "https://tech.kakaopay.com/",
     "url" : "https://tech.kakaopay.com/rss",
     "type" : "RSS"
+  },
+  {
+    "name" : "요즘IT",
+    "home": "https://yozm.wishket.com/magazine/",
+    "url" : "https://yozm.wishket.com/magazine/feed/",
+    "type" : "RSS"
   }
 ]
 

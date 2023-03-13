@@ -25,7 +25,7 @@ public class BatchScheduler {
     private final JobLauncher jobLauncher;
 
     //@Scheduled(fixedDelay = 600 * 1000L) // 10분
-    @Scheduled(cron="0 0 10 * * ?", zone="Asia/Seoul")// 매일 오전 10시 0분 0초
+    @Scheduled(cron="0 0 9 * * ?", zone="Asia/Seoul")// 매일 오전 9시 0분 0초
     public void executeJob() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
 
         log.info("job run");

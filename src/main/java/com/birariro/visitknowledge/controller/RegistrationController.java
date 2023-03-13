@@ -37,13 +37,6 @@ public class RegistrationController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("/reg/auth/{authCode}")
-    public ResponseEntity enableRegistration(@PathVariable("authCode") String authCode){
-
-        log.info("registration auth : "+ authCode);
-        registrationService.registrationAuthCode(authCode);
-        return ResponseEntity.status(HttpStatus.OK).build();
-    }
 
 
 }

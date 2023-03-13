@@ -35,7 +35,7 @@ public class Member extends BaseEntity {
         this.token = token;
         this.channel = channel;
         this.type = type;
-        this.setEntityState(EntityState.INACTIVE);
+        this.setEntityState(EntityState.ACTIVE);
     }
 
     public void active(){

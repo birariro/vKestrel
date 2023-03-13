@@ -15,6 +15,3 @@ spring:
         format_sql: true
     #defer-datasource-initialization: true # data.sql 허용
 
-  redis:
-    host: localhost
-    port: 7963

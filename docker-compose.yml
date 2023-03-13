@@ -19,14 +19,6 @@ services:
     networks:
       - vk-net
 
-  vk-redis:
-    container_name: vk-redis
-    image: redis:7.0.4
-    ports:
-      - "7963:6379"
-    networks:
-      - vk-net
-
   vk-prometheus:
     container_name: vk-prometheus
     image: prom/prometheus
