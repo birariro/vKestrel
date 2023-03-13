@@ -54,6 +54,6 @@ public class SlackConfiguration {
         stringBuilder.append("[visit-knowledge] slackBot 연결 요청");
         stringBuilder.append("- 수락하기 : "+ "http://localhost:8080/reg/auth/"+event.getAuthCode());
 
-        slackCommonBot.sendCommonMessage(stringBuilder.toString());
+        //slackCommonBot.sendCommonMessage(stringBuilder.toString());
     }
 }
