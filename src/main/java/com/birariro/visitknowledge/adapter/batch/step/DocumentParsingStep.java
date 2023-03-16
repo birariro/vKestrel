@@ -65,24 +65,24 @@ public class DocumentParsingStep {
 
 
     public ItemProcessor<Library,Library> libraryDocumentParsingProcessor(){
-        return item ->{
+        return library ->{
 
-            log.info("RSS parser target name : " +item.getName());
+            log.info("[START] RSS parser target name : " +library.getName());
 
             List<Document> documents = parserAdapter
-                    .getDocuments(item.getUrl(), item.getType());
+                    .getDocuments(library.getUrl(), library.getType());
 
 
             documents.stream()
-                    .filter(target -> item.existDocument(target) == false)
+                    .filter(target -> library.existDocument(target) == false)
                     .collect(Collectors.toList())
                     .forEach(document -> {
-                        log.info("[new document] " + item.getName() + ": "+document.getTitle());
-                        item.addDocument(document);
+                        log.info("[new document] " + library.getName() + ": "+document.getTitle());
+                        library.addDocument(document);
                     });
 
-
-            return item;
+            log.info("[END] RSS parser target name : " + library.getName());
+            return library;
         };
     }
 

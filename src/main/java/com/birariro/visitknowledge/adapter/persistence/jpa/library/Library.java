@@ -70,9 +70,9 @@ public class Library extends BaseEntity {
         boolean present = existDocument(document);
 
         if(! present){
-            log.info("[add document in library] " + this.name + " in "+ document.getTitle());
             this.documents.add(document);
             document.initLibrary(this);
+            log.info("[add document in library] " + this.name + " in "+ document.getTitle());
         }
 
     }
