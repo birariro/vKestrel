@@ -3,6 +3,7 @@ package com.birariro.visitknowledge.adapter.persistence.jpa.library;
 import com.birariro.visitknowledge.adapter.persistence.jpa.BaseEntity;
 import com.birariro.visitknowledge.adapter.persistence.jpa.EntityState;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Entity
 @Table(name = "tb_library")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -65,12 +67,10 @@ public class Library extends BaseEntity {
     }
     public void addDocument(Document document){
 
-        boolean present = this.documents.stream()
-                .filter(item -> item.getTitle().equals(document.getTitle()))
-                .findFirst()
-                .isPresent();
+        boolean present = existDocument(document);
 
         if(! present){
+            log.info("[add document in library] " + this.name + " in "+ document.getTitle());
             this.documents.add(document);
             document.initLibrary(this);
         }

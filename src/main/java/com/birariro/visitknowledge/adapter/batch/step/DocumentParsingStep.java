@@ -18,6 +18,7 @@ import org.springframework.batch.item.database.builder.JpaPagingItemReaderBuilde
 import org.springframework.batch.item.support.ListItemReader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
@@ -72,22 +73,22 @@ public class DocumentParsingStep {
                     .getDocuments(item.getUrl(), item.getType());
 
 
-            List<Document> newDocuments = documents.stream()
-                                                    .filter(target -> item.existDocument(target) == false)
-                                                    .collect(Collectors.toList());
+            documents.stream()
+                    .filter(target -> item.existDocument(target) == false)
+                    .collect(Collectors.toList())
+                    .forEach(document -> {
+                        log.info("[new document] " + item.getName() + ": "+document.getTitle());
+                        item.addDocument(document);
+                    });
 
 
-            newDocuments.forEach(document -> {
-                log.info("[add document] " + item.getName() + ": "+document.getTitle());
-                item.addDocument(document);
-            });
             return item;
         };
     }
 
     public ItemWriter<Library> libraryDocumentParsingWriter(){
         return items -> {
-            libraryRepository.saveAll(items);
+            //libraryRepository.saveAll(items);
         };
     }
 }
