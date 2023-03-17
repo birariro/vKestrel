@@ -220,6 +220,18 @@
     "home": "https://ebadak.news/",
     "url" : "https://ebadak.news/feed/",
     "type" : "RSS"
+  },
+  {
+    "name" : "기억보단 기록을",
+    "home": "https://jojoldu.tistory.com",
+    "url" : "https://jojoldu.tistory.com/rss",
+    "type" : "RSS"
+  },
+  {
+  "name" : "기억에 남는 블로그가 되길",
+  "home": "https://j-k4keye.tistory.com/",
+  "url" : "https://j-k4keye.tistory.com/rss",
+  "type" : "RSS"
   }
 ]
 

@@ -1,4 +1,4 @@
-package com.birariro.visitknowledge.controller.init;
+package com.birariro.visitknowledge.service.registration.sync;
 
 import lombok.Getter;
 import lombok.ToString;
