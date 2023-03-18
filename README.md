@@ -30,9 +30,10 @@ a Docker Compose setup is provided. It comes with the following :
 - Spring Boot Actuator
 - prometheus
 - grafana
+- thymeleaf
 
 ## batch job
-- Operate at 10 a.m. every day
+- Operate at 9 a.m. every day
 - It performs three tasks.
   1) Synchronize the library(resources/*.library.json) 
   2) Bringing posts from the library

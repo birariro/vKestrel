@@ -6,6 +6,7 @@ spring:
   application:
     name: visit-knowledge
 
+
   batch:
     job:
       enabled: false

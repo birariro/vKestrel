@@ -1,4 +1,4 @@
-package com.birariro.visitknowledge.controller;
+package com.birariro.visitknowledge.controller.api;
 
 import lombok.Getter;
 

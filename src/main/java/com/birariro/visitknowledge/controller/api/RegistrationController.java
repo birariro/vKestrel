@@ -1,4 +1,4 @@
-package com.birariro.visitknowledge.controller;
+package com.birariro.visitknowledge.controller.api;
 
 import com.birariro.visitknowledge.adapter.persistence.jpa.member.MemberType;
 import com.birariro.visitknowledge.service.registration.RegistrationService;
