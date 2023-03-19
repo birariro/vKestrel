@@ -26,10 +26,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">About</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.html">Sample Post</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/about}">About</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/post}">Sample Post</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/contact}">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -54,14 +54,15 @@
                     <!-- Post preview-->
                     <div th:each="post : ${posts}">
                         <div class="post-preview">
-                            <a href="post.html">
-                                <h2 class="post-title" th:text="${post.blogTitle}">Man must explore, and this is exploration at its greatest</h2>
-                                <h3 class="post-subtitle" th:text="${post.postTitle}">Problems look mighty small from 150 miles up</h3>
+                            <a th:href="${post.url}">
+                                <h2 class="post-title" th:text="${post.blogTitle}">title</h2>
+                                <h3 class="post-subtitle" th:text="${post.postTitle}">text</h3>
                             </a>
-                            <p class="post-meta">
+                            <p class="post-meta" th:if="${not #strings.isEmpty(post.author)}">
                                 Posted by
-                                <a th:text="${post.author}">Start Bootstrap</a>
-                                on September 24, 2022
+                                <a th:text="${post.author}">author</a>
+                                <span th:text="${post.date}">on September 24, 2022 </span>
+
                             </p>
                         </div>
                         <!-- Divider-->

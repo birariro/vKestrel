@@ -1,37 +1,57 @@
 package com.birariro.visitknowledge.controller.page;
 
-import lombok.Getter;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.Document;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.DocumentRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/")
+@RequiredArgsConstructor
 public class PageController {
 
+    private final DocumentRepository documentRepository;
     @GetMapping
     public String home(Model model){
-        List<PostModel> postModels = Arrays.asList(
-                new PostModel("우아한 형제들", "배달의 민족 주문", "배민저자"),
-                new PostModel("당근 마켓", "당근 오이 양파", "당근저자"),
-                new PostModel("카카오", "카카오 초콜릿", "카카오저자"));
+        PageRequest pageRequest = PageRequest.of(0,20);
+        Page<Document> all = documentRepository.findAll(pageRequest);
 
-        model.addAttribute("posts",postModels);
+        List<PostModel> collect = all.stream()
+                .map(item ->{
+                    LocalDateTime createAt = item.getCreateAt();
+                    String date = createAt.getYear() +"-"+ createAt.getMonthValue() +"-"+ createAt.getDayOfMonth();
+                    return new PostModel(item.getLibrary().getName(),
+                            item.getTitle(),
+                            item.getAuthor(),
+                            item.getUrl(),
+                            date);
+                })
+                .collect(Collectors.toList());
+
+        model.addAttribute("posts",collect);
         return "page/index";
     }
 
-    @GetMapping("/card")
-    public String cards(Model model){
-        List<Card> cards = Arrays.asList(new Card("title","de1","https://picsum.photos/200/300"),
-                new Card("title2","de3","https://picsum.photos/200/300"),
-                new Card("title3","de2","https://picsum.photos/200/300"));
-
-        model.addAttribute("cards", cards);
-        return "page/card";
+    @GetMapping("about")
+    public String abort(Model model){
+        return "page/about";
     }
+    @GetMapping("contact")
+    public String contact(Model model){
+        return "page/contact";
+    }
+    @GetMapping("post")
+    public String post(Model model){
+        return "page/post";
+    }
+
 }

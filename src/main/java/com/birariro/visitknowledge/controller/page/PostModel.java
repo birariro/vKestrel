@@ -11,4 +11,6 @@ public class PostModel {
     private String blogTitle;
     private String postTitle;
     private String author;
+    private String url;
+    private String date;
 }
