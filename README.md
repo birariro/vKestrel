@@ -31,6 +31,7 @@ a Docker Compose setup is provided. It comes with the following :
 - prometheus
 - grafana
 - thymeleaf
+- bootstrap (v5.1.3)
 
 ## batch job
 - Operate at 9 a.m. every day
