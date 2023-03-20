@@ -5,6 +5,7 @@ import com.birariro.visitknowledge.adapter.persistence.jpa.library.DocumentRepos
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,8 @@ public class PageController {
     private final DocumentRepository documentRepository;
     @GetMapping
     public String home(Model model){
-        PageRequest pageRequest = PageRequest.of(0,20);
+
+        PageRequest pageRequest = PageRequest.of(0,20, Sort.by("createAt").descending());
         Page<Document> all = documentRepository.findAll(pageRequest);
 
         List<PostModel> collect = all.stream()
