@@ -21,7 +21,7 @@ public class LibrarySync {
 
         List<Library> libraries = new ArrayList<>();
 
-        File resource =  resourceFileService.getFile("company-library.json");
+        File resource =  resourceFileService.getFile("library.json");
         ObjectMapper objectMapper = new ObjectMapper();
         CompanyJsonDto[] companyJsonDtoList = objectMapper.readValue(new FileReader(resource) , CompanyJsonDto[].class);
 
