@@ -222,6 +222,22 @@
     "type" : "RSS"
   },
   {
+    "name" : "쏘카",
+    "home": "https://tech.socarcorp.kr/",
+    "url" : "https://tech.socarcorp.kr/feed.xml",
+    "type" : "RSS"
+  },
+  {
+    "name" : "44BITS",
+    "home": "https://www.44bits.io/ko/",
+    "url" : "https://www.44bits.io/ko/feed/all",
+    "type" : "RSS"
+  },
+
+
+
+
+  {
     "name" : "기억보단 기록을",
     "home": "https://jojoldu.tistory.com",
     "url" : "https://jojoldu.tistory.com/rss",
@@ -232,6 +248,18 @@
   "home": "https://j-k4keye.tistory.com/",
   "url" : "https://j-k4keye.tistory.com/rss",
   "type" : "RSS"
+  },
+  {
+    "name" : "망나니개발자",
+    "home": "https://mangkyu.tistory.com/",
+    "url" : "https://mangkyu.tistory.com/rss",
+    "type" : "RSS"
+  },
+  {
+    "name" : "김포프",
+    "home": "https://blog.popekim.com/ko/",
+    "url" : "https://blog.popekim.com/ko/feed/dev.xml",
+    "type" : "RSS"
   }
 ]
 

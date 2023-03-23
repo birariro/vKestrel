@@ -49,8 +49,11 @@ public class DailyDocumentStep {
     @StepScope
     public ListItemReader<Document> dailyDocumentExtractReader(){
         List<Library> libraries = libraryRepository.findActiveByAll();
+
+        //보내지지 않은 글 최대 10개만 가지고온다
         List<Document> collect = libraries.stream()
                 .flatMap(library -> library.getWaitDocuments().stream())
+                .limit(10)
                 .collect(Collectors.toList());
 
         if(collect.size() > 0) Events.raise(new DailyDocumentEvent(collect));
