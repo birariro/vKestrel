@@ -11,6 +11,7 @@ import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
 import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
 import org.springframework.batch.core.repository.JobRestartException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -24,8 +25,8 @@ public class BatchScheduler {
     private final Job job;
     private final JobLauncher jobLauncher;
 
-    //@Scheduled(fixedDelay = 600 * 1000L) // 10분
-    @Scheduled(cron="0 0 9 * * ?", zone="Asia/Seoul")// 매일 오전 9시 0분 0초
+
+    @Scheduled(cron="${setting.schedule.cron:0 0 9 * * ?}", zone="Asia/Seoul")
     public void executeJob() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
 
         log.info("job run");

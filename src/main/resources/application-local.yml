@@ -4,13 +4,3 @@ spring:
     url: jdbc:mariadb://127.0.0.1:6633/vk-db
     username: root
     password: '0000'
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-      #ddl-auto: none
-    properties:
-      hibernate:
-        show_sql: true
-        format_sql: true
-    #defer-datasource-initialization: true # data.sql 허용

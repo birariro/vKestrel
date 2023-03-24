@@ -50,7 +50,6 @@ public class SlackCommonBot {
     private String getDocumentsToString(List<Document> documentList){
 
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("[Document] \n");
 
         for (Document document : documentList) {
             String format = String.format("%s [%s]", document.getTitle(), document.getUrl());

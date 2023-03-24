@@ -14,6 +14,7 @@ import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.support.ListItemReader;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -33,7 +34,8 @@ public class DailyDocumentStep {
     private final LibraryRepository libraryRepository;
     private final CustomStepExecutionListener customStepExecutionListener;
 
-
+    @Value("${setting.document.max-size:20}")
+    private int maxSize;
     @Bean
     public Step dailyDocumentExtractStep(){
         return stepBuilderFactory.get("dailyDocumentExtractStep")
@@ -56,11 +58,11 @@ public class DailyDocumentStep {
                 .flatMap(library -> library.getWaitDocuments().stream())
                 .collect(Collectors.toList());
 
-        //보내지지 않은 글중 최대 20개를 랜덤하게 얻는다
+        //보내지지 않은 글중 maxSize 만큼 랜덤하게 얻는다
         Random random = new Random();
         List<Document> randomCollect = random.ints(0, collect.size())
                 .distinct()
-                .limit(20)
+                .limit(maxSize)
                 .mapToObj(collect::get)
                 .collect(Collectors.toList());
 

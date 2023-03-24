@@ -6,6 +6,14 @@ spring:
   application:
     name: visit-knowledge
 
+  jpa:
+    hibernate:
+      ddl-auto: update
+      #ddl-auto: none
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
 
   batch:
     job:
@@ -13,10 +21,6 @@ spring:
     jdbc:
       initialize-schema: always
 
-#  sql:
-#    init:
-#      data-locations: classpath:data.sql # data.sql 위치
-#      mode: always # data.sql 허용
 
 management:
   endpoints:
@@ -28,3 +32,9 @@ Loggin:
   level:
     org.hibernate.SQL: debug
 
+
+setting:
+  document:
+    max-size : 20
+  schedule:
+    cron: 0 0 9 * * ? # 매일 오전 9시 0분 0초
