@@ -48,7 +48,7 @@ public class RSSParserTest {
 
         try{
             WebClient webClient = WebClient.builder()
-                    .baseUrl("https://www.44bits.io/ko/feed/all")
+                    .baseUrl("https://medium.com/feed/ctc-mzc")
                     .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024))
                     .build();
             String block = webClient.get()

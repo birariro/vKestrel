@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
@@ -50,16 +51,24 @@ public class DailyDocumentStep {
     public ListItemReader<Document> dailyDocumentExtractReader(){
         List<Library> libraries = libraryRepository.findActiveByAll();
 
-        //보내지지 않은 글 최대 10개만 가지고온다
+        //보내지지 않은 글을 모두 가지고온다.
         List<Document> collect = libraries.stream()
                 .flatMap(library -> library.getWaitDocuments().stream())
-                .limit(10)
                 .collect(Collectors.toList());
 
-        if(collect.size() > 0) Events.raise(new DailyDocumentEvent(collect));
+        //보내지지 않은 글중 최대 20개를 랜덤하게 얻는다
+        Random random = new Random();
+        List<Document> randomCollect = random.ints(0, collect.size())
+                .distinct()
+                .limit(20)
+                .mapToObj(collect::get)
+                .collect(Collectors.toList());
+
+
+        if(collect.size() > 0) Events.raise(new DailyDocumentEvent(randomCollect));
         else Events.raise(new BatchActionEvent(false,"오늘은 볼것이 없습니다."));
 
-        return new ListItemReader<>(collect);
+        return new ListItemReader<>(randomCollect);
     }
 
 

@@ -233,8 +233,54 @@
     "url" : "https://www.44bits.io/ko/feed/all",
     "type" : "RSS"
   },
-
-
+  {
+    "name" : "스드스",
+    "home": "https://samsungsds.tistory.com/",
+    "url" : "https://samsungsds.tistory.com/feed",
+    "type" : "RSS"
+  },
+  {
+    "name" : "라온화이트햇",
+    "home": "https://core-research-team.github.io/",
+    "url" : "https://core-research-team.github.io/feed.xml",
+    "type" : "RSS"
+  },
+  {
+    "name" : "휴먼스케이프",
+    "home": "https://medium.com/humanscape-tech",
+    "url" : "https://medium.com/feed/humanscape-tech",
+    "type" : "RSS"
+  },
+  {
+    "name" : "매드업",
+    "home": "https://tech.madup.com/",
+    "url" : "https://tech.madup.com/feed.xml",
+    "type" : "RSS"
+  },
+  {
+    "name" : "스캐터랩",
+    "home": "https://tech.scatterlab.co.kr/",
+    "url" : "https://tech.scatterlab.co.kr/feed.xml",
+    "type" : "RSS"
+  },
+  {
+    "name" : "하이퍼커넥트",
+    "home": "https://hyperconnect.github.io/",
+    "url" : "https://hyperconnect.github.io/feed.xml",
+    "type" : "RSS"
+  },
+  {
+    "name" : "배스핀글로벌",
+    "home": "https://blog.bespinglobal.com/",
+    "url" : "https://blog.bespinglobal.com/feed/",
+    "type" : "RSS"
+  },
+  {
+    "name" : "메가조니",
+    "home": "https://medium.com/ctc-mzc",
+    "url" : "https://medium.com/feed/ctc-mzc",
+    "type" : "RSS"
+  },
 
 
   {
