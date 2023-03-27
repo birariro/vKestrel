@@ -88,8 +88,8 @@ public class SlackSendTest {
 
         String title = document.getTitle();
 
-        title = title.replace("<", "&lt");
-        title = title.replace(">","&gt");
+        title = title.replace("<", "&lt;");
+        title = title.replace(">","&gt;");
         String link = document.getUrl();
         if(!document.getAuthor().isBlank()){
             title += " - " + document.getAuthor();

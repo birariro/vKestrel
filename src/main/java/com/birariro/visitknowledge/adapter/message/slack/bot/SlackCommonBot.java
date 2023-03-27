@@ -64,8 +64,8 @@ public class SlackCommonBot {
     private String getSlackTitle(Document document){
 
         String title = document.getTitle();
-        title = title.replace("<", "&lt");
-        title = title.replace(">","&gt");
+        title = title.replace("<", "&lt;");
+        title = title.replace(">","&gt;");
 
         if(!document.getAuthor().isBlank()){
             title += " - " + document.getAuthor();
