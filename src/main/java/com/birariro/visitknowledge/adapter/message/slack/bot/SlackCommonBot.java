@@ -25,18 +25,23 @@ public class SlackCommonBot {
 
     public void sendDocument(List<Document> documents) throws SlackApiException, IOException {
 
-        String text = getDocumentsToString(documents);
-        sendCommonMessage(text);
+        log.info("[slack] document count : "+documents.size());
+        for (Document document : documents) {
+            String text = getDocumentsToString(document);
+            sendCommonMessage(text);
+
+        }
     }
 
     public void sendCommonMessage(String text) throws SlackApiException, IOException {
 
-        List<Member> collect = memberRepository.findAll().stream()
+        List<Member> members = memberRepository.findAll().stream()
                 .filter(item -> item.getEntityState() == EntityState.ACTIVE)
                 .filter(item -> item.getType() == MemberType.KNOWLEDGE)
                 .collect(Collectors.toList());
 
-        for (Member member : collect) {
+        log.info("[slack] message member count : "+members.size());
+        for (Member member : members) {
             MethodsClient methods = Slack.getInstance().methods(member.getToken());
             ChatPostMessageRequest request = ChatPostMessageRequest.builder()
                     .channel(member.getChannel())
@@ -47,18 +52,25 @@ public class SlackCommonBot {
         }
     }
 
-    private String getDocumentsToString(List<Document> documentList){
+    private String getDocumentsToString(Document document){
 
-        StringBuilder stringBuilder = new StringBuilder();
+        String title = getSlackTitle(document);
+        String link = document.getUrl();
 
-        for (Document document : documentList) {
-            String format = String.format("%s [%s]", document.getTitle(), document.getUrl());
-            stringBuilder.append(format);
-            if(!document.getAuthor().isBlank()){
-                stringBuilder.append(" - "+document.getAuthor());
-            }
-            stringBuilder.append("\n");
+        String message = String.format("<%s|%s>", link, title);
+        return message;
+    }
+
+    private String getSlackTitle(Document document){
+
+        String title = document.getTitle();
+        title = title.replace("<", "&lt");
+        title = title.replace(">","&gt");
+
+        if(!document.getAuthor().isBlank()){
+            title += " - " + document.getAuthor();
         }
-        return stringBuilder.toString();
+
+        return title;
     }
 }
