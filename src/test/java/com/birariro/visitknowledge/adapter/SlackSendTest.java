@@ -3,6 +3,7 @@ package com.birariro.visitknowledge.adapter;
 import com.birariro.visitknowledge.adapter.message.slack.bot.SlackCommonBot;
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.Document;
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.DocumentRepository;
+import com.birariro.visitknowledge.adapter.persistence.jpa.member.MemberRepository;
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
@@ -23,6 +24,7 @@ public class SlackSendTest {
 
     @Autowired
     DocumentRepository documentRepository;
+
 
     @Test
     public void sendTest() {
@@ -66,13 +68,6 @@ public class SlackSendTest {
         slackCommonBot.sendCommonMessage(message);
     }
 
-   @Test
-    @DisplayName("slack message link2 테스트")
-    public void testSlackLinkMessage2() throws SlackApiException, IOException {
-
-        String message ="This message contains a URL <http://example.com/>";
-        slackCommonBot.sendCommonMessage(message);
-    }
 
     @Test
     @DisplayName("slack message link 테스트")
