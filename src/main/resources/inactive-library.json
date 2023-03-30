@@ -19,12 +19,6 @@
     "type" : "RSS"
   },
 
-  {//불필요한 글이 많음
-    "name" : "벨로그",
-    "home": "https://velog.io/",
-    "url" : "https://velog.io/",
-    "type" : "VELOG"
-  },
 
   { // url이 잘못 파싱됨
     "name" : "테이블링",

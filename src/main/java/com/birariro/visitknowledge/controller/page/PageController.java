@@ -2,6 +2,7 @@ package com.birariro.visitknowledge.controller.page;
 
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.Document;
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.DocumentRepository;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.SendState;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -31,6 +32,7 @@ public class PageController {
         Page<Document> all = documentRepository.findAll(pageRequest);
 
         List<PostPageModel.Model> collect = all.stream()
+                .filter(item -> item.getSendState().equals(SendState.COMPLETE))
                 .map(item -> {
                     LocalDateTime createAt = item.getCreateAt();
                     String date = createAt.getYear() + "-" + createAt.getMonthValue() + "-" + createAt.getDayOfMonth();
