@@ -31,10 +31,31 @@ public class BatchScheduler {
 
         log.info("job run");
 
-        String message = "<!here> 두근 두근 :smile:";
+        String message = runMessage();
         Events.raise(new BatchActionEvent(false,message));
         jobLauncher.run(job,new JobParametersBuilder()
                 .addString("datetime", LocalDateTime.now().toString())
                 .toJobParameters());
+    }
+
+
+    private String runMessage(){
+        String message = "<!here> :smile: \n";
+
+        String art =
+                "```         _________________\n" +
+                        "         ⎢                ⎥\n" +
+                        "         ⎢    두근 두근     ⎥\n" +
+                        "         ⎢____    ________⎥\n" +
+                        "               \\/                 \n"+
+                        "             /\\_____/\\\n" +
+                        "            /  @   @  \\\n" +
+                        "           ( ==  ^  == )\n" +
+                        "            )         (\n" +
+                        "           (           )\n" +
+                        "          ( (  )   (  ) )\n" +
+                        "         (__(__)___(__)__)```";
+
+        return message + art;
     }
 }

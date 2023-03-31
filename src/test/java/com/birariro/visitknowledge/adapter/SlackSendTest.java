@@ -68,6 +68,30 @@ public class SlackSendTest {
         slackCommonBot.sendCommonMessage(message);
     }
 
+    @Test
+    @DisplayName("slack 아스키 아트 테스트")
+    public void testASCIIMessage() throws SlackApiException, IOException {
+
+        String message = "<!here> :smile: \n";
+
+        String art =
+                "```         _________________\n" +
+                        "         ⎢                ⎥\n" +
+                        "         ⎢    두근 두근     ⎥\n" +
+                        "         ⎢____    ________⎥\n" +
+                        "               \\/                 \n"+
+                        "             /\\_____/\\\n" +
+                        "            /  @   @  \\\n" +
+                        "           ( ==  ^  == )\n" +
+                        "            )         (\n" +
+                        "           (           )\n" +
+                        "          ( (  )   (  ) )\n" +
+                        "         (__(__)___(__)__)```";
+
+
+        slackCommonBot.sendCommonMessage(message + art);
+    }
+
 
     @Test
     @DisplayName("slack message link 테스트")
