@@ -37,4 +37,4 @@ setting:
   document:
     max-size : 20
   schedule:
-    cron: 0 0 9 * * ? # 매일 오전 9시 0분 0초
+    cron: 0 0 9 ? * MON-FRI # 매일 오전 9시 0분 0초

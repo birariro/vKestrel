@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +32,17 @@ public class ParserAdapter {
 
             Events.raise(new BatchActionEvent(true, "not exist url type :" + type));
         } catch (Exception e) {
-            Events.raise(new BatchActionEvent(true, e.getMessage()));
+
+            String message = "[Parser] url : "+url + "\nException : "+getStackTraceToString(e.fillInStackTrace());
+            Events.raise(new BatchActionEvent(true, message));
         }
         return new ArrayList<Document>();
+    }
+
+    private String getStackTraceToString(Throwable t){
+
+        StringWriter sw = new StringWriter();
+        t.printStackTrace(new PrintWriter(sw));
+        return sw.toString();
     }
 }

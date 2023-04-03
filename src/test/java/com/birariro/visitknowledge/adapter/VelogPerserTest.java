@@ -78,8 +78,8 @@ public class VelogPerserTest {
     }
 
     @Test
-    public void test() throws IOException {
-        List<com.birariro.visitknowledge.adapter.persistence.jpa.library.Document> document = parserAdapter.getDocuments("https://velog.io/", UrlType.VELOG);
+    public void parserAdapterTest() throws IOException {
+        List<com.birariro.visitknowledge.adapter.persistence.jpa.library.Document> document = parserAdapter.getDocuments("https://blog.hwahae.co.kr/category/all/tech/feed/", UrlType.RSS);
         document.stream().forEach(System.out::println);
     }
 }
