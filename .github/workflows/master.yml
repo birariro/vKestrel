@@ -67,7 +67,7 @@ jobs:
         uses: slackapi/slack-github-action@v1.23.0
         with:
           channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
-          slack-message: "[Master Branch] CI/CD job ${{ job.status }}"
+          slack-message: "[Master Branch] CI/CD build job ${{ job.status }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
   
@@ -111,7 +111,7 @@ jobs:
         uses: slackapi/slack-github-action@v1.23.0
         with:
           channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
-          slack-message: "GitHub Action docker job ${{ job.status }}"
+          slack-message: "[Master Branch] CI/CD docker job ${{ job.status }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
@@ -141,6 +141,6 @@ jobs:
         uses: slackapi/slack-github-action@v1.23.0
         with:
           channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
-          slack-message: "GitHub Action deploy job ${{ job.status }}"
+          slack-message: "[Master Branch] CI/CD deploy job ${{ job.status }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

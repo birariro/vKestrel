@@ -1,5 +1,7 @@
 package com.birariro.visitknowledge.service.registration;
 
+import com.birariro.visitknowledge.adapter.batch.step.event.BatchActionEvent;
+import com.birariro.visitknowledge.adapter.message.slack.bot.SlackCommonBot;
 import com.birariro.visitknowledge.adapter.persistence.jpa.member.*;
 import com.birariro.visitknowledge.adapter.message.event.Events;
 import com.birariro.visitknowledge.annotation.AopExecutionTime;
@@ -36,6 +38,10 @@ public class RegistrationService {
 
         String uuid = UUID.randomUUID().toString();
         Events.raise(new NewRegistrationEvent(member, uuid));
+    }
+
+    public void greetings(){
+        Events.raise(new BatchActionEvent(false,"hello"));
     }
 
 }

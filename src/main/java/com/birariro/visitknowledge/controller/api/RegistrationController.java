@@ -36,6 +36,11 @@ public class RegistrationController {
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+    @PostMapping("/greetings")
+    private void slackKnowledgeGreetings(){
+        registrationService.greetings();
+    }
+
 
 
 
