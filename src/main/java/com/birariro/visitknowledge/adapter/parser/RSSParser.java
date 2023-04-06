@@ -39,7 +39,7 @@ public class RSSParser {
         return collect;
     }
 
-    public List<Document> getDocument(String resUrl) throws IOException, FeedException {
+    public List<Document> getDocument(String resUrl) throws FeedException {
 
         WebClient webClient = WebClient.builder()
                 .baseUrl(resUrl)
