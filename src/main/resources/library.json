@@ -281,7 +281,12 @@
     "url" : "https://medium.com/feed/ctc-mzc",
     "type" : "RSS"
   },
-
+  {
+    "name" : "jetbrains",
+    "home" : "https://blog.jetbrains.com/team/",
+    "url" : "https://blog.jetbrains.com/team/feed/",
+    "type" : "RSS"
+  },
 
   {
     "name" : "기억보단 기록을",
@@ -317,6 +322,12 @@
     "name" : "Hudi",
     "home" : "https://hudi.blog/",
     "url" : "https://hudi.blog/rss.xml",
+    "type" : "RSS"
+  },
+  {
+    "name" : "현구막",
+    "home" : "https://hyeon9mak.github.io/",
+    "url" : "https://hyeon9mak.github.io/feed.xml",
     "type" : "RSS"
   }
 ]
