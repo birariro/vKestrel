@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 @Table(name = "tb_library")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@ToString(exclude = {"documents"})
 public class Library extends BaseEntity {
 
     @Id
