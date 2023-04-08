@@ -6,14 +6,15 @@ spring:
   application:
     name: visit-knowledge
 
+  decorator:
+    datasource:
+      p6spy:
+        enable-logging: true
+
   jpa:
+    show-sql: true
     hibernate:
-      ddl-auto: update
-      #ddl-auto: none
-    properties:
-      hibernate:
-        show_sql: true
-        format_sql: true
+      ddl-auto: none
 
   batch:
     job:

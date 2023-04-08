@@ -19,20 +19,30 @@ public class LibrarySync {
 
     public List<Library> getSyncLibrary() throws IOException {
 
-        List<Library> libraries = new ArrayList<>();
+        List<Library> orgLibraries= getResourcesFileToLibraryList("org-library.json");
+        List<Library> libraries = getResourcesFileToLibraryList("library.json");
 
-        File resource =  resourceFileService.getFile("library.json");
-        ObjectMapper objectMapper = new ObjectMapper();
-        CompanyJsonDto[] companyJsonDtoList = objectMapper.readValue(new FileReader(resource) , CompanyJsonDto[].class);
-
-        for (CompanyJsonDto companyJsonDto : companyJsonDtoList) {
-            Library library = new Library(companyJsonDto.getName(), companyJsonDto.getUrl(), companyJsonDto.getHome(), UrlType.valueOf(companyJsonDto.getType()));
-            libraries.add(library);
-        }
-        return libraries;
+        List<Library> result = new ArrayList<>();
+        result.addAll(orgLibraries);
+        result.addAll(libraries);
+        return result;
 
     }
 
+    private List<Library> getResourcesFileToLibraryList(String fileName) throws IOException {
+
+        List<Library> libraries = new ArrayList<>();
+
+        File resource =  resourceFileService.getFile(fileName);
+        ObjectMapper objectMapper = new ObjectMapper();
+        LibraryDto[] libraryDtoList = objectMapper.readValue(new FileReader(resource) , LibraryDto[].class);
+
+        for (LibraryDto libraryDto : libraryDtoList) {
+            Library library = new Library(libraryDto.getName(), libraryDto.getUrl(), libraryDto.getHome(), UrlType.valueOf(libraryDto.getType()));
+            libraries.add(library);
+        }
+        return libraries;
+    }
 
 }
 

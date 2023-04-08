@@ -5,7 +5,7 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public class CompanyJsonDto {
+public class LibraryDto {
 
     private String name;
     private String home;

@@ -13,7 +13,7 @@ public class ReadResourcesTest {
     @Test
     public void readTest() throws IOException {
 
-        ClassPathResource resource = new ClassPathResource("library.json");
+        ClassPathResource resource = new ClassPathResource("org-library.json");
         System.out.println("resource = " + resource.getPath());
 
         FileReader fileReader = new FileReader(resource.getFile());
