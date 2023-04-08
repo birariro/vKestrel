@@ -1,7 +1,7 @@
 package com.birariro.visitknowledge.service.registration.sync;
 
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.Library;
-import com.birariro.visitknowledge.adapter.persistence.jpa.library.UrlType;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.ScriptType;
 import com.birariro.visitknowledge.service.registration.ResourceFileService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -38,7 +38,7 @@ public class LibrarySync {
         LibraryDto[] libraryDtoList = objectMapper.readValue(new FileReader(resource) , LibraryDto[].class);
 
         for (LibraryDto libraryDto : libraryDtoList) {
-            Library library = new Library(libraryDto.getName(), libraryDto.getUrl(), libraryDto.getHome(), UrlType.valueOf(libraryDto.getType()));
+            Library library = new Library(libraryDto.getName(), libraryDto.getUrl(), libraryDto.getHome(), ScriptType.valueOf(libraryDto.getType()));
             libraries.add(library);
         }
         return libraries;

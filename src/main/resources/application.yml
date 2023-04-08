@@ -5,6 +5,9 @@ spring:
     active: local
   application:
     name: visit-knowledge
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
 
   decorator:
     datasource:
@@ -14,7 +17,10 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: validate
+
+
+
 
   batch:
     job:

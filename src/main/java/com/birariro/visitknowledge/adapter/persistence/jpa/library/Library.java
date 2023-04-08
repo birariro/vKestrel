@@ -37,17 +37,18 @@ public class Library extends BaseEntity {
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private UrlType type;
+    @Column(name = "script_type")
+    private ScriptType scriptType;
 
 
     @OneToMany(mappedBy = "library", cascade = CascadeType.ALL)
     List<Document> documents = new ArrayList<>();
 
-    public Library(String name, String url, String origin, UrlType type) {
+    public Library(String name, String url, String origin, ScriptType scriptType) {
         this.name = name;
         this.url = url;
         this.origin = origin;
-        this.type = type;
+        this.scriptType = scriptType;
         this.setEntityState(EntityState.ACTIVE);
     }
 

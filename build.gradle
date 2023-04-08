@@ -73,8 +73,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
 
+	//thymeleaf
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
+	//flyway
+	implementation 'org.flywaydb:flyway-core:6.4.2'
 }
 
 tasks.named('test') {

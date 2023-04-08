@@ -1,25 +1,11 @@
 package com.birariro.visitknowledge.adapter;
 
-import com.birariro.visitknowledge.adapter.parser.RSSParser;
-import com.birariro.visitknowledge.adapter.persistence.jpa.library.Library;
-import com.birariro.visitknowledge.adapter.persistence.jpa.library.LibraryRepository;
-import com.birariro.visitknowledge.adapter.persistence.jpa.library.UrlType;
 import com.rometools.rome.feed.synd.SyndFeed;
-import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
-import com.rometools.rome.io.XmlReader;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.io.IOException;
 import java.io.StringReader;
-import java.net.URL;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class RSSParserTest {
 

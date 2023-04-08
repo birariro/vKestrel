@@ -1,7 +1,7 @@
 package com.birariro.visitknowledge.adapter;
 
 import com.birariro.visitknowledge.adapter.parser.ParserAdapter;
-import com.birariro.visitknowledge.adapter.persistence.jpa.library.UrlType;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.ScriptType;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -79,7 +79,7 @@ public class VelogPerserTest {
 
     @Test
     public void parserAdapterTest() throws IOException {
-        List<com.birariro.visitknowledge.adapter.persistence.jpa.library.Document> document = parserAdapter.getDocuments("https://blog.hwahae.co.kr/category/all/tech/feed/", UrlType.RSS);
+        List<com.birariro.visitknowledge.adapter.persistence.jpa.library.Document> document = parserAdapter.getDocuments("https://blog.hwahae.co.kr/category/all/tech/feed/", ScriptType.RSS);
         document.stream().forEach(System.out::println);
     }
 }

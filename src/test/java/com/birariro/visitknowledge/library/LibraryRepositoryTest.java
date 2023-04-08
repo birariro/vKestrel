@@ -2,7 +2,7 @@ package com.birariro.visitknowledge.library;
 
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.Library;
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.LibraryRepository;
-import com.birariro.visitknowledge.adapter.persistence.jpa.library.UrlType;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.ScriptType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class LibraryRepositoryTest {
 
     @Test
     public void saveData(){
-        Library library = new Library("name", "url", "test", UrlType.RSS);
+        Library library = new Library("name", "url", "test", ScriptType.RSS);
         libraryRepository.save(library);
     }
 

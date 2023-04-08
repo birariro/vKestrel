@@ -10,7 +10,6 @@ You will need to install Docker and docker-compose.
 a Docker Compose setup is provided. It comes with the following :
 
 - mariadb:10.8.3
-- redis:7.0.4
 - prometheus
 - grafana
 
@@ -32,6 +31,7 @@ a Docker Compose setup is provided. It comes with the following :
 - grafana
 - thymeleaf
 - bootstrap (v5.1.3)
+- flyway (v6.4.2)
 
 ## batch job
 - Operate at 9 a.m. every day

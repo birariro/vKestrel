@@ -3,7 +3,7 @@ package com.birariro.visitknowledge.adapter.parser;
 import com.birariro.visitknowledge.adapter.batch.step.event.BatchActionEvent;
 import com.birariro.visitknowledge.adapter.message.event.Events;
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.Document;
-import com.birariro.visitknowledge.adapter.persistence.jpa.library.UrlType;
+import com.birariro.visitknowledge.adapter.persistence.jpa.library.ScriptType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -20,13 +20,13 @@ public class ParserAdapter {
     private final RSSParser rssParser;
     private final VelogParser velogParser;
 
-    public List<Document> getDocuments(String url, UrlType type) {
+    public List<Document> getDocuments(String url, ScriptType type) {
 
         try {
-            if (type == UrlType.RSS) {
+            if (type == ScriptType.RSS) {
                 return rssParser.getDocument(url);
             }
-            if (type == UrlType.VELOG) {
+            if (type == ScriptType.VELOG) {
                 return velogParser.getDocument(url);
             }
 
