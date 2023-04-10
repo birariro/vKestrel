@@ -3,21 +3,6 @@
 Knowledge comes to you every morning.
 
 ---
-
-## Docker Compose setup
-You will need to install Docker and docker-compose.
-
-a Docker Compose setup is provided. It comes with the following :
-
-- mariadb:10.8.3
-- prometheus
-- grafana
-
-```
- $ docker-compose up -d
-```
-
-
 ## Environment
 - JPA
 - AOP
@@ -36,27 +21,41 @@ a Docker Compose setup is provided. It comes with the following :
 ## batch job
 - Operate at 9 a.m. every day
 - It performs three tasks.
-  1) Synchronize the library(resources/*.library.json) 
+  1) Synchronize the library(resources/*.library.json)
   2) Bringing posts from the library
   3) Announces newly added posts.
 
 
+
+# Usage
+## Docker Compose setup
+You will need to install Docker and docker-compose.
+
+a Docker Compose setup is provided. It comes with the following :
+
+- mariadb:10.8.3
+- prometheus
+- grafana
+
+```
+ $ docker-compose up -d
+```
+
 ## Hooks
 Provision of commit-msg.sh for git commit convention
 
-Active
 ```
 cp hooks/commit-msg.sh .git/hooks/commit-msg
 ```
 
-
-## Usage
-```markdown
+## application path
+```
 actuator : http://localhost:8791/actuator  
 prometheus : http://localhost:9094
 grafana : http://localhost:3000 
 ```
 
+## API
 ### Registration
 Registration SlackBot
 ```
@@ -74,12 +73,4 @@ POST /error/reg
   "token" : "[your bot token]",
   "channel" : "[your bot Channel id]"
 }
-```
-
-### redis command
-```
-> redis-cli 
-    > keys * 
-    > get [key]
-    > flushall 
 ```
