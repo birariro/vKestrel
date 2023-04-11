@@ -286,6 +286,12 @@
     "home" : "https://blog.jetbrains.com/team/",
     "url" : "https://blog.jetbrains.com/team/feed/",
     "type" : "RSS"
+  },
+  {
+    "name" : "보안뉴스-취약점",
+    "home" : "https://www.boannews.com/media/s_list.asp?skind=5",
+    "url"  : "https://www.boannews.com/media/s_list.asp?skind=5",
+    "type" : "BOANNEWS"
   }
 ]
 

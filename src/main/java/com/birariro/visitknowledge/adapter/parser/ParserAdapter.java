@@ -19,6 +19,7 @@ import java.util.List;
 public class ParserAdapter {
     private final RSSParser rssParser;
     private final VelogParser velogParser;
+    private final BoanNewsAdapter boanNewsAdapter;
 
     public List<Document> getDocuments(String url, ScriptType type) {
 
@@ -28,6 +29,9 @@ public class ParserAdapter {
             }
             if (type == ScriptType.VELOG) {
                 return velogParser.getDocument(url);
+            }
+            if(type == ScriptType.BOANNEWS){
+                return boanNewsAdapter.getDocument(url);
             }
 
             Events.raise(new BatchActionEvent(true, "not exist url type :" + type));
