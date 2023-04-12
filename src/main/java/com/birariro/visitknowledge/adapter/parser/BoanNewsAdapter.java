@@ -11,6 +11,7 @@ import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.birariro.visitknowledge.adapter.parser.utils.SSL;
@@ -22,6 +23,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class BoanNewsAdapter {
 
+	@Value("${setting.parser.max-size:10}")
+	private int maxSize;
 	private final String baseUrl = "https://www.boannews.com";
 
 	public List<Document> getDocument(String url) throws IOException, NoSuchAlgorithmException, KeyManagementException {
@@ -52,7 +55,7 @@ public class BoanNewsAdapter {
 
 			Document _document = new Document(title, link, "");
 			collect.add(_document);
-			if(collect.size() >= 10) break;
+			if(collect.size() >= maxSize) break;
 		}
 
 

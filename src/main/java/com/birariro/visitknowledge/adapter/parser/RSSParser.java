@@ -6,6 +6,8 @@ import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -20,24 +22,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class RSSParser {
 
-    public List<Document> getDocument_v1(String resUrl) throws IOException, FeedException {
-        URL url = new URL(resUrl);
-        SyndFeedInput syndFeedInput = new SyndFeedInput();
-        SyndFeed build = syndFeedInput.build(new XmlReader(url));
-
-        List<Document> collect = build.getEntries()
-                .stream()
-                .map(item -> {
-
-                        String link = "";
-                        if(item.getUri().startsWith("http")) link = item.getUri();
-                        else if (item.getLink().startsWith("http")) link =  item.getLink();
-
-                        return new Document(item.getTitle(), link, item.getAuthor());
-                    }).collect(Collectors.toList());
-
-        return collect;
-    }
+    @Value("${setting.parser.max-size:10}")
+    private int maxSize;
 
     public List<Document> getDocument(String resUrl) throws FeedException {
 
@@ -63,7 +49,7 @@ public class RSSParser {
                     else if (item.getLink().startsWith("http")) link =  item.getLink();
                     return new Document(item.getTitle(), link, item.getAuthor());
                 })
-                .limit(10)
+                .limit(maxSize)
                 .collect(Collectors.toList());
 
         return collect;

@@ -6,6 +6,7 @@ import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -16,6 +17,9 @@ import java.util.Optional;
 @Component
 @Slf4j
 class VelogParser {
+
+    @Value("${setting.parser.max-size:10}")
+    private int maxSize;
 
     public List<Document> getDocument(String url) throws IOException {
 
@@ -35,7 +39,7 @@ class VelogParser {
             Document _document = new Document(title.get().text(), href, "");
             collect.add(_document);
 
-            if(collect.size() >= 10) break;
+            if(collect.size() >= maxSize) break;
         }
 
         return collect;

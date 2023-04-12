@@ -41,6 +41,8 @@ Loggin:
 
 
 setting:
+  parser:
+    max-size : 10 # 한번 파싱할때 10개 씩만
   document:
     max-size : 20
   schedule:
