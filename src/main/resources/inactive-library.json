@@ -1,36 +1,35 @@
 [
-
-  {//RSS 파싱 실패
+  {
     "name" : "화해",
     "home": "https://blog.hwahae.co.kr/category/all/tech",
     "url" : "https://blog.hwahae.co.kr/category/all/tech/feed/",
     "type" : "RSS"
   },
-  {//RSS 파싱 실패
+  {
     "name" : "쿠팡",
     "home": "https://medium.com/coupang-tech",
     "url" : "https://medium.com/feed/coupang-tech",
     "type" : "RSS"
   },
-  {//RSS url 가 원하는 정보가 아님
+  {
     "name" : "토스랩",
     "home": "https://tosslab.github.io",
     "url" : "https://tosslab.github.io/feed.xml",
     "type" : "RSS"
   },
-
-
-  { // url이 잘못 파싱됨
+  {
     "name" : "테이블링",
     "home": "https://medium.com/tabling-tech",
     "url" : "https://tosslab.github.io/feed.xml",
     "type" : "RSS"
+  },
+  {
+    "name" : "배스핀글로벌",
+    "home": "https://blog.bespinglobal.com/",
+    "url" : "https://blog.bespinglobal.com/feed/",
+    "type" : "RSS"
   }
 ]
-
-
-
-
 
 
 

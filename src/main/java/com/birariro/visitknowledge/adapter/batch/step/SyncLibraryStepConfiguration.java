@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Configuration
@@ -57,20 +58,37 @@ public class SyncLibraryStepConfiguration {
     public ItemWriter<Library> syncLibraryWriter(){
         return items -> {
 
-            String addItemMessage = "";
-            for (Library item : items) {
-                if(libraryRepository.existsByName(item.getName())){
-                    log.info("[syncLibraryStep] duplicate site name : "+item.getName());
-                    continue;
-                }
-                addItemMessage += item.getName() + " ";
-                libraryRepository.save(item);
-            }
-            if(addItemMessage.length() > 10){
-                addItemMessage += "사이트가 새롭게 추가 되었습니다.";
-                Events.raise(new BatchActionEvent(false,addItemMessage));
+
+            List<? extends Library> activeLibrary = items.stream().filter(Library::isActive)
+                .filter(library -> !libraryRepository.existsByName(library.getName()))
+                .collect(Collectors.toList());
+
+
+            List<String> inActiveLibraryNames = items.stream()
+                                                .filter(item -> !item.isActive())
+                                                .map(Library::getName)
+                                                .collect(Collectors.toList());
+
+            List<Library> inActiveLibrary = libraryRepository.findActiveByAll()
+                .stream().filter(item -> inActiveLibraryNames.contains(item.getName()))
+                .collect(Collectors.toList());
+
+
+            if(activeLibrary.size() > 0){
+                libraryRepository.saveAll(activeLibrary);
+                String newTitles = activeLibrary.stream().map(Library::getName).collect(Collectors.toList()).toString();
+                Events.raise(new BatchActionEvent(false,newTitles + " 사이트가 새롭게 추가 되었습니다."));
             }
 
+            if(inActiveLibrary.size() > 0){
+                for (Library library : inActiveLibrary) {
+                    library.inActive();
+                    libraryRepository.save(library);
+                }
+
+                String deleteTitles = inActiveLibrary.stream().map(Library::getName).collect(Collectors.toList()).toString();
+                Events.raise(new BatchActionEvent(false,deleteTitles + " 사이트가 제거 되었습니다."));
+            }
         };
     }
 }

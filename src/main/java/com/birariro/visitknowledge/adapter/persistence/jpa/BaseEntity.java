@@ -23,4 +23,12 @@ public class BaseEntity {
         this.entityState = entityState;
         return this;
     }
+
+    public void inActive(){
+        this.entityState = EntityState.INACTIVE;
+    }
+
+    public boolean isActive(){
+        return this.entityState == EntityState.ACTIVE;
+    }
 }

@@ -270,12 +270,6 @@
     "type" : "RSS"
   },
   {
-    "name" : "배스핀글로벌",
-    "home": "https://blog.bespinglobal.com/",
-    "url" : "https://blog.bespinglobal.com/feed/",
-    "type" : "RSS"
-  },
-  {
     "name" : "메가조니",
     "home": "https://medium.com/ctc-mzc",
     "url" : "https://medium.com/feed/ctc-mzc",
@@ -292,6 +286,12 @@
     "home" : "https://www.boannews.com/media/s_list.asp?skind=5",
     "url"  : "https://www.boannews.com/media/s_list.asp?skind=5",
     "type" : "BOANNEWS"
+  },
+  {
+    "name" : "인프랩",
+    "home" : "https://tech.inflab.com/",
+    "url"  : "https://tech.inflab.com/rss.xml",
+    "type" : "RSS"
   }
 ]
 

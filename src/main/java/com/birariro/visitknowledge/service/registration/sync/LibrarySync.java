@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -21,10 +22,15 @@ public class LibrarySync {
 
         List<Library> orgLibraries= getResourcesFileToLibraryList("org-library.json");
         List<Library> libraries = getResourcesFileToLibraryList("library.json");
+        List<Library> inActiveLibraries = getResourcesFileToLibraryList("inactive-library.json");
+        inActiveLibraries.stream().forEach(Library::inActive);
+
+
 
         List<Library> result = new ArrayList<>();
         result.addAll(orgLibraries);
         result.addAll(libraries);
+        result.addAll(inActiveLibraries);
         return result;
 
     }
