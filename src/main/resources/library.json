@@ -46,6 +46,12 @@
     "home" : "https://ecsimsw.tistory.com/",
     "url"  : "https://ecsimsw.tistory.com/rss",
     "type" : "RSS"
+  },
+  {
+    "name" : "ahndy84",
+    "home" : "https://ahndy84.tistory.com/",
+    "url"  : "https://ahndy84.tistory.com/rss",
+    "type" : "RSS"
   }
 ]
 
