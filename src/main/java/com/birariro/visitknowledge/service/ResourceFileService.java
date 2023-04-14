@@ -1,4 +1,4 @@
-package com.birariro.visitknowledge.service.registration;
+package com.birariro.visitknowledge.service;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;

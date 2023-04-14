@@ -1,4 +1,4 @@
-package com.birariro.visitknowledge.controller.api;
+package com.birariro.visitknowledge.controller.api.test;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDateTime;
 
 @RestController
-@RequestMapping("/batch")
+@RequestMapping("/test/batch")
 @RequiredArgsConstructor
 public class BatchController {
 

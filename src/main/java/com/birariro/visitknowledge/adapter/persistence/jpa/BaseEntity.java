@@ -27,6 +27,9 @@ public class BaseEntity {
     public void inActive(){
         this.entityState = EntityState.INACTIVE;
     }
+    public void active(){
+        this.setEntityState(EntityState.ACTIVE);
+    }
 
     public boolean isActive(){
         return this.entityState == EntityState.ACTIVE;

@@ -14,14 +14,6 @@ spring:
       p6spy:
         enable-logging: true
 
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: validate
-
-
-
-
   batch:
     job:
       enabled: false

@@ -9,7 +9,7 @@ import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -19,9 +19,14 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class SlackCommonBot {
+public class SlackBot {
 
     private final MemberRepository memberRepository;
+
+    public void sendDocumentActiveSuc(String text) throws SlackApiException, IOException {
+
+        sendCommonMessage(text);
+    }
 
     public void sendDocument(List<Document> documents) throws SlackApiException, IOException {
 
@@ -72,5 +77,29 @@ public class SlackCommonBot {
         }
 
         return title;
+    }
+
+    public void sendErrorMessage(String text) throws SlackApiException, IOException {
+
+        List<Member> collect = memberRepository.findAll().stream()
+            .filter(item -> item.getEntityState() == EntityState.ACTIVE)
+            .filter(item -> item.getType() == MemberType.ERROR)
+            .collect(Collectors.toList());
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("[ERROR]\n");
+        stringBuilder.append(text);
+        for (Member member : collect) {
+
+            MethodsClient methods = Slack.getInstance().methods(member.getToken());
+            ChatPostMessageRequest request = ChatPostMessageRequest.builder()
+                .channel(member.getChannel())
+                .text(stringBuilder.toString())
+                .build();
+
+            methods.chatPostMessage(request);
+        }
+
+
     }
 }

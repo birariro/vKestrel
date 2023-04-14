@@ -1,6 +1,6 @@
 package com.birariro.visitknowledge.adapter.parser;
 
-import com.birariro.visitknowledge.adapter.batch.step.event.BatchActionEvent;
+import com.birariro.visitknowledge.adapter.batch.step.event.ActionEvent;
 import com.birariro.visitknowledge.adapter.message.event.Events;
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.Document;
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.ScriptType;
@@ -34,11 +34,11 @@ public class ParserAdapter {
                 return boanNewsAdapter.getDocument(url);
             }
 
-            Events.raise(new BatchActionEvent(true, "not exist url type :" + type));
+            Events.raise(new ActionEvent(true, "not exist url type :" + type));
         } catch (Exception e) {
 
             String message = "[Parser] url : "+url + "\nException : "+getStackTraceToString(e.fillInStackTrace());
-            Events.raise(new BatchActionEvent(true, message));
+            Events.raise(new ActionEvent(true, message));
         }
         return new ArrayList<Document>();
     }

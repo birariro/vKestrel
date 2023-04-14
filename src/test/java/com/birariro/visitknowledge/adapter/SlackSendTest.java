@@ -1,9 +1,8 @@
 package com.birariro.visitknowledge.adapter;
 
-import com.birariro.visitknowledge.adapter.message.slack.bot.SlackCommonBot;
+import com.birariro.visitknowledge.adapter.message.slack.bot.SlackBot;
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.Document;
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.DocumentRepository;
-import com.birariro.visitknowledge.adapter.persistence.jpa.member.MemberRepository;
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
@@ -20,7 +19,7 @@ import java.util.List;
 public class SlackSendTest {
 
     @Autowired
-    SlackCommonBot slackCommonBot;
+    SlackBot slackBot;
 
     @Autowired
     DocumentRepository documentRepository;
@@ -32,7 +31,7 @@ public class SlackSendTest {
         Document document = new Document("title", "test", "test");
         Document document2 = new Document("title2", "test2", "test2");
         try {
-            slackCommonBot.sendDocument(List.of(document,document2));
+            slackBot.sendDocument(List.of(document,document2));
         } catch (SlackApiException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -57,7 +56,7 @@ public class SlackSendTest {
     public void testSlackCancelLineMessage() throws SlackApiException, IOException {
 
         String message ="~cancelLine 테스트메시지~";
-        slackCommonBot.sendCommonMessage(message);
+        slackBot.sendCommonMessage(message);
     }
 
     @Test
@@ -65,7 +64,7 @@ public class SlackSendTest {
     public void testSlackLinkMessage() throws SlackApiException, IOException {
 
         String message ="<https://medium.com/p/d2a52359fe85|WATCHA-CTI-s-Case-Report:-Join My Table-1부 들어가며 - gadgetlip>";
-        slackCommonBot.sendCommonMessage(message);
+        slackBot.sendCommonMessage(message);
     }
 
     @Test
@@ -89,7 +88,7 @@ public class SlackSendTest {
                         "         (__(__)___(__)__)```";
 
 
-        slackCommonBot.sendCommonMessage(message + art);
+        slackBot.sendCommonMessage(message + art);
     }
 
 
@@ -118,7 +117,7 @@ public class SlackSendTest {
 
         System.out.println("message = " + message);
 
-        slackCommonBot.sendCommonMessage(message);
+        slackBot.sendCommonMessage(message);
     }
 }
 

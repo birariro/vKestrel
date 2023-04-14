@@ -1,6 +1,6 @@
 package com.birariro.visitknowledge.adapter.batch;
 
-import com.birariro.visitknowledge.adapter.batch.step.event.BatchActionEvent;
+import com.birariro.visitknowledge.adapter.batch.step.event.ActionEvent;
 import com.birariro.visitknowledge.adapter.message.event.Events;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +31,7 @@ public class BatchScheduler {
         log.info("job run");
 
         String message = runMessage();
-        Events.raise(new BatchActionEvent(false,message));
+        Events.raise(new ActionEvent(false,message));
         jobLauncher.run(job,new JobParametersBuilder()
                 .addString("datetime", LocalDateTime.now().toString())
                 .toJobParameters());

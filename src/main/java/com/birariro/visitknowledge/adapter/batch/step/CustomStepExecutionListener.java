@@ -1,6 +1,6 @@
 package com.birariro.visitknowledge.adapter.batch.step;
 
-import com.birariro.visitknowledge.adapter.batch.step.event.BatchActionEvent;
+import com.birariro.visitknowledge.adapter.batch.step.event.ActionEvent;
 import com.birariro.visitknowledge.adapter.message.event.Events;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.ExitStatus;
@@ -33,7 +33,7 @@ public class CustomStepExecutionListener implements StepExecutionListener {
 
         log.info(errorMessage);
         if(exitStatus.getExitCode().equals("FAILED")){
-            Events.raise(new BatchActionEvent(true,errorMessage));
+            Events.raise(new ActionEvent(true,errorMessage));
         }
 
         return exitStatus;

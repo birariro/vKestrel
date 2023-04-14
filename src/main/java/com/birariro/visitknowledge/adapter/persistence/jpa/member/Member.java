@@ -30,15 +30,11 @@ public class Member extends BaseEntity {
     MemberType type;
 
 
-
     public Member(String token, String channel, MemberType type) {
         this.token = token;
         this.channel = channel;
         this.type = type;
-        this.setEntityState(EntityState.ACTIVE);
+        super.active();
     }
 
-    public void active(){
-        this.setEntityState(EntityState.ACTIVE);
-    }
 }

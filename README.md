@@ -37,19 +37,19 @@ a Docker Compose setup is provided. It comes with the following :
 - prometheus
 - grafana
 
-```
+``` shell
  $ docker-compose up -d
 ```
 
 ## Hooks
 Provision of commit-msg.sh for git commit convention
 
-```
-cp hooks/commit-msg.sh .git/hooks/commit-msg
+``` shell 
+ $ cp hooks/commit-msg.sh .git/hooks/commit-msg 
 ```
 
 ## application path
-```
+``` 
 actuator : http://localhost:8791/actuator  
 prometheus : http://localhost:9094
 grafana : http://localhost:3000 
@@ -58,7 +58,7 @@ grafana : http://localhost:3000
 ## API
 ### Registration
 Registration SlackBot
-```
+``` json
 POST /knowledge/reg
 {
   "token" : "[your bot token]",
@@ -67,7 +67,7 @@ POST /knowledge/reg
 ```
 
 option error alert SlackBot
-```
+``` json
 POST /error/reg
 {
   "token" : "[your bot token]",

@@ -1,4 +1,4 @@
-package com.birariro.visitknowledge.controller.api;
+package com.birariro.visitknowledge.controller.api.test;
 
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.Library;
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.LibraryRepository;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/info/library")
+@RequestMapping("/test/info/library")
 @RequiredArgsConstructor
 public class InfoController {
 

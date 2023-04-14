@@ -1,8 +1,8 @@
-package com.birariro.visitknowledge.service.registration.sync;
+package com.birariro.visitknowledge.service.sync;
 
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.Library;
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.ScriptType;
-import com.birariro.visitknowledge.service.registration.ResourceFileService;
+import com.birariro.visitknowledge.service.ResourceFileService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

@@ -1,10 +1,10 @@
 package com.birariro.visitknowledge.adapter.batch.step;
 
-import com.birariro.visitknowledge.adapter.batch.step.event.BatchActionEvent;
+import com.birariro.visitknowledge.adapter.batch.step.event.ActionEvent;
 import com.birariro.visitknowledge.adapter.message.event.Events;
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.Library;
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.LibraryRepository;
-import com.birariro.visitknowledge.service.registration.sync.LibrarySync;
+import com.birariro.visitknowledge.service.sync.LibrarySync;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Step;
@@ -77,7 +77,7 @@ public class SyncLibraryStepConfiguration {
             if(activeLibrary.size() > 0){
                 libraryRepository.saveAll(activeLibrary);
                 String newTitles = activeLibrary.stream().map(Library::getName).collect(Collectors.toList()).toString();
-                Events.raise(new BatchActionEvent(false,newTitles + " 사이트가 새롭게 추가 되었습니다."));
+                Events.raise(new ActionEvent(false,newTitles + " 사이트가 새롭게 추가 되었습니다."));
             }
 
             if(inActiveLibrary.size() > 0){
@@ -87,7 +87,7 @@ public class SyncLibraryStepConfiguration {
                 }
 
                 String deleteTitles = inActiveLibrary.stream().map(Library::getName).collect(Collectors.toList()).toString();
-                Events.raise(new BatchActionEvent(false,deleteTitles + " 사이트가 제거 되었습니다."));
+                Events.raise(new ActionEvent(false,deleteTitles + " 사이트가 제거 되었습니다."));
             }
         };
     }

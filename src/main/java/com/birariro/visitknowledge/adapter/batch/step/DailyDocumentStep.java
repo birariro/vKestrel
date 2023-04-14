@@ -1,6 +1,6 @@
 package com.birariro.visitknowledge.adapter.batch.step;
 
-import com.birariro.visitknowledge.adapter.batch.step.event.BatchActionEvent;
+import com.birariro.visitknowledge.adapter.batch.step.event.ActionEvent;
 import com.birariro.visitknowledge.adapter.batch.step.event.DailyDocumentEvent;
 import com.birariro.visitknowledge.adapter.message.event.Events;
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.Document;
@@ -68,7 +68,7 @@ public class DailyDocumentStep {
 
 
         if(collect.size() > 0) Events.raise(new DailyDocumentEvent(randomCollect));
-        else Events.raise(new BatchActionEvent(false,"오늘은 볼것이 없습니다."));
+        else Events.raise(new ActionEvent(false,"오늘은 볼것이 없습니다."));
 
         return new ListItemReader<>(randomCollect);
     }

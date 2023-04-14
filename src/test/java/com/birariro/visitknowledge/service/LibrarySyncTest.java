@@ -1,11 +1,8 @@
 package com.birariro.visitknowledge.service;
 
-import com.birariro.visitknowledge.adapter.batch.step.event.BatchActionEvent;
-import com.birariro.visitknowledge.adapter.message.event.Events;
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.Library;
 import com.birariro.visitknowledge.adapter.persistence.jpa.library.LibraryRepository;
-import com.birariro.visitknowledge.service.registration.ResourceFileService;
-import com.birariro.visitknowledge.service.registration.sync.LibrarySync;
+import com.birariro.visitknowledge.service.sync.LibrarySync;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
