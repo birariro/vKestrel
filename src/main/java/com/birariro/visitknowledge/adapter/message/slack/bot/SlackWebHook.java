@@ -11,6 +11,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import com.birariro.visitknowledge.adapter.message.slack.SlackConstants;
 import com.birariro.visitknowledge.adapter.persistence.jpa.EntityState;
 import com.birariro.visitknowledge.adapter.persistence.jpa.WebHook.WebHook;
 import com.birariro.visitknowledge.adapter.persistence.jpa.WebHook.WebHookRepository;
@@ -61,8 +62,10 @@ public class SlackWebHook {
     private void sendCommonMessage(RestTemplate restTemplate, WebHook webHook, String text) {
 
         Map<String, Object> request = new HashMap<>();
-        request.put("username", "늬우스"); //slack bot name
+        request.put("username", SlackConstants.WEB_HOOK_NAME); //slack bot name
         request.put("text", text); //send message
+        request.put("icon_emoji", SlackConstants.WEB_HOOK_EMOJI); //slack bot image
+
         HttpEntity<Map<String, Object>> entity = new HttpEntity<Map<String, Object>>(request);
 
         restTemplate.exchange(webHook.getUrl(), HttpMethod.POST, entity, String.class);

@@ -57,6 +57,14 @@ grafana : http://localhost:3000
 
 ## API
 ### Registration
+Registration Slack WebHook
+``` json
+POST /webhook
+{
+  "url" : "[your webhook url]",
+}
+```
+
 Registration SlackBot
 ``` json
 POST /knowledge/reg

@@ -25,7 +25,7 @@ public class SlackConfiguration {
     @EventListener(DailyDocumentEvent.class)
     public void sendDailyDocument(DailyDocumentEvent event) throws SlackApiException, IOException {
         slackWebHook.sendDocument(event.getDocuments());
-        slackBot.sendDocumentActiveSuc("작업 완료");
+        slackBot.sendDocumentActiveSuc(SlackConstants.JOB_SUCCESS);
     }
 
     @EventListener(ActionEvent.class)
@@ -42,6 +42,6 @@ public class SlackConfiguration {
     @TransactionalEventListener(NewRegistrationEvent.class)
     public void newRegistrationEvent(NewRegistrationEvent event){
 
-        slackWebHook.sendCommonMessage(event.getWebHook(), "Web Hook 등록 완료");
+        slackWebHook.sendCommonMessage(event.getWebHook(), SlackConstants.WEB_HOOK_NEW_REG_SUCCESS);
     }
 }
