@@ -4,7 +4,7 @@ spring:
   profiles:
     active: local
   application:
-    name: visit-knowledge
+    name: vkestrel
   flyway:
     enabled: true
     baseline-on-migrate: true
