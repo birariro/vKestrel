@@ -19,6 +19,16 @@ services:
     networks:
       - vk-net
 
+  vk-db-exporter:
+    container_name: vk-db-exporter
+    image: prom/mysqld-exporter
+    environment:
+      DATA_SOURCE_NAME: "prometheus-exporter:0000@(vk-db:6633)/"
+    ports:
+      - "9104:9104"
+    networks:
+      - vk-net
+
   vk-prometheus:
     container_name: vk-prometheus
     image: prom/prometheus
