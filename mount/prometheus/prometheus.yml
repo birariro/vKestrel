@@ -7,6 +7,6 @@ scrape_configs:
     static_configs:
       - targets: ['10.0.0.160:8791']
 
-  - job_name: mariadb
+  - job_name: exporter
     static_configs:
       - targets: [ '10.0.0.160:9104' ]

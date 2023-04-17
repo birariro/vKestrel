@@ -1,7 +1,8 @@
 # vKestrel
 
 The kestrel brings good things every morning. <br/>
-It is a blog post in Korea
+It is a blog post in Korea <br/>
+
 ---
 ## Environment
 - JPA
@@ -13,13 +14,14 @@ It is a blog post in Korea
 - GitHub Actions
 - Spring Boot Actuator
 - prometheus
+- prometheus-mysqld-exporter
 - grafana
 - thymeleaf
 - bootstrap (v5.1.3)
 - flyway (v6.4.2)
 
 ## batch job
-- Operate at 9 a.m. every day
+- Operate at 9 a.m. weekday day
 - It performs three tasks.
   1) Synchronize the library(resources/*.library.json)
   2) Bringing posts from the library

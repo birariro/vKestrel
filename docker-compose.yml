@@ -43,6 +43,6 @@ services:
     container_name: vk-grafana
     image: grafana/grafana
     ports:
-      - "3000:3000"
+      - "9095:3000"
     networks:
       - vk-net

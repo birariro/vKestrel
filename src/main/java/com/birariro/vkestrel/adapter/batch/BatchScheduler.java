@@ -30,8 +30,8 @@ public class BatchScheduler {
 
         log.info("job run");
 
-        String message = runMessage();
-        Events.raise(new ActionEvent(false,message));
+        // String message = runMessage();
+        // Events.raise(new ActionEvent(false,message));
         jobLauncher.run(job,new JobParametersBuilder()
                 .addString("datetime", LocalDateTime.now().toString())
                 .toJobParameters());
@@ -41,17 +41,20 @@ public class BatchScheduler {
     private String runMessage(){
         String message = "<!here> :smile: \n";
 
-        String art = " ,````````.        _________\n"
-                    + "' 두근두근  `,     /_  ___    \\\n"
-                    + "'  ^_^   `.     /@ \\/@  \\    \\\n"
-                    + " ` , . , '  `.. \\__/\\___/    /\n"
-                    + "                 \\_\\/_______/\n"
-                    + "                 /     /\\\\\\\\\\\n"
-                    + "                |     |\\\\\\\\\\\\\n"
-                    + "                 \\      \\\\\\\\\\\\\n"
-                    + "                  \\______/\\\\\\\\     -ccw-\n"
-                    + "            _______ ||_||_______\n"
-                    + "           (______(((_(((______(@)";
+        String art =
+            "```         _________________\n" +
+                "         ⎢                ⎥\n" +
+                "         ⎢    두근 두근     ⎥\n" +
+                "         ⎢____    ________⎥\n" +
+                "               \\/                 \n"+
+                "             /\\_____/\\\n" +
+                "            /  @   @  \\\n" +
+                "           ( ==  ^  == )\n" +
+                "            )         (\n" +
+                "           (           )\n" +
+                "          ( (  )   (  ) )\n" +
+                "         (__(__)___(__)__)```";
+
 
         return message + art;
     }
