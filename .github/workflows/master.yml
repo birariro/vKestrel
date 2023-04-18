@@ -24,13 +24,14 @@ jobs:
       - name: Run Master Branch CI
         run: echo Hello, CI!
 
-      - name: event slack send message
-        uses: slackapi/slack-github-action@v1.23.0
-        with:
-          channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
-          slack-message: "[Master Branch] CI/CD \n - author: ${{ github.actor }}\n - commit: ${{ github.event.head_commit.message }}\n${{ github.event.head_commit.url }}"
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+#      - name: event slack send message
+#        uses: slackapi/slack-github-action@v1.23.0
+#        with:
+#          channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
+#          slack-message: "[Master Branch] CI/CD \n - author: ${{ github.actor }}\n - commit: ${{ github.event.head_commit.message }}\n${{ github.event.head_commit.url }}"
+#        env:
+#          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+
 
       # uses 키워드를 통해 Action을 불러올 수 있습니다.
       # actions/checkout@v2 : 해당 레포지토리로 check-out하여 레포지토리에 접근할 수 있는 Action
@@ -136,11 +137,11 @@ jobs:
 #            docker pull k4keye/vkestrel
 #            docker run -d -p 8791:8791 --name vkestrel k4keye/vkestrel
 
-      - name: slack send message
-        if: ${{ always() }}
-        uses: slackapi/slack-github-action@v1.23.0
-        with:
-          channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
-          slack-message: "[Master Branch] CI/CD deploy job ${{ job.status }}"
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+#      - name: slack send message
+#        if: ${{ always() }}
+#        uses: slackapi/slack-github-action@v1.23.0
+#        with:
+#          channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
+#          slack-message: "[Master Branch] CI/CD deploy job ${{ job.status }}"
+#        env:
+#          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

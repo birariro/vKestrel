@@ -52,6 +52,12 @@
     "home" : "https://ahndy84.tistory.com/",
     "url"  : "https://ahndy84.tistory.com/rss",
     "type" : "RSS"
+  },
+  {
+    "name" : "HomoEfficio",
+    "home" : "https://homoefficio.github.io/",
+    "url"  : "https://homoefficio.github.io/atom.xml",
+    "type" : "RSS"
   }
 ]
 
