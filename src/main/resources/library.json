@@ -58,6 +58,12 @@
     "home" : "https://homoefficio.github.io/",
     "url"  : "https://homoefficio.github.io/atom.xml",
     "type" : "RSS"
+  },
+  {
+    "name" : "근삼이",
+    "home" : "https://ykarma1996.tistory.com/",
+    "url"  : "https://ykarma1996.tistory.com/rss",
+    "type" : "RSS"
   }
 ]
 
