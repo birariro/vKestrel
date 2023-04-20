@@ -13,41 +13,44 @@ on:
 
 # 해당 Workflow의 하나 이상의 Job 목록입니다.
 jobs:
-  # Job 이름으로, build라는 이름으로 Job이 표시됩니다.
+
+  report-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: event slack send message
+        run: echo report-job-state!
+  #        uses: slackapi/slack-github-action@v1.23.0
+  #        with:
+  #          channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
+  #          slack-message: "[Master Branch] CI/CD \n - author: ${{ github.actor }}\n - commit: ${{ github.event.head_commit.message }}\n${{ github.event.head_commit.url }}"
+  #        env:
+  #          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+
+
   build:
     if: ${{ !contains(github.event.head_commit.message, '[skip]') }}
     runs-on: ubuntu-latest
 
-    # build Job 내의 step 목록입니다.
+
     steps:
-      # name 키워드는 커맨드에 대한 설명으로 Workflow에 표시된다.
       - name: Run Master Branch CI
         run: echo Hello, CI!
-
-#      - name: event slack send message
-#        uses: slackapi/slack-github-action@v1.23.0
-#        with:
-#          channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
-#          slack-message: "[Master Branch] CI/CD \n - author: ${{ github.actor }}\n - commit: ${{ github.event.head_commit.message }}\n${{ github.event.head_commit.url }}"
-#        env:
-#          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-
 
       # uses 키워드를 통해 Action을 불러올 수 있습니다.
       # actions/checkout@v2 : 해당 레포지토리로 check-out하여 레포지토리에 접근할 수 있는 Action
       - name: checkout action
         uses: actions/checkout@v3
-      
+
       - name: setup JDK 11
         uses: actions/setup-java@v3
         with:
           java-version: '11'
           distribution: 'zulu'
-        
-        
-      - name: Grant execute permission 
+
+
+      - name: Grant execute permission
         run: chmod +x gradlew
-        
+
       - name: gradlew build
         run: ./gradlew clean build -Pprofile=prod --exclude-task test
 
@@ -63,16 +66,28 @@ jobs:
           name: dockerfile
           path: ./Dockerfile
 
+  report-build-success:
+    needs: build
+    runs-on: ubuntu-latest
+    if: ${{ needs.build.result == 'success' }}
+    steps:
       - name: slack send message
-        if: ${{ failure() }}
+        run: echo ${{ needs.build.result }}
+
+  report-build-failure:
+    needs: build
+    runs-on: ubuntu-latest
+    if: ${{ needs.build.result == 'failure' }}
+    steps:
+      - name: slack send message
         uses: slackapi/slack-github-action@v1.23.0
         with:
           channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
-          slack-message: "[Master Branch] CI/CD build job ${{ job.status }}"
+          slack-message: "[Master Branch] CI/CD build job failure"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-  
-      
+
+
   docker:
     needs: build
     runs-on: ubuntu-latest
@@ -116,6 +131,26 @@ jobs:
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
+  report-docker-success:
+    needs: docker
+    runs-on: ubuntu-latest
+    if: ${{ needs.docker.result == 'success' }}
+    steps:
+      - name: slack send message
+        run: echo ${{ needs.docker.result }}
+
+  report-docker-failure:
+    needs: docker
+    runs-on: ubuntu-latest
+    if: ${{ needs.docker.result == 'failure' }}
+    steps:
+      - name: slack send message
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
+          slack-message: "[Master Branch] CI/CD docker job failure"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
   deploy:
     needs: docker
@@ -137,11 +172,24 @@ jobs:
 #            docker pull k4keye/vkestrel
 #            docker run -d -p 8791:8791 --name vkestrel k4keye/vkestrel
 
-#      - name: slack send message
-#        if: ${{ always() }}
-#        uses: slackapi/slack-github-action@v1.23.0
-#        with:
-#          channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
-#          slack-message: "[Master Branch] CI/CD deploy job ${{ job.status }}"
-#        env:
-#          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+
+  report-deploy-success:
+    needs: deploy
+    runs-on: ubuntu-latest
+    if: ${{ needs.deploy.result == 'success' }}
+    steps:
+      - name: slack send message
+        run: echo ${{ needs.deploy.result }}
+
+  report-deploy-failure:
+    needs: deploy
+    runs-on: ubuntu-latest
+    if: ${{ needs.deploy.result == 'failure' }}
+    steps:
+      - name: slack send message
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
+          slack-message: "[Master Branch] CI/CD deploy job failure"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
