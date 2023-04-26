@@ -31,7 +31,6 @@ import java.util.stream.Collectors;
 public class DocumentParsingStep {
     private final StepBuilderFactory stepBuilderFactory;
     private final EntityManagerFactory entityManagerFactory;
-    private final LibraryRepository libraryRepository;
     private final ParserAdapter parserAdapter;
     private final CustomStepExecutionListener customStepExecutionListener;
 

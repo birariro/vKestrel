@@ -28,12 +28,12 @@ public class SyncLibraryStepConfiguration {
     private final CustomStepExecutionListener customStepExecutionListener;
     private final LibrarySync librarySync;
 
-
+    private final int chunkSize = 100;
     @Bean
     public Step syncLibraryStep() throws IOException {
         return stepBuilderFactory.get("syncLibraryStep")
                 .listener(customStepExecutionListener)
-                .<Library, Library> chunk(100)
+                .<Library, Library> chunk(chunkSize)
                 .reader(syncLibraryReader())
                 .processor(syncLibraryProcessor())
                 .writer(syncLibraryWriter())
@@ -74,13 +74,13 @@ public class SyncLibraryStepConfiguration {
                 .collect(Collectors.toList());
 
 
-            if(activeLibrary.size() > 0){
+            if( ! activeLibrary.isEmpty()){
                 libraryRepository.saveAll(activeLibrary);
                 String newTitles = activeLibrary.stream().map(Library::getName).collect(Collectors.toList()).toString();
                 Events.raise(new ActionEvent(false,newTitles + " 사이트가 새롭게 추가 되었습니다."));
             }
 
-            if(inActiveLibrary.size() > 0){
+            if( ! inActiveLibrary.isEmpty()){
                 for (Library library : inActiveLibrary) {
                     library.inActive();
                     libraryRepository.save(library);
