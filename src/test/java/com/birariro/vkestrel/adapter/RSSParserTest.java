@@ -16,7 +16,7 @@ public class RSSParserTest {
 
         try{
             WebClient webClient = WebClient.builder()
-                    .baseUrl("https://ykarma1996.tistory.com/rss")
+                    .baseUrl("https://rogarithm.github.io/feed.xml")
                     .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024))
                     .build();
             String block = webClient.get()
