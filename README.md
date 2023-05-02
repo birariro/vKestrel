@@ -23,6 +23,7 @@ It is a blog post in Korea <br/>
 [![version](https://img.shields.io/badge/slack_bot-1.27.3-00bfb3?style=flat&logo=slack)]()
 [![version](https://img.shields.io/badge/rome-1.10.0-00bfb3?style=flat&logo=)]()
 [![version](https://img.shields.io/badge/jsoup-1.14.2-00bfb3?style=flat&logo=)]()
+[![version](https://img.shields.io/badge/springdoc-1.6.9-00bfb3?style=flat&logo=swagger)]()
 
 ## Host setup
 

@@ -39,3 +39,17 @@ setting:
     max-size : 20
   schedule:
     cron: 0 0 9 ? * MON-FRI # 매일 오전 9시 0분 0초
+
+
+springdoc:
+  swagger-ui:
+    path: /
+    groups-order: DESC
+    operationsSorter: method
+    disable-swagger-default-url: true
+    display-request-duration: true
+  api-docs:
+    path: /api-docs
+  show-actuator: true
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
