@@ -43,9 +43,10 @@ public class BotController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PostMapping("/greetings")
-    private void slackKnowledgeGreetings(){
-        regBotService.greetings();
+    @Operation(summary = "전체 webhook 메시지")
+    @PostMapping("/noti")
+    private void slackNoti(@RequestBody NotiRequest notiRequest){
+        regBotService.greetings(notiRequest.getMessage());
     }
 
 }

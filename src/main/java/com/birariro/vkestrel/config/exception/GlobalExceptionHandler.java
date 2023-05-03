@@ -16,7 +16,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity handleRuntimeException(final RuntimeException e){
 
-        Events.raise(new ActionEvent(true,e.getMessage()));
+        Events.raise(ActionEvent.errorMessage(e.getMessage()));
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 

@@ -31,11 +31,16 @@ public class SlackConfiguration {
     @EventListener(ActionEvent.class)
     private void actionEvent(ActionEvent event) throws SlackApiException, IOException {
 
-        if(event.isError()){
-            slackBot.sendErrorMessage(event.getMessage());
+        if(event.isBot()){
+            if(event.isError()){
+                slackBot.sendErrorMessage(event.getMessage());
+                return;
+            }
+            slackBot.sendCommonMessage(event.getMessage());
             return;
         }
-        slackBot.sendCommonMessage(event.getMessage());
+
+        slackWebHook.sendCommonMessage(event.getMessage());
     }
 
 

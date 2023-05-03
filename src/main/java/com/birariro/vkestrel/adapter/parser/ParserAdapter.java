@@ -34,11 +34,11 @@ public class ParserAdapter {
                 return boanNewsAdapter.getDocument(url);
             }
 
-            Events.raise(new ActionEvent(true, "not exist url type :" + type));
+            Events.raise(ActionEvent.errorMessage("not exist url type :" + type));
         } catch (Exception e) {
 
             String message = "[Parser] url : "+url + "\nException : "+getStackTraceToString(e.fillInStackTrace());
-            Events.raise(new ActionEvent(true, message));
+            Events.raise(ActionEvent.errorMessage(message));
         }
         return new ArrayList<Document>();
     }

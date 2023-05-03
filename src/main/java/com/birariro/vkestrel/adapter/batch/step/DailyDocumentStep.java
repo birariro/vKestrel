@@ -68,7 +68,7 @@ public class DailyDocumentStep {
 
 
         if(collect.size() > 0) Events.raise(new DailyDocumentEvent(randomCollect));
-        else Events.raise(new ActionEvent(false,"오늘은 볼것이 없습니다."));
+        else Events.raise(ActionEvent.message("오늘은 볼것이 없습니다."));
 
         return new ListItemReader<>(randomCollect);
     }

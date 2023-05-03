@@ -33,7 +33,7 @@ public class CustomStepExecutionListener implements StepExecutionListener {
 
         log.info(errorMessage);
         if(exitStatus.getExitCode().equals("FAILED")){
-            Events.raise(new ActionEvent(true,errorMessage));
+            Events.raise(ActionEvent.errorMessage(errorMessage));
         }
 
         return exitStatus;

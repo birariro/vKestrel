@@ -77,7 +77,7 @@ public class SyncLibraryStepConfiguration {
             if( ! activeLibrary.isEmpty()){
                 libraryRepository.saveAll(activeLibrary);
                 String newTitles = activeLibrary.stream().map(Library::getName).collect(Collectors.toList()).toString();
-                Events.raise(new ActionEvent(false,newTitles + " 사이트가 새롭게 추가 되었습니다."));
+                Events.raise(ActionEvent.message(newTitles + " 사이트가 새롭게 추가 되었습니다."));
             }
 
             if( ! inActiveLibrary.isEmpty()){
@@ -87,7 +87,7 @@ public class SyncLibraryStepConfiguration {
                 }
 
                 String deleteTitles = inActiveLibrary.stream().map(Library::getName).collect(Collectors.toList()).toString();
-                Events.raise(new ActionEvent(false,deleteTitles + " 사이트가 제거 되었습니다."));
+                Events.raise(ActionEvent.message(deleteTitles + " 사이트가 제거 되었습니다."));
             }
         };
     }

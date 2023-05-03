@@ -33,8 +33,8 @@ public class RegBotService {
         memberRepository.save(member);
     }
 
-    public void greetings(){
-        Events.raise(new ActionEvent(false,"hello"));
+    public void greetings(String message){
+        Events.raise(new ActionEvent(false, message,false));
     }
 
 }

@@ -30,10 +30,7 @@ public class SlackWebHook {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        List<WebHook> webHooks = webHookRepository.findActiveByAll().stream()
-            .filter(item -> item.getEntityState() == EntityState.ACTIVE)
-            .collect(Collectors.toList());
-        log.info("[slack] message webHooks count : "+webHooks.size());
+        List<WebHook> webHooks = getWebHooks();
         log.info("[slack] document count : "+documents.size());
 
         for (Document document : documents) {
@@ -45,12 +42,29 @@ public class SlackWebHook {
 
         }
     }
+    public void sendCommonMessage(String text){
+
+        List<WebHook> webHooks = getWebHooks();
+
+        for (WebHook webHook : webHooks) {
+            sendCommonMessage( webHook, text);
+        }
+    }
     public void sendCommonMessage(WebHook webHook, String text){
 
         RestTemplate restTemplate = new RestTemplate();
         sendCommonMessage(restTemplate,webHook,text);
     }
 
+    private List<WebHook> getWebHooks(){
+
+        List<WebHook> webHooks =  webHookRepository.findActiveByAll().stream()
+            .filter(item -> item.getEntityState() == EntityState.ACTIVE)
+            .collect(Collectors.toList());
+
+        log.info("[slack] message webHooks count : "+webHooks.size());
+        return webHooks;
+    }
     private void sendCommonMessage(RestTemplate restTemplate, WebHook webHook, String text) {
 
         Map<String, Object> request = new HashMap<>();
