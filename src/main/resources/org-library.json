@@ -292,6 +292,12 @@
     "home" : "https://tech.inflab.com/",
     "url"  : "https://tech.inflab.com/rss.xml",
     "type" : "RSS"
+  },
+  {
+    "name" : "데브시스터즈",
+    "home" : "https://tech.devsisters.com/",
+    "url"  : "https://tech.devsisters.com/rss.xml",
+    "type" : "RSS"
   }
 ]
 
