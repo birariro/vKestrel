@@ -2,6 +2,7 @@ package com.birariro.vkestrel.adapter.message.slack;
 
 import com.birariro.vkestrel.adapter.batch.step.event.ActionEvent;
 import com.birariro.vkestrel.adapter.batch.step.event.DailyDocumentEvent;
+import com.birariro.vkestrel.adapter.batch.step.event.LibraryStateSwitchEvent;
 import com.birariro.vkestrel.adapter.message.slack.bot.SlackBot;
 import com.birariro.vkestrel.adapter.message.slack.bot.SlackWebHook;
 import com.birariro.vkestrel.domain.event.NewRegistrationEvent;
@@ -48,5 +49,14 @@ public class SlackConfiguration {
     public void newRegistrationEvent(NewRegistrationEvent event){
 
         slackWebHook.sendCommonMessage(event.getWebHook(), SlackConstants.WEB_HOOK_NEW_REG_SUCCESS);
+    }
+
+    @EventListener(LibraryStateSwitchEvent.class)
+    private void libraryStateSwitchEvent(LibraryStateSwitchEvent event) throws SlackApiException, IOException {
+
+        log.info("[SlackConfiguration] LibraryStateSwitchEvent");
+
+        String format = String.format("%s 비활성", event.getName());
+        slackBot.sendCommonMessage(format);
     }
 }

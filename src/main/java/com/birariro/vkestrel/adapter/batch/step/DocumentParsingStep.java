@@ -66,7 +66,7 @@ public class DocumentParsingStep {
             log.info("[START] RSS parser target name : " +library.getName());
 
             List<Document> documents = parserAdapter
-                    .getDocuments(library.getUrl(), library.getScriptType());
+                    .getDocuments(library.getName(), library.getUrl(), library.getScriptType());
 
 
             documents.stream()

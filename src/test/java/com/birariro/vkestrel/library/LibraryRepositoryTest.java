@@ -1,8 +1,12 @@
 package com.birariro.vkestrel.library;
 
+import java.util.Optional;
+
 import com.birariro.vkestrel.adapter.persistence.jpa.library.Library;
 import com.birariro.vkestrel.adapter.persistence.jpa.library.LibraryRepository;
 import com.birariro.vkestrel.adapter.persistence.jpa.library.ScriptType;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +32,12 @@ public class LibraryRepositoryTest {
     public void saveData(){
         Library library = new Library("name", "url", "test", ScriptType.RSS);
         libraryRepository.save(library);
+    }
+
+    @Test
+    public void findByName(){
+        Optional<Library> context = libraryRepository.findFirstByName("토스랩");
+        Assertions.assertTrue(context.isPresent());
     }
 
 }

@@ -79,7 +79,7 @@ public class VelogPerserTest {
 
     @Test
     public void parserAdapterTest() throws IOException {
-        List<com.birariro.vkestrel.adapter.persistence.jpa.library.Document> document = parserAdapter.getDocuments("https://blog.hwahae.co.kr/category/all/tech/feed/", ScriptType.RSS);
+        List<com.birariro.vkestrel.adapter.persistence.jpa.library.Document> document = parserAdapter.getDocuments("TEST NAME","https://blog.hwahae.co.kr/category/all/tech/feed/", ScriptType.RSS);
         document.stream().forEach(System.out::println);
     }
 }

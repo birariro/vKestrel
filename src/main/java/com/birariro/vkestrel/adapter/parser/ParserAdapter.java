@@ -1,9 +1,12 @@
 package com.birariro.vkestrel.adapter.parser;
 
 import com.birariro.vkestrel.adapter.batch.step.event.ActionEvent;
+import com.birariro.vkestrel.adapter.batch.step.event.LibraryStateSwitchEvent;
 import com.birariro.vkestrel.adapter.message.event.Events;
 import com.birariro.vkestrel.adapter.persistence.jpa.library.Document;
 import com.birariro.vkestrel.adapter.persistence.jpa.library.ScriptType;
+
+import jdk.jfr.Event;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -21,7 +24,7 @@ public class ParserAdapter {
     private final VelogParser velogParser;
     private final BoanNewsAdapter boanNewsAdapter;
 
-    public List<Document> getDocuments(String url, ScriptType type) {
+    public List<Document> getDocuments(String name, String url, ScriptType type) {
 
         try {
             if (type == ScriptType.RSS) {
@@ -34,11 +37,15 @@ public class ParserAdapter {
                 return boanNewsAdapter.getDocument(url);
             }
 
+
             Events.raise(ActionEvent.errorMessage("not exist url type :" + type));
         } catch (Exception e) {
 
-            String message = "[Parser] url : "+url + "\nException : "+getStackTraceToString(e.fillInStackTrace());
-            Events.raise(ActionEvent.errorMessage(message));
+
+            String errorMessage =
+                String.format("action: document parser \nsite name: %s \nurl: %s \nException: %s", name, url, getStackTraceToString(e.fillInStackTrace()));
+            Events.raise(ActionEvent.errorMessage(errorMessage));
+            Events.raise(LibraryStateSwitchEvent.inActive(name));
         }
         return new ArrayList<Document>();
     }

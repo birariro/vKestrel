@@ -49,7 +49,7 @@ public class BoannewsPerserTest {
 
     @Test
     public void testtest(){
-        parserAdapter.getDocuments("https://www.boannews.com/media/s_list.asp?skind=5",ScriptType.BOANNEWS);
+        parserAdapter.getDocuments("TestName", "https://www.boannews.com/media/s_list.asp?skind=5",ScriptType.BOANNEWS);
     }
 
 
