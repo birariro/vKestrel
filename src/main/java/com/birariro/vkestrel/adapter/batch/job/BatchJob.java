@@ -1,7 +1,7 @@
 package com.birariro.vkestrel.adapter.batch.job;
 
-import com.birariro.vkestrel.adapter.batch.step.DailyDocumentStep;
-import com.birariro.vkestrel.adapter.batch.step.DocumentParsingStep;
+import com.birariro.vkestrel.adapter.batch.step.DeliveryStep;
+import com.birariro.vkestrel.adapter.batch.step.ParsingStep;
 import com.birariro.vkestrel.adapter.batch.step.SyncLibraryStepConfiguration;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
@@ -15,16 +15,16 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class BatchJob {
     private final JobBuilderFactory jobBuilderFactory;
-    private final DocumentParsingStep documentParsingStep;
-    private final DailyDocumentStep dailyDocumentStep;
+    private final ParsingStep parsingStep;
+    private final DeliveryStep deliveryStep;
     private final SyncLibraryStepConfiguration syncLibraryStepConfiguration;
 
     @Bean
     public Job startJob() throws IOException {
         return jobBuilderFactory.get("startJob")
                 .start(syncLibraryStepConfiguration.syncLibraryStep())
-                .next(documentParsingStep.libraryDocumentParsingStep())
-                .next(dailyDocumentStep.dailyDocumentExtractStep())
+                .next(parsingStep.libraryDocumentParsingStep())
+                .next(deliveryStep.dailyDocumentExtractStep())
                 .build();
     }
 

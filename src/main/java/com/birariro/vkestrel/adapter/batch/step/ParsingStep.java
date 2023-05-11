@@ -4,7 +4,7 @@ package com.birariro.vkestrel.adapter.batch.step;
 import com.birariro.vkestrel.adapter.parser.ParserAdapter;
 import com.birariro.vkestrel.adapter.persistence.jpa.library.Document;
 import com.birariro.vkestrel.adapter.persistence.jpa.library.Library;
-import com.birariro.vkestrel.adapter.persistence.jpa.library.LibraryRepository;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Step;
@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 @Configuration
 @Slf4j
 @RequiredArgsConstructor
-public class DocumentParsingStep {
+public class ParsingStep {
     private final StepBuilderFactory stepBuilderFactory;
     private final EntityManagerFactory entityManagerFactory;
     private final ParserAdapter parserAdapter;

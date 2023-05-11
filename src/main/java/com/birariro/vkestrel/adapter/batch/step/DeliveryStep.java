@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
-public class DailyDocumentStep {
+public class DeliveryStep {
     private final StepBuilderFactory stepBuilderFactory;
     private final LibraryRepository libraryRepository;
     private final CustomStepExecutionListener customStepExecutionListener;
