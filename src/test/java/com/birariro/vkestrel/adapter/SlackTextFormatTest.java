@@ -1,9 +1,9 @@
 package com.birariro.vkestrel.adapter;
 
-import com.birariro.vkestrel.adapter.persistence.jpa.EntityState;
-import com.birariro.vkestrel.adapter.persistence.jpa.member.Member;
-import com.birariro.vkestrel.adapter.persistence.jpa.member.MemberRepository;
-import com.birariro.vkestrel.adapter.persistence.jpa.member.MemberType;
+import com.birariro.vkestrel.adapter.persistence.EntityState;
+import com.birariro.vkestrel.adapter.persistence.member.Member;
+import com.birariro.vkestrel.adapter.persistence.member.MemberRepository;
+import com.birariro.vkestrel.adapter.persistence.member.MemberType;
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;

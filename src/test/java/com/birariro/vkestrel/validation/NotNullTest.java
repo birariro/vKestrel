@@ -1,7 +1,7 @@
 package com.birariro.vkestrel.validation;
 
-import com.birariro.vkestrel.adapter.persistence.jpa.library.Library;
-import com.birariro.vkestrel.adapter.persistence.jpa.library.LibraryRepository;
+import com.birariro.vkestrel.adapter.persistence.library.Library;
+import com.birariro.vkestrel.adapter.persistence.library.LibraryRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

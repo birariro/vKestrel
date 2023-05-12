@@ -1,8 +1,8 @@
 package com.birariro.vkestrel.repository;
 
-import com.birariro.vkestrel.adapter.persistence.jpa.library.Document;
-import com.birariro.vkestrel.adapter.persistence.jpa.library.Library;
-import com.birariro.vkestrel.adapter.persistence.jpa.library.LibraryRepository;
+import com.birariro.vkestrel.adapter.persistence.library.Document;
+import com.birariro.vkestrel.adapter.persistence.library.Library;
+import com.birariro.vkestrel.adapter.persistence.library.LibraryRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

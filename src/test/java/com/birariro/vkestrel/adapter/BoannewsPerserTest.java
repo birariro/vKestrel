@@ -13,14 +13,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.birariro.vkestrel.adapter.parser.ParserAdapter;
-import com.birariro.vkestrel.adapter.parser.utils.SSL;
-import com.birariro.vkestrel.adapter.persistence.jpa.library.ScriptType;
+import com.birariro.vkestrel.service.parser.ParserService;
+import com.birariro.vkestrel.service.parser.SSL;
+import com.birariro.vkestrel.adapter.persistence.library.ScriptType;
 
 @SpringBootTest
 public class BoannewsPerserTest {
     @Autowired
-    ParserAdapter parserAdapter;
+    ParserService parserService;
 
 
     @Test
@@ -49,7 +49,7 @@ public class BoannewsPerserTest {
 
     @Test
     public void testtest(){
-        parserAdapter.getDocuments("TestName", "https://www.boannews.com/media/s_list.asp?skind=5",ScriptType.BOANNEWS);
+        parserService.getDocuments("TestName", "https://www.boannews.com/media/s_list.asp?skind=5",ScriptType.BOANNEWS);
     }
 
 

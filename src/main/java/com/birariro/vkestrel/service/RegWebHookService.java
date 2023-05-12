@@ -5,10 +5,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.birariro.vkestrel.adapter.message.event.Events;
-import com.birariro.vkestrel.adapter.persistence.jpa.WebHook.WebHook;
-import com.birariro.vkestrel.adapter.persistence.jpa.WebHook.WebHookRepository;
+import com.birariro.vkestrel.adapter.persistence.WebHook.WebHook;
+import com.birariro.vkestrel.adapter.persistence.WebHook.WebHookRepository;
 import com.birariro.vkestrel.annotation.AopExecutionTime;
-import com.birariro.vkestrel.domain.event.NewRegistrationEvent;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +26,7 @@ public class RegWebHookService {
 
         WebHook webHook = new WebHook(url);
         webHookRepository.save(webHook);
-        Events.raise(new NewRegistrationEvent(webHook));
+        Events.raise(new RegistrationWebHookEvent(webHook));
     }
 
     @Transactional

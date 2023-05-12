@@ -11,10 +11,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import com.birariro.vkestrel.adapter.message.slack.SlackConstants;
-import com.birariro.vkestrel.adapter.persistence.jpa.EntityState;
-import com.birariro.vkestrel.adapter.persistence.jpa.WebHook.WebHook;
-import com.birariro.vkestrel.adapter.persistence.jpa.WebHook.WebHookRepository;
-import com.birariro.vkestrel.adapter.persistence.jpa.library.Document;
+import com.birariro.vkestrel.adapter.persistence.EntityState;
+import com.birariro.vkestrel.adapter.persistence.WebHook.WebHook;
+import com.birariro.vkestrel.adapter.persistence.WebHook.WebHookRepository;
+import com.birariro.vkestrel.adapter.persistence.library.Document;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

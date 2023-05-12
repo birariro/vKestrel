@@ -1,7 +1,7 @@
 package com.birariro.vkestrel.adapter;
 
-import com.birariro.vkestrel.adapter.parser.ParserAdapter;
-import com.birariro.vkestrel.adapter.persistence.jpa.library.ScriptType;
+import com.birariro.vkestrel.service.parser.ParserService;
+import com.birariro.vkestrel.adapter.persistence.library.ScriptType;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @SpringBootTest
 public class VelogPerserTest {
     @Autowired
-    ParserAdapter parserAdapter;
+    ParserService parserService;
     @Test
     public void velogHtml(){
         WebClient webClient = WebClient.create("https://velog.io/");
@@ -79,7 +79,7 @@ public class VelogPerserTest {
 
     @Test
     public void parserAdapterTest() throws IOException {
-        List<com.birariro.vkestrel.adapter.persistence.jpa.library.Document> document = parserAdapter.getDocuments("TEST NAME","https://blog.hwahae.co.kr/category/all/tech/feed/", ScriptType.RSS);
+        List<com.birariro.vkestrel.adapter.persistence.library.Document> document = parserService.getDocuments("TEST NAME","https://blog.hwahae.co.kr/category/all/tech/feed/", ScriptType.RSS);
         document.stream().forEach(System.out::println);
     }
 }

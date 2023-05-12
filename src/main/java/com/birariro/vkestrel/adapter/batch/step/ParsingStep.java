@@ -1,9 +1,9 @@
 package com.birariro.vkestrel.adapter.batch.step;
 
 
-import com.birariro.vkestrel.adapter.parser.ParserAdapter;
-import com.birariro.vkestrel.adapter.persistence.jpa.library.Document;
-import com.birariro.vkestrel.adapter.persistence.jpa.library.Library;
+import com.birariro.vkestrel.service.parser.ParserService;
+import com.birariro.vkestrel.adapter.persistence.library.Document;
+import com.birariro.vkestrel.adapter.persistence.library.Library;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 public class ParsingStep {
     private final StepBuilderFactory stepBuilderFactory;
     private final EntityManagerFactory entityManagerFactory;
-    private final ParserAdapter parserAdapter;
+    private final ParserService parserService;
     private final CustomStepExecutionListener customStepExecutionListener;
 
     private final int chunkSize = 10;
@@ -65,7 +65,7 @@ public class ParsingStep {
 
             log.info("[START] RSS parser target name : " +library.getName());
 
-            List<Document> documents = parserAdapter
+            List<Document> documents = parserService
                     .getDocuments(library.getName(), library.getUrl(), library.getScriptType());
 
 

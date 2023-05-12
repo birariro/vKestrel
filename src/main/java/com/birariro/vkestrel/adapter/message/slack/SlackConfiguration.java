@@ -5,7 +5,7 @@ import com.birariro.vkestrel.adapter.batch.step.event.DailyDocumentEvent;
 import com.birariro.vkestrel.adapter.batch.step.event.LibraryStateSwitchEvent;
 import com.birariro.vkestrel.adapter.message.slack.bot.SlackBot;
 import com.birariro.vkestrel.adapter.message.slack.bot.SlackWebHook;
-import com.birariro.vkestrel.domain.event.NewRegistrationEvent;
+import com.birariro.vkestrel.service.RegistrationWebHookEvent;
 import com.slack.api.methods.SlackApiException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -45,8 +45,8 @@ public class SlackConfiguration {
     }
 
 
-    @TransactionalEventListener(NewRegistrationEvent.class)
-    public void newRegistrationEvent(NewRegistrationEvent event){
+    @TransactionalEventListener(RegistrationWebHookEvent.class)
+    public void newRegistrationEvent(RegistrationWebHookEvent event){
 
         slackWebHook.sendCommonMessage(event.getWebHook(), SlackConstants.WEB_HOOK_NEW_REG_SUCCESS);
     }

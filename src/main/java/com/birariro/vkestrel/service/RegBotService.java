@@ -1,8 +1,10 @@
 package com.birariro.vkestrel.service;
 
 import com.birariro.vkestrel.adapter.batch.step.event.ActionEvent;
-import com.birariro.vkestrel.adapter.persistence.jpa.member.*;
 import com.birariro.vkestrel.adapter.message.event.Events;
+import com.birariro.vkestrel.adapter.persistence.member.Member;
+import com.birariro.vkestrel.adapter.persistence.member.MemberRepository;
+import com.birariro.vkestrel.adapter.persistence.member.MemberType;
 import com.birariro.vkestrel.annotation.AopExecutionTime;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

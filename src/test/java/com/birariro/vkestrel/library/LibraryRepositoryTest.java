@@ -2,9 +2,9 @@ package com.birariro.vkestrel.library;
 
 import java.util.Optional;
 
-import com.birariro.vkestrel.adapter.persistence.jpa.library.Library;
-import com.birariro.vkestrel.adapter.persistence.jpa.library.LibraryRepository;
-import com.birariro.vkestrel.adapter.persistence.jpa.library.ScriptType;
+import com.birariro.vkestrel.adapter.persistence.library.Library;
+import com.birariro.vkestrel.adapter.persistence.library.LibraryRepository;
+import com.birariro.vkestrel.adapter.persistence.library.ScriptType;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

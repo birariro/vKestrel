@@ -1,8 +1,8 @@
 package com.birariro.vkestrel.adapter;
 
 import com.birariro.vkestrel.adapter.message.slack.bot.SlackBot;
-import com.birariro.vkestrel.adapter.persistence.jpa.library.Document;
-import com.birariro.vkestrel.adapter.persistence.jpa.library.DocumentRepository;
+import com.birariro.vkestrel.adapter.persistence.library.Document;
+import com.birariro.vkestrel.adapter.persistence.library.DocumentRepository;
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
