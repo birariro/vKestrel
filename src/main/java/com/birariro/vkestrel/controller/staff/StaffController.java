@@ -1,7 +1,7 @@
-package com.birariro.vkestrel.controller.bot;
+package com.birariro.vkestrel.controller.staff;
 
-import com.birariro.vkestrel.adapter.persistence.member.MemberType;
-import com.birariro.vkestrel.service.RegBotService;
+import com.birariro.vkestrel.adapter.persistence.staff.StaffType;
+import com.birariro.vkestrel.service.RegStaffService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -15,17 +15,17 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-public class BotController {
+public class StaffController {
 
-    private final RegBotService regBotService;
+    private final RegStaffService regStaffService;
 
     @Operation(summary = "관리 메시지 봇 등록")
     @PostMapping("/knowledge/reg")
-    public ResponseEntity slackKnowledgeRegistration(@RequestBody BotRegRequest botRegRequest){
+    public ResponseEntity slackKnowledgeRegistration(@RequestBody RegStaffRequest regStaffRequest){
 
         log.info("slack knowledge registration");
-        regBotService.registration(
-                botRegRequest.getToken(), botRegRequest.getChannel(), MemberType.KNOWLEDGE
+        regStaffService.registration(
+                regStaffRequest.getToken(), regStaffRequest.getChannel(), StaffType.KNOWLEDGE
         );
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -33,11 +33,11 @@ public class BotController {
 
     @Operation(summary = "관리 에러 봇 등록")
     @PostMapping("/error/reg")
-    public ResponseEntity slackErrorRegistration(@RequestBody BotRegRequest botRegRequest){
+    public ResponseEntity slackErrorRegistration(@RequestBody RegStaffRequest regStaffRequest){
 
         log.info("slack error registration");
-        regBotService.registration(
-                botRegRequest.getToken(), botRegRequest.getChannel(), MemberType.ERROR
+        regStaffService.registration(
+                regStaffRequest.getToken(), regStaffRequest.getChannel(), StaffType.ERROR
         );
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -46,7 +46,7 @@ public class BotController {
     @Operation(summary = "전체 webhook 메시지")
     @PostMapping("/noti")
     private void slackNoti(@RequestBody NotiRequest notiRequest){
-        regBotService.greetings(notiRequest.getMessage());
+        regStaffService.greetings(notiRequest.getMessage());
     }
 
 }

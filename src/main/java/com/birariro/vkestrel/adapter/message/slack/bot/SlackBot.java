@@ -2,9 +2,9 @@ package com.birariro.vkestrel.adapter.message.slack.bot;
 
 import com.birariro.vkestrel.adapter.persistence.EntityState;
 import com.birariro.vkestrel.adapter.persistence.library.Document;
-import com.birariro.vkestrel.adapter.persistence.member.Member;
-import com.birariro.vkestrel.adapter.persistence.member.MemberRepository;
-import com.birariro.vkestrel.adapter.persistence.member.MemberType;
+import com.birariro.vkestrel.adapter.persistence.staff.Staff;
+import com.birariro.vkestrel.adapter.persistence.staff.StaffRepository;
+import com.birariro.vkestrel.adapter.persistence.staff.StaffType;
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class SlackBot {
 
-    private final MemberRepository memberRepository;
+    private final StaffRepository staffRepository;
 
     public void sendDocumentActiveSuc(String text) throws SlackApiException, IOException {
 
@@ -42,16 +42,16 @@ public class SlackBot {
 
     public void sendCommonMessage(String text) throws SlackApiException, IOException {
 
-        List<Member> members = memberRepository.findAll().stream()
+        List<Staff> staff = staffRepository.findAll().stream()
                 .filter(item -> item.getEntityState() == EntityState.ACTIVE)
-                .filter(item -> item.getType() == MemberType.KNOWLEDGE)
+                .filter(item -> item.getType() == StaffType.KNOWLEDGE)
                 .collect(Collectors.toList());
 
-        log.info("[slack] message member count : "+members.size());
-        for (Member member : members) {
-            MethodsClient methods = Slack.getInstance().methods(member.getToken());
+        log.info("[slack] message member count : "+ staff.size());
+        for (Staff staff : staff) {
+            MethodsClient methods = Slack.getInstance().methods(staff.getToken());
             ChatPostMessageRequest request = ChatPostMessageRequest.builder()
-                    .channel(member.getChannel())
+                    .channel(staff.getChannel())
                     .text(text)
                     .build();
 
@@ -83,19 +83,19 @@ public class SlackBot {
 
     public void sendErrorMessage(String text) throws SlackApiException, IOException {
 
-        List<Member> collect = memberRepository.findAll().stream()
+        List<Staff> collect = staffRepository.findAll().stream()
             .filter(item -> item.getEntityState() == EntityState.ACTIVE)
-            .filter(item -> item.getType() == MemberType.ERROR)
+            .filter(item -> item.getType() == StaffType.ERROR)
             .collect(Collectors.toList());
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[ERROR]\n");
         stringBuilder.append(text);
-        for (Member member : collect) {
+        for (Staff staff : collect) {
 
-            MethodsClient methods = Slack.getInstance().methods(member.getToken());
+            MethodsClient methods = Slack.getInstance().methods(staff.getToken());
             ChatPostMessageRequest request = ChatPostMessageRequest.builder()
-                .channel(member.getChannel())
+                .channel(staff.getChannel())
                 .text(stringBuilder.toString())
                 .build();
 

@@ -12,8 +12,8 @@ import org.springframework.web.client.RestTemplate;
 
 import com.birariro.vkestrel.adapter.message.slack.SlackConstants;
 import com.birariro.vkestrel.adapter.persistence.EntityState;
-import com.birariro.vkestrel.adapter.persistence.WebHook.WebHook;
-import com.birariro.vkestrel.adapter.persistence.WebHook.WebHookRepository;
+import com.birariro.vkestrel.adapter.persistence.member.Member;
+import com.birariro.vkestrel.adapter.persistence.member.MemberRepository;
 import com.birariro.vkestrel.adapter.persistence.library.Document;
 
 import lombok.RequiredArgsConstructor;
@@ -24,48 +24,48 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SlackWebHook {
 
-    private final WebHookRepository webHookRepository;
+    private final MemberRepository memberRepository;
 
     public void sendDocument(List<Document> documents){
 
         RestTemplate restTemplate = new RestTemplate();
 
-        List<WebHook> webHooks = getWebHooks();
+        List<Member> members = getWebHooks();
         log.info("[slack] document count : "+documents.size());
 
         for (Document document : documents) {
             String text = getDocumentsToString(document);
 
-            for (WebHook webHook : webHooks) {
-                sendCommonMessage(restTemplate, webHook, text);
+            for (Member member : members) {
+                sendCommonMessage(restTemplate, member, text);
             }
 
         }
     }
     public void sendCommonMessage(String text){
 
-        List<WebHook> webHooks = getWebHooks();
+        List<Member> members = getWebHooks();
 
-        for (WebHook webHook : webHooks) {
-            sendCommonMessage( webHook, text);
+        for (Member member : members) {
+            sendCommonMessage(member, text);
         }
     }
-    public void sendCommonMessage(WebHook webHook, String text){
+    public void sendCommonMessage(Member member, String text){
 
         RestTemplate restTemplate = new RestTemplate();
-        sendCommonMessage(restTemplate,webHook,text);
+        sendCommonMessage(restTemplate, member,text);
     }
 
-    private List<WebHook> getWebHooks(){
+    private List<Member> getWebHooks(){
 
-        List<WebHook> webHooks =  webHookRepository.findActiveByAll().stream()
+        List<Member> members =  memberRepository.findActiveByAll().stream()
             .filter(item -> item.getEntityState() == EntityState.ACTIVE)
             .collect(Collectors.toList());
 
-        log.info("[slack] message webHooks count : "+webHooks.size());
-        return webHooks;
+        log.info("[slack] message webHooks count : "+ members.size());
+        return members;
     }
-    private void sendCommonMessage(RestTemplate restTemplate, WebHook webHook, String text) {
+    private void sendCommonMessage(RestTemplate restTemplate, Member member, String text) {
 
         Map<String, Object> request = new HashMap<>();
         request.put("username", SlackConstants.WEB_HOOK_NAME); //slack bot name
@@ -74,7 +74,7 @@ public class SlackWebHook {
 
         HttpEntity<Map<String, Object>> entity = new HttpEntity<Map<String, Object>>(request);
 
-        restTemplate.exchange(webHook.getUrl(), HttpMethod.POST, entity, String.class);
+        restTemplate.exchange(member.getUrl(), HttpMethod.POST, entity, String.class);
     }
 
     private String getDocumentsToString(Document document){

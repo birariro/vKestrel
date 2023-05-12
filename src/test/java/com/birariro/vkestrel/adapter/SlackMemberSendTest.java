@@ -9,7 +9,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
 
-public class SlackWebHookSendTest {
+public class SlackMemberSendTest {
 
 	@Test
 	@DisplayName("web hook test")

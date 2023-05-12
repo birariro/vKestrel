@@ -1,40 +1,35 @@
 package com.birariro.vkestrel.adapter.persistence.member;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import com.birariro.vkestrel.adapter.persistence.BaseEntity;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 
-import javax.persistence.*;
-import java.util.UUID;
-
-@Entity
 @Table(name = "tb_member")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @Getter
 public class Member extends BaseEntity {
 
-    @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    @Type(type = "uuid-char")
-    private UUID id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private String token;
-    private String channel;
+	@Column(unique = true, nullable = false)
+	private String url;
 
-    @Enumerated(EnumType.STRING)
-    MemberType type;
-
-
-    public Member(String token, String channel, MemberType type) {
-        this.token = token;
-        this.channel = channel;
-        this.type = type;
-        super.active();
-    }
-
+	public Member(String url) {
+		this.url = url;
+		super.active();
+	}
 }

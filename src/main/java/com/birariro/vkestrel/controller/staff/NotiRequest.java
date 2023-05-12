@@ -1,4 +1,4 @@
-package com.birariro.vkestrel.controller.bot;
+package com.birariro.vkestrel.controller.staff;
 
 import lombok.Getter;
 

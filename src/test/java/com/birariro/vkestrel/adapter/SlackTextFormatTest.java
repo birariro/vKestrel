@@ -1,9 +1,9 @@
 package com.birariro.vkestrel.adapter;
 
 import com.birariro.vkestrel.adapter.persistence.EntityState;
-import com.birariro.vkestrel.adapter.persistence.member.Member;
-import com.birariro.vkestrel.adapter.persistence.member.MemberRepository;
-import com.birariro.vkestrel.adapter.persistence.member.MemberType;
+import com.birariro.vkestrel.adapter.persistence.staff.Staff;
+import com.birariro.vkestrel.adapter.persistence.staff.StaffRepository;
+import com.birariro.vkestrel.adapter.persistence.staff.StaffType;
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
@@ -19,13 +19,13 @@ import java.io.IOException;
 public class SlackTextFormatTest {
 
     @Autowired
-    MemberRepository memberRepository;
+    StaffRepository staffRepository;
     @Test
     public void sendMessage() throws SlackApiException, IOException {
 
-        Member members = memberRepository.findAll().stream()
+        Staff members = staffRepository.findAll().stream()
                 .filter(item -> item.getEntityState() == EntityState.ACTIVE)
-                .filter(item -> item.getType() == MemberType.KNOWLEDGE)
+                .filter(item -> item.getType() == StaffType.KNOWLEDGE)
                 .findFirst().get();
 
 

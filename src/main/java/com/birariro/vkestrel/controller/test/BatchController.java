@@ -1,4 +1,4 @@
-package com.birariro.vkestrel.controller.batch;
+package com.birariro.vkestrel.controller.test;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;

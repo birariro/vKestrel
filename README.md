@@ -72,7 +72,7 @@ a Docker Compose setup is provided. It comes with the following :
 register webHook to receive a message from application
 Register through API
 ``` json
-POST /webhook
+POST /member/webhook
 {
   "url" : "[your webhook url]",
 }
