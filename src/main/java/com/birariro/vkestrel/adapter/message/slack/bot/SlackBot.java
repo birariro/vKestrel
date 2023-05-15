@@ -42,13 +42,13 @@ public class SlackBot {
 
     public void sendCommonMessage(String text) throws SlackApiException, IOException {
 
-        List<Staff> staff = staffRepository.findAll().stream()
+        List<Staff> staffs = staffRepository.findAll().stream()
                 .filter(item -> item.getEntityState() == EntityState.ACTIVE)
                 .filter(item -> item.getType() == StaffType.KNOWLEDGE)
                 .collect(Collectors.toList());
 
-        log.info("[slack] message member count : "+ staff.size());
-        for (Staff staff : staff) {
+        log.info("[slack] message member count : "+ staffs.size());
+        for (Staff staff : staffs) {
             MethodsClient methods = Slack.getInstance().methods(staff.getToken());
             ChatPostMessageRequest request = ChatPostMessageRequest.builder()
                     .channel(staff.getChannel())
