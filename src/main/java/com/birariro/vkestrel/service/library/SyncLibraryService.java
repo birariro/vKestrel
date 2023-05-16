@@ -73,7 +73,7 @@ public class SyncLibraryService {
 
     @Getter
     @ToString
-    public class LibraryDto {
+    public static class LibraryDto {
 
         private String name;
         private String home;
