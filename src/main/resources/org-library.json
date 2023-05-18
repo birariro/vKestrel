@@ -144,12 +144,6 @@
     "type" : "RSS"
   },
   {
-    "name" : "리디",
-    "home": "https://ridicorp.com/story-category/tech-blog/",
-    "url" : "https://ridicorp.com/feed/",
-    "type" : "RSS"
-  },
-  {
     "name" : "스포카",
     "home": "https://spoqa.github.io/",
     "url" : "https://spoqa.github.io/atom.xml",

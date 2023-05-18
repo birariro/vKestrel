@@ -28,6 +28,12 @@
     "home": "https://blog.bespinglobal.com/",
     "url" : "https://blog.bespinglobal.com/feed/",
     "type" : "RSS"
+  },
+  {
+    "name" : "리디",
+    "home": "https://ridicorp.com/story-category/tech-blog/",
+    "url" : "https://ridicorp.com/feed/",
+    "type" : "RSS"
   }
 ]
 

@@ -18,13 +18,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: event slack send message
-        run: echo report-job-state!
-  #        uses: slackapi/slack-github-action@v1.23.0
-  #        with:
-  #          channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
-  #          slack-message: "[Master Branch] CI/CD \n - author: ${{ github.actor }}\n - commit: ${{ github.event.head_commit.message }}\n${{ github.event.head_commit.url }}"
-  #        env:
-  #          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
+          slack-message: "CI/CD \n - author: ${{ github.actor }}\n - commit: ${{ github.event.head_commit.message }}\n${{ github.event.head_commit.url }}"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
 
   build:
@@ -83,7 +82,7 @@ jobs:
         uses: slackapi/slack-github-action@v1.23.0
         with:
           channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
-          slack-message: "[Master Branch] CI/CD build job failure"
+          slack-message: "CI/CD build job failure"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
@@ -127,7 +126,7 @@ jobs:
         uses: slackapi/slack-github-action@v1.23.0
         with:
           channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
-          slack-message: "[Master Branch] CI/CD docker job ${{ job.status }}"
+          slack-message: "CI/CD docker job ${{ job.status }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
@@ -148,7 +147,7 @@ jobs:
         uses: slackapi/slack-github-action@v1.23.0
         with:
           channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
-          slack-message: "[Master Branch] CI/CD docker job failure"
+          slack-message: "CI/CD docker job failure"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
@@ -179,7 +178,12 @@ jobs:
     if: ${{ needs.deploy.result == 'success' }}
     steps:
       - name: slack send message
-        run: echo ${{ needs.deploy.result }}
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
+          slack-message: "CI/CD deploy job success"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
   report-deploy-failure:
     needs: deploy
@@ -190,6 +194,6 @@ jobs:
         uses: slackapi/slack-github-action@v1.23.0
         with:
           channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
-          slack-message: "[Master Branch] CI/CD deploy job failure"
+          slack-message: "CI/CD deploy job failure"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

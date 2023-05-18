@@ -52,7 +52,7 @@ By default, the stack exposes the following ports
 ## RUN
 ### clone this repository
 ```shell
-git clone https://github.com/k4keye/vKestrel.git
+git clone https://github.com/birariro/vKestrel.git
 ```
 
 ### Docker Compose setup and start
