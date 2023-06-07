@@ -25,28 +25,33 @@ public class ParserService {
 
     public List<Document> getDocuments(String name, String url, ScriptType type) {
 
+        List<Document> documents = new ArrayList<>();
+
         try {
             if (type == ScriptType.RSS) {
-                return rssParser.getDocument(url);
+                documents =  rssParser.getDocument(url);
             }
-            if (type == ScriptType.VELOG) {
-                return velogParser.getDocument(url);
+            else if (type == ScriptType.VELOG) {
+                documents =  velogParser.getDocument(url);
             }
-            if(type == ScriptType.BOANNEWS){
-                return boanNewsParser.getDocument(url);
+            else if(type == ScriptType.BOANNEWS){
+                documents =  boanNewsParser.getDocument(url);
             }
 
+            if(documents.isEmpty()){
+                String errorMessage =
+                    String.format("action: site name: %s parsing success but empty document", name);
+                Events.raise(ActionEvent.errorMessage(errorMessage));
+            }
 
-            Events.raise(ActionEvent.errorMessage("not exist url type :" + type));
         } catch (Exception e) {
-
 
             String errorMessage =
                 String.format("action: document parser \nsite name: %s \nurl: %s \nException: %s", name, url, getStackTraceToString(e.fillInStackTrace()));
             Events.raise(ActionEvent.errorMessage(errorMessage));
             Events.raise(LibraryStateSwitchEvent.inActive(name));
         }
-        return new ArrayList<Document>();
+        return documents;
     }
 
     private String getStackTraceToString(Throwable t){
@@ -55,4 +60,5 @@ public class ParserService {
         t.printStackTrace(new PrintWriter(sw));
         return sw.toString();
     }
+
 }

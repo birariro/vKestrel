@@ -27,7 +27,7 @@ class VelogParser {
         org.jsoup.nodes.Document document = connect.get();
 
         List<Document> collect = new ArrayList<>();
-        Elements select = document.select("div.sc-lbhJGD a.sc-jgrJph");
+        Elements select = document.select("div.sc-iNGGcK a.sc-gSQFLo");
 
         for (Element element : select) {
 
