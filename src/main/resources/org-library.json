@@ -292,6 +292,12 @@
     "home" : "https://tech.devsisters.com/",
     "url"  : "https://tech.devsisters.com/rss.xml",
     "type" : "RSS"
+  },
+  {
+    "name" : "figma",
+    "home" : "https://www.figma.com/",
+    "url"  : "https://www.figma.com/blog/feed/atom.xml",
+    "type" : "RSS"
   }
 ]
 

@@ -16,7 +16,7 @@ public class RSSParserTest {
 
         try{
             WebClient webClient = WebClient.builder()
-                    .baseUrl("https://medium.com/feed/daangn")
+                    .baseUrl("https://www.figma.com/blog/feed/atom.xml")
                     .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024))
                     .build();
             String block = webClient.get()
