@@ -35,6 +35,8 @@ public class Library extends BaseEntity {
 
     private String origin;
 
+    private long like;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "script_type")
@@ -51,6 +53,8 @@ public class Library extends BaseEntity {
         this.scriptType = scriptType;
         this.setEntityState(EntityState.ACTIVE);
     }
+
+
 
     public boolean existDocument(Document document){
 

@@ -1,0 +1,1 @@
+ALTER TABLE tb_document ADD COLUMN like bigint(20) NULL;

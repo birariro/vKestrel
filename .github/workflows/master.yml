@@ -8,11 +8,19 @@ on:
   # on: [push, pull_request]
   push:
     branches: [master]
-  pull_request:
-    branches: [master]
 
 # 해당 Workflow의 하나 이상의 Job 목록입니다.
 jobs:
+
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: reviewer run
+        uses: birariro/chicken-code-review@1.0.0
+        with:
+          github-token: ${{ secrets.GIT_TOKEN }}
+          gpt-key: ${{secrets.GPT_KEY}}
+          trigger: "PUSH"
 
   report-workflow:
     runs-on: ubuntu-latest
