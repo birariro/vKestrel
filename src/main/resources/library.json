@@ -64,6 +64,18 @@
     "home" : "https://ykarma1996.tistory.com/",
     "url"  : "https://ykarma1996.tistory.com/rss",
     "type" : "RSS"
+  },
+  {
+    "name" : "benny",
+    "home" : "https://benny-jung.medium.com/",
+    "url"  : "https://medium.com/feed/@benny-jung",
+    "type" : "RSS"
+  },
+  {
+    "name" : "Pavel Pogosov",
+    "home" : "https://medium.com/@pashkapag",
+    "url"  : "https://medium.com/feed/@pashkapag",
+    "type" : "RSS"
   }
 ]
 
