@@ -34,17 +34,18 @@ public class VelogPerserTest {
 
         Elements select = document.select("div.sc-lbhJGD a.sc-jgrJph");
 
+
         for (Element element : select) {
 
-            //href 제거
-            String attr = element.attr("abs:href");
-            System.out.println("attr = " + attr);
+            String href = element.attr("abs:href");
 
-            //테그로 찾기
-            Optional<Element> h4 = element.select("h4").stream().findFirst();
-            System.out.println("h4 = " + h4.get().text());
+            Optional<Element> title = element.select("h4").stream().findFirst();
+            System.out.println("title = " + title.get().text());
+            System.out.println("href = " + href);
+            System.out.println("author = ");
 
         }
+
     }
     @Test
     public void jsoupTest2() throws IOException {
@@ -68,5 +69,6 @@ public class VelogPerserTest {
 
         }
     }
+
 
 }
