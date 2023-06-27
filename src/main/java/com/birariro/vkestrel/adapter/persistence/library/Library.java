@@ -35,7 +35,6 @@ public class Library extends BaseEntity {
 
     private String origin;
 
-    private long like;
 
     @NotNull
     @Enumerated(EnumType.STRING)

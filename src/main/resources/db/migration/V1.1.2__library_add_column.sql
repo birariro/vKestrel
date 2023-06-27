@@ -1,1 +1,1 @@
-ALTER TABLE tb_document ADD COLUMN like bigint(20) NULL;
+ALTER TABLE tb_document ADD COLUMN like_count bigint(20) NOT NULL DEFAULT 0;

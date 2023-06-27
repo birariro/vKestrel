@@ -38,6 +38,9 @@ public class Document extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private Library library;
 
+    @Column(name = "like_count")
+    private long likeCount;
+
 
     public Document(String title, String url, String author) {
         this.title = title;
