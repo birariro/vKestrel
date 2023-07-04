@@ -1,6 +1,7 @@
 package com.birariro.vkestrel.service.parser;
 
 import com.birariro.vkestrel.adapter.persistence.library.Document;
+import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
@@ -41,14 +42,19 @@ class RSSParser {
         List<Document> collect = build.getEntries()
                 .stream()
                 .map(item -> {
-                    String link = "";
-                    if(item.getUri().startsWith("http")) link = item.getUri();
-                    else if (item.getLink().startsWith("http")) link =  item.getLink();
+                    String link = getLink(item);
                     return new Document(item.getTitle(), link, item.getAuthor());
                 })
                 .limit(maxSize)
                 .collect(Collectors.toList());
 
         return collect;
+    }
+    private String getLink(SyndEntry item){
+
+      if (item.getLink().startsWith("http") || item.getLink().contains("woowahan")) {
+        return item.getLink();
+      }
+      return item.getUri();
     }
 }
