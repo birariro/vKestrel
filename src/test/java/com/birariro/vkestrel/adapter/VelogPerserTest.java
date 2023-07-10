@@ -18,10 +18,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@SpringBootTest
 public class VelogPerserTest {
-    @Autowired
-    ParserService parserService;
 
 
     @Test

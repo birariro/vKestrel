@@ -34,6 +34,18 @@
     "home": "https://ridicorp.com/story-category/tech-blog/",
     "url" : "https://ridicorp.com/feed/",
     "type" : "RSS"
+  },
+  {
+    "name" : "가비아",
+    "home": "https://library.gabia.com",
+    "url" : "https://library.gabia.com/feed/",
+    "type" : "RSS"
+  },
+  {
+    "name" : "K리그 프로그래머",
+    "home": "https://jeho.page/",
+    "url" : "https://jeho.page/feed.xml",
+    "type" : "RSS"
   }
 ]
 

@@ -36,7 +36,7 @@ setting:
   parser:
     max-size : 10 # 한번 파싱할때 10개 씩만
   document:
-    max-size : 20
+    max-size : 10
   schedule:
     cron: 0 0 9 ? * MON-FRI # 매일 오전 9시 0분 0초
 

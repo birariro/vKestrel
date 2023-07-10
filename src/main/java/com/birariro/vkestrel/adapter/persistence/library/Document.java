@@ -28,6 +28,7 @@ public class Document extends BaseEntity {
     private UUID id;
 
     private String title;
+    @Column(length = 500)
     private String url;
     private String author;
 

@@ -31,6 +31,7 @@ public class Library extends BaseEntity {
     @NotNull
     private String name;
     @NotNull
+    @Column(length = 500)
     private String url;
 
     private String origin;

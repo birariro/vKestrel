@@ -22,8 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 class BoanNewsParser {
 
-	@Value("${setting.parser.max-size:10}")
-	private int maxSize;
+	private int maxSize = 1;
 	private final String baseUrl = "https://www.boannews.com";
 
 	public List<Document> getDocument(String url) throws IOException, NoSuchAlgorithmException, KeyManagementException {

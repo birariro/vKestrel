@@ -22,6 +22,7 @@ public class ParserService {
     private final RSSParser rssParser;
     private final VelogParser velogParser;
     private final BoanNewsParser boanNewsParser;
+    private final GeekNewsParser geekNewsParser;
 
     public List<Document> getDocuments(String name, String url, ScriptType type) {
 
@@ -36,6 +37,9 @@ public class ParserService {
             }
             else if(type == ScriptType.BOANNEWS){
                 documents =  boanNewsParser.getDocument(url);
+
+            } else if(type == ScriptType.GEEKNEWS){
+                documents =  geekNewsParser.getDocument(url);
             }
 
             if(documents.isEmpty()){

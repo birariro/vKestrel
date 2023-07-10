@@ -55,20 +55,21 @@ validMessage() {
 }
 
 addCommitHeaderEmoji() {
+  COMMIT_MESSAGE=`head ${COMMIT_MSG_FILE}`
   if [[ $FIRST_LINE =~ ^(feat.*) ]]; then
-    NEW_COMMIT_MESSAGE="🚀 $FIRST_LINE"
+    NEW_COMMIT_MESSAGE="🚀 $COMMIT_MESSAGE"
   elif [[ $FIRST_LINE =~ ^(fix.*) ]]; then
-    NEW_COMMIT_MESSAGE="🔥 $FIRST_LINE"
+    NEW_COMMIT_MESSAGE="🔥 $COMMIT_MESSAGE"
   elif [[ $FIRST_LINE =~ ^(docs.*) ]]; then
-    NEW_COMMIT_MESSAGE="📝 $FIRST_LINE"
+    NEW_COMMIT_MESSAGE="📝 $COMMIT_MESSAGE"
   elif [[ $FIRST_LINE =~ ^(style.*) ]]; then
-    NEW_COMMIT_MESSAGE="🎨 $FIRST_LINE"
+    NEW_COMMIT_MESSAGE="🎨 $COMMIT_MESSAGE"
   elif [[ $FIRST_LINE =~ ^(refactor.*) ]]; then
-    NEW_COMMIT_MESSAGE="🧠 $FIRST_LINE"
+    NEW_COMMIT_MESSAGE="🧠 $COMMIT_MESSAGE"
   elif [[ $FIRST_LINE =~ ^(test.*) ]]; then
-    NEW_COMMIT_MESSAGE="🧪 $FIRST_LINE"
+    NEW_COMMIT_MESSAGE="🧪 $COMMIT_MESSAGE"
   elif [[ $FIRST_LINE =~ ^(chore.*) ]]; then
-    NEW_COMMIT_MESSAGE="🍎 $FIRST_LINE"
+    NEW_COMMIT_MESSAGE="🍎 $COMMIT_MESSAGE"
   fi
 
   echo "$NEW_COMMIT_MESSAGE" > $COMMIT_MSG_FILE

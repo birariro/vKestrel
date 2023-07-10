@@ -34,7 +34,7 @@ public class DeliveryStep {
     private final LibraryRepository libraryRepository;
     private final CustomStepExecutionListener customStepExecutionListener;
 
-    @Value("${setting.document.max-size:20}")
+    @Value("${setting.document.max-size:10}")
     private int maxSize;
     @Bean
     public Step dailyDocumentExtractStep(){

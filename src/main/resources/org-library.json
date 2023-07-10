@@ -12,12 +12,6 @@
     "type" : "RSS"
   },
   {
-    "name" : "가비아",
-    "home": "https://library.gabia.com",
-    "url" : "https://library.gabia.com/feed/",
-    "type" : "RSS"
-  },
-  {
     "name" : "우아한형제들",
     "home": "https://techblog.woowahan.com/",
     "url" : "https://techblog.woowahan.com/feed/",
@@ -165,7 +159,7 @@
     "name" : "GeekNews",
     "home": "https://news.hada.io/",
     "url" : "https://feeds.feedburner.com/geeknews-feed",
-    "type" : "RSS"
+    "type" : "GEEKNEWS"
   },
   {
     "name" : "벨로그",

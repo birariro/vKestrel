@@ -16,7 +16,7 @@ public class RSSParserTest {
 
         try{
             WebClient webClient = WebClient.builder()
-                    .baseUrl("https://techblog.woowahan.com/feed/")
+                    .baseUrl("https://feeds.feedburner.com/geeknews-feed")
                     .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024))
                     .build();
             String block = webClient.get()
