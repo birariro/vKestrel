@@ -1,6 +1,6 @@
 
 name: code review
-on: [psuh]
+on: [push]
 
 jobs:
 

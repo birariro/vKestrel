@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.io.StringReader;
+import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,6 +34,7 @@ class RSSParser {
         String body = webClient.get()
                 .retrieve()
                 .bodyToMono(String.class)
+                .timeout(Duration.ofMillis(5000))
                 .block();
 
         StringReader stringReader = new StringReader(body);

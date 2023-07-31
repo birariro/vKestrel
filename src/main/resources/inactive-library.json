@@ -46,6 +46,12 @@
     "home": "https://jeho.page/",
     "url" : "https://jeho.page/feed.xml",
     "type" : "RSS"
+  },
+  {
+    "name" : "스마일게이트AI",
+    "home": "https://smilegate.ai/",
+    "url" : "https://smilegate.ai/feed/",
+    "type" : "RSS"
   }
 ]
 
