@@ -27,9 +27,16 @@ public class UpdateLibraryService {
 
 		if(! firstByName.isPresent()) return;
 
-		if(event.isState())
+
+		if(event.isState()){
+			if(event.isError()){
+				firstByName.get().error();
+			}
 			firstByName.get().active();
-		else
+		}else{
 			firstByName.get().inActive();
+		}
+
+
 	}
 }

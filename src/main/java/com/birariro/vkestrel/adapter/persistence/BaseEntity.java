@@ -24,6 +24,9 @@ public class BaseEntity {
         return this;
     }
 
+    public void error(){
+        this.entityState = EntityState.ERROR;
+    }
     public void inActive(){
         this.entityState = EntityState.INACTIVE;
     }
