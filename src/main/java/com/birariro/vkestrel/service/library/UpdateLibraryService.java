@@ -37,6 +37,7 @@ public class UpdateLibraryService {
 			firstByName.get().inActive();
 		}
 
+		libraryRepository.save(firstByName.get());
 
 	}
 }
