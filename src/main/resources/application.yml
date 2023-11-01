@@ -38,7 +38,9 @@ setting:
   document:
     max-size : 10
   schedule:
-    cron: 0 0 9 ? * MON-FRI # 매일 오전 9시 0분 0초
+    cron:
+      parsing: 0 0 9 ? * MON-FRI # 매일 오전 9시 0분 0초
+      delivery: 0 0 8 ? * MON-FRI # 매일 오전 8시 0분 0초
 
 
 springdoc:

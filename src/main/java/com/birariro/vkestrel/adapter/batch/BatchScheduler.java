@@ -11,6 +11,7 @@ import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
 import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
 import org.springframework.batch.core.repository.JobRestartException;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -20,21 +21,31 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 @Slf4j
 public class BatchScheduler {
+    @Qualifier("parsingJob")
+    private final Job parsingJob;
 
-    private final Job job;
+    @Qualifier("deliveryJop")
+    private final Job deliveryJop;
     private final JobLauncher jobLauncher;
 
 
-    @Scheduled(cron="${setting.schedule.cron:0 0 9 * * ?}", zone="Asia/Seoul")
-    public void executeJob() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
+    @Scheduled(cron="${setting.schedule.cron.parsing:0 0 9 * * ?}", zone="Asia/Seoul")
+    public void executeParsingJob() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
 
-        log.info("job run");
+        log.info("parsingJob run");
 
-        // String message = runMessage();
-        // Events.raise(new ActionEvent(false,message));
-        jobLauncher.run(job,new JobParametersBuilder()
+        jobLauncher.run(parsingJob,new JobParametersBuilder()
                 .addString("datetime", LocalDateTime.now().toString())
                 .toJobParameters());
+    }
+    @Scheduled(cron="${setting.schedule.cron.delivery:0 0 8 * * ?}", zone="Asia/Seoul")
+    public void executeDeliveryJob() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
+
+        log.info("deliveryJop run");
+
+        jobLauncher.run(deliveryJop,new JobParametersBuilder()
+            .addString("datetime", LocalDateTime.now().toString())
+            .toJobParameters());
     }
 
 
