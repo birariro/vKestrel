@@ -24,6 +24,8 @@ It is a blog post in Korea <br/>
 [![version](https://img.shields.io/badge/rome-1.10.0-00bfb3?style=flat&logo=)]()
 [![version](https://img.shields.io/badge/jsoup-1.14.2-00bfb3?style=flat&logo=)]()
 [![version](https://img.shields.io/badge/springdoc-1.6.9-00bfb3?style=flat&logo=swagger)]()
+[![version](https://img.shields.io/badge/loki-2.9.1-00bfb3?style=flat&logo=loki)]()
+[![version](https://img.shields.io/badge/promtail-2.9.1-00bfb3?style=flat&logo=promtail)]()
 
 ## Host setup
 
@@ -38,6 +40,24 @@ By default, the stack exposes the following ports
 - 8791 : application
 - 3000 : grafana
 - 9094 : prometheus
+- 3100 : loki
+- 9104 : db-exporter
+
+
+```
+
+  +--------+        +----------+        +------+           
+  | server | <----- | promtail | -----> | loki |  ------------------|   
+  +--------+        +----------+        +------+                    |
+     |                                                              >
+  +------+        +-------------+        +------------+         +-----------+  
+  |  DB  | <----- | DB Exporter | -----> | Prometheus |  --->   |  Grafana  |
+  +------+        +-------------+        +------------+         +-----------+
+     |                                        >
+  +----------+                                |
+  | actuator | -------------------------------|
+  +----------+      
+```
 
 ## batch job
 - Operate at 9 a.m. weekday day
@@ -61,12 +81,22 @@ You will need to install Docker and docker-compose.
 a Docker Compose setup is provided. It comes with the following :
 
 - mariadb:10.8.3
-- prometheus
-- grafana
-
 ``` shell
  $ docker-compose up -d
 ```
+Operation Docker Compose setup is provided. It comes with the following :
+``` shell
+ $ docker compose -f docker-compose.operation.yml up --build -d
+```
+- prometheus
+- grafana
+- loki
+- promtail
+- DB Exporter
+
+
+
+
 
 ### Registration Slack WebHook
 register webHook to receive a message from application
