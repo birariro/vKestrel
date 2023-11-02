@@ -8,8 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: reviewer run
-        uses: birariro/chicken-code-review@1.0.0
+        uses: birariro/chicken-code-review@1.0.2
         with:
           github-token: ${{ secrets.GIT_TOKEN }}
           gpt-key: ${{secrets.GPT_KEY}}
           trigger: "PUSH"
+          language: "KR"
