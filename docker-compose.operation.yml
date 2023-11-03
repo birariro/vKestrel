@@ -49,8 +49,8 @@ services:
     container_name: vk-promtail
     image: grafana/promtail:2.9.1
     volumes:
-      - ./mount/loki:/mnt/config
+      - ./mount/promtail:/mnt/config
       - ./logs:/var/log
     command: -config.file=/mnt/config/promtail-config.yaml
-    depends_on:
+    networks:
       - vk-net

@@ -9,40 +9,16 @@ services:
   vk-main-db:
     container_name: vk-db
     image: mariadb:10.8.3
+    user: "mysql:${GID}"
     ports:
       - "6633:6633"
     environment: # 환경 변수 전달
       MYSQL_ROOT_PASSWORD: "0000" # root 패스워드 지정
       MYSQL_DATABASE: "vk-db" # 초기 디비 생성
       MYSQL_TCP_PORT: 6633
-    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
-    networks:
-      - vk-net
-
-  vk-db-exporter:
-    container_name: vk-db-exporter
-    image: prom/mysqld-exporter
-    environment:
-      DATA_SOURCE_NAME: "prometheus-exporter:0000@(vk-db:6633)/"
-    ports:
-      - "9104:9104"
-    networks:
-      - vk-net
-
-  vk-prometheus:
-    container_name: vk-prometheus
-    image: prom/prometheus
-    ports:
-      - "9094:9090"
     volumes:
-      - ./mount/prometheus:/etc/prometheus
-    networks:
-      - vk-net
+      - ./mount/mariadb/my.conf:/etc/mysql/my.cnf
+      - ./mount/mariadb/log:/home/mysql/log
 
-  vk-grafana:
-    container_name: vk-grafana
-    image: grafana/grafana
-    ports:
-      - "9095:3000"
     networks:
       - vk-net
