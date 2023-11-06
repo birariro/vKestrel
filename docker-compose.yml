@@ -19,6 +19,5 @@ services:
     volumes:
       - ./mount/mariadb/my.conf:/etc/mysql/my.cnf
       - ./mount/mariadb/log:/home/mysql/log
-
     networks:
       - vk-net

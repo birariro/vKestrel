@@ -114,7 +114,7 @@ POST /member/webhook
 Provision of commit-msg.sh for git commit convention
 
 ``` shell 
- $ cp hooks/commit-msg.sh .git/hooks/commit-msg 
+ $ cp tools/hooks/commit-msg.sh .git/hooks/commit-msg 
 ```
 
 ## application path
