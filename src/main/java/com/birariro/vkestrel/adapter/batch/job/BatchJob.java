@@ -26,7 +26,6 @@ public class BatchJob {
         return jobBuilderFactory.get("parsingJob")
                 .start(syncStep.syncLibraryStep())
                 .next(parsingStep.libraryDocumentParsingStep())
-                .next(deliveryStep.dailyDocumentExtractStep())
                 .build();
     }
     @Bean

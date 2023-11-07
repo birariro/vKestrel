@@ -120,6 +120,7 @@ Provision of commit-msg.sh for git commit convention
 ## application path
 ``` 
 actuator : http://localhost:8791/actuator  
-prometheus : http://localhost:9094
 grafana : http://localhost:3000 
+prometheus : http://host.docker.internal:9094
+loki: http://host.docker.internal:3100
 ```
