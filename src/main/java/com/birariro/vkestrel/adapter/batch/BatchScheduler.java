@@ -29,7 +29,7 @@ public class BatchScheduler {
     private final JobLauncher jobLauncher;
 
 
-    @Scheduled(cron="${setting.schedule.cron.parsing:0 0 9 * * ?}", zone="Asia/Seoul")
+    @Scheduled(cron="${setting.schedule.cron.parsing:0 0 8 * * ?}", zone="Asia/Seoul")
     public void executeParsingJob() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
 
         log.info("parsingJob run");
@@ -38,7 +38,7 @@ public class BatchScheduler {
                 .addString("datetime", LocalDateTime.now().toString())
                 .toJobParameters());
     }
-    @Scheduled(cron="${setting.schedule.cron.delivery:0 0 8 * * ?}", zone="Asia/Seoul")
+    @Scheduled(cron="${setting.schedule.cron.delivery:0 0 9 * * ?}", zone="Asia/Seoul")
     public void executeDeliveryJob() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
 
         log.info("deliveryJop run");
