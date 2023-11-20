@@ -24,6 +24,7 @@ class RSSParser {
     @Value("${setting.parser.max-size:10}")
     private int maxSize;
 
+    private int timeout = 10 * 1000;
     public List<Document> getDocument(String resUrl) throws FeedException {
 
         WebClient webClient = WebClient.builder()
@@ -34,7 +35,7 @@ class RSSParser {
         String body = webClient.get()
                 .retrieve()
                 .bodyToMono(String.class)
-                .timeout(Duration.ofMillis(5000))
+                .timeout(Duration.ofMillis(timeout))
                 .block();
 
         StringReader stringReader = new StringReader(body);
