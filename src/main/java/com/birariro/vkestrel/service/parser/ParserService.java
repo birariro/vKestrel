@@ -54,6 +54,8 @@ public class ParserService {
 
             String errorMessage =
                 String.format("action: document parser \nsite name: %s \nurl: %s \nException: %s", name, url, getStackTraceToString(e.fillInStackTrace()));
+
+            log.warn(errorMessage);
             Events.raise(ActionEvent.errorMessage(errorMessage));
             Events.raise(LibraryStateSwitchEvent.error(name));
         }

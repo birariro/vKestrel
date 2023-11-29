@@ -73,7 +73,6 @@ public class ParsingStep {
                     .filter(target -> library.existDocument(target) == false)
                     .collect(Collectors.toList())
                     .forEach(document -> {
-                        log.info("[new document] " + library.getName() + ": "+document.getTitle());
                         library.addDocument(document);
                     });
 

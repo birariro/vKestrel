@@ -22,7 +22,7 @@ public class UpdateLibraryService {
 
 	@EventListener(LibraryStateSwitchEvent.class)
 	private void updateState(LibraryStateSwitchEvent event){
-		log.info("[UpdateLibraryService] update state");
+		log.info("[UpdateLibraryService] library {} update state", event.getName());
 		Optional<Library> firstByName = libraryRepository.findFirstByName(event.getName());
 
 		if(! firstByName.isPresent()) return;
