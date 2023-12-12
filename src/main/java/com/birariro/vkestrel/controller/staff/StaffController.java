@@ -1,7 +1,7 @@
 package com.birariro.vkestrel.controller.staff;
 
 import com.birariro.vkestrel.adapter.persistence.staff.StaffType;
-import com.birariro.vkestrel.service.RegStaffService;
+import com.birariro.vkestrel.service.StaffService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class StaffController {
 
-    private final RegStaffService regStaffService;
+    private final StaffService staffService;
 
     @Operation(summary = "관리 메시지 봇 등록")
     @PostMapping("/knowledge/reg")
     public ResponseEntity slackKnowledgeRegistration(@RequestBody RegStaffRequest regStaffRequest){
 
         log.info("slack knowledge registration");
-        regStaffService.registration(
+        staffService.append(
                 regStaffRequest.getToken(), regStaffRequest.getChannel(), StaffType.KNOWLEDGE
         );
 
@@ -36,17 +36,10 @@ public class StaffController {
     public ResponseEntity slackErrorRegistration(@RequestBody RegStaffRequest regStaffRequest){
 
         log.info("slack error registration");
-        regStaffService.registration(
+        staffService.append(
                 regStaffRequest.getToken(), regStaffRequest.getChannel(), StaffType.ERROR
         );
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-
-    @Operation(summary = "전체 webhook 메시지")
-    @PostMapping("/noti")
-    private void slackNoti(@RequestBody NotiRequest notiRequest){
-        regStaffService.greetings(notiRequest.getMessage());
-    }
-
 }

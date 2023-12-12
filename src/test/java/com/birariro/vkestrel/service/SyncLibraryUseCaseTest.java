@@ -2,7 +2,7 @@ package com.birariro.vkestrel.service;
 
 import com.birariro.vkestrel.adapter.persistence.library.Library;
 import com.birariro.vkestrel.adapter.persistence.library.LibraryRepository;
-import com.birariro.vkestrel.service.library.SyncLibraryService;
+import com.birariro.vkestrel.service.library.SyncLibraryUseCase;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,17 +14,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @SpringBootTest
-public class SyncLibraryServiceTest {
+public class SyncLibraryUseCaseTest {
 
     @Autowired
-    SyncLibraryService syncLibraryService;
+    SyncLibraryUseCase syncLibraryUseCase;
 
     @Autowired
     LibraryRepository libraryRepository;
 
     @Test
     public void echo() throws IOException {
-        List<Library> syncLibrary = syncLibraryService.getSyncLibrary();
+        List<Library> syncLibrary = syncLibraryUseCase.execute();
 
         List<Library> actives = syncLibrary.stream().filter(Library::isActive).collect(Collectors.toList());
         List<Library> inActives = syncLibrary.stream().filter(item -> !item.isActive()).collect(Collectors.toList());
@@ -42,7 +42,7 @@ public class SyncLibraryServiceTest {
     @DisplayName("기존 저정된 데이터 기준 활성, 비활성 분류 기능 테스트")
     public void sync() throws IOException {
 
-        List<Library> items = syncLibraryService.getSyncLibrary();
+        List<Library> items = syncLibraryUseCase.execute();
 
         List<Library> activeLibrary = items.stream().filter(Library::isActive)
             .filter(library -> !libraryRepository.existsByName(library.getName()))

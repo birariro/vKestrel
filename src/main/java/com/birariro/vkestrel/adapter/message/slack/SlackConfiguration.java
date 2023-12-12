@@ -5,7 +5,7 @@ import com.birariro.vkestrel.adapter.batch.step.event.DailyDocumentEvent;
 import com.birariro.vkestrel.adapter.batch.step.event.LibraryStateSwitchEvent;
 import com.birariro.vkestrel.adapter.message.slack.bot.SlackBot;
 import com.birariro.vkestrel.adapter.message.slack.bot.SlackWebHook;
-import com.birariro.vkestrel.service.RegistrationMemberEvent;
+import com.birariro.vkestrel.service.member.RegistrationMemberEvent;
 import com.slack.api.methods.SlackApiException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

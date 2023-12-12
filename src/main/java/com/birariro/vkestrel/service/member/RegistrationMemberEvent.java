@@ -1,4 +1,4 @@
-package com.birariro.vkestrel.service;
+package com.birariro.vkestrel.service.member;
 
 import com.birariro.vkestrel.adapter.message.event.BaseEvent;
 import com.birariro.vkestrel.adapter.persistence.member.Member;

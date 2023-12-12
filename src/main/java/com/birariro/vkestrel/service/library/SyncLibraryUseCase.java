@@ -18,17 +18,15 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class SyncLibraryService {
+public class SyncLibraryUseCase {
 
 
-    public List<Library> getSyncLibrary() throws IOException {
+    public List<Library> execute() throws IOException {
 
         List<Library> orgLibraries= getResourcesFileToLibraryList("org-library.json");
         List<Library> libraries = getResourcesFileToLibraryList("library.json");
         List<Library> inActiveLibraries = getResourcesFileToLibraryList("inactive-library.json");
         inActiveLibraries.stream().forEach(Library::inActive);
-
-
 
         List<Library> result = new ArrayList<>();
         result.addAll(orgLibraries);

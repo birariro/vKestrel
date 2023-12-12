@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 @Transactional
-public class UpdateLibraryService {
+public class LibraryService {
 	private final LibraryRepository libraryRepository;
 
 	@EventListener(LibraryStateSwitchEvent.class)

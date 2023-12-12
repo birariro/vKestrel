@@ -4,7 +4,7 @@ import com.birariro.vkestrel.adapter.batch.step.event.ActionEvent;
 import com.birariro.vkestrel.adapter.message.event.Events;
 import com.birariro.vkestrel.adapter.persistence.library.Library;
 import com.birariro.vkestrel.adapter.persistence.library.LibraryRepository;
-import com.birariro.vkestrel.service.library.SyncLibraryService;
+import com.birariro.vkestrel.service.library.SyncLibraryUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Step;
@@ -26,7 +26,7 @@ public class SyncStep {
     private final StepBuilderFactory stepBuilderFactory;
     private final LibraryRepository libraryRepository;
     private final CustomStepExecutionListener customStepExecutionListener;
-    private final SyncLibraryService syncLibraryService;
+    private final SyncLibraryUseCase syncLibraryUseCase;
 
     private final int chunkSize = 100;
     @Bean
@@ -44,7 +44,7 @@ public class SyncStep {
     @StepScope
     public ListItemReader<Library> syncLibraryReader() throws IOException {
 
-        List<Library> libraries = syncLibraryService.getSyncLibrary();
+        List<Library> libraries = syncLibraryUseCase.execute();
         return new ListItemReader<>(libraries);
     }
 

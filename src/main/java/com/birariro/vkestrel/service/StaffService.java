@@ -15,21 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class RegStaffService {
+public class StaffService {
 
     private final StaffRepository staffRepository;
 
     @Async
     @AopExecutionTime
     @Transactional
-    public void registration(String token, String channel, StaffType type){
-
-        save(token, channel, type);
-    }
-
-
-    @Transactional
-    protected void save(String token, String channel, StaffType type){
+    public void append(String token, String channel, StaffType type){
 
         Staff staff = new Staff(token, channel, type);
         staffRepository.save(staff);

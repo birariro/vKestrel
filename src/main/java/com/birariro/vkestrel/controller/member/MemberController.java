@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.birariro.vkestrel.service.RegMemberService;
+import com.birariro.vkestrel.service.member.MemberService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -21,14 +21,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MemberController {
 
-	private final RegMemberService regMemberService;
+	private final MemberService memberService;
 
 	@Operation(summary = "slack webhook 등록")
 	@PostMapping("/member/webhook")
-	public ResponseEntity reg(@RequestBody RegMemberRequest regMemberRequest){
+	public ResponseEntity reg(@RequestBody MemberRequest memberRequest){
 
-		log.info("slack webhook reg : "+ regMemberRequest.getUrl());
-		regMemberService.registration(regMemberRequest.getUrl());
+		log.info("slack webhook reg : "+ memberRequest.getUrl());
+		memberService.append(memberRequest.getUrl());
 
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
@@ -38,7 +38,7 @@ public class MemberController {
 	public ResponseEntity reg(@PathVariable("url") String url){
 
 		log.info("slack webhook delete : "+url);
-		regMemberService.delete(url);
+		memberService.remove(url);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 

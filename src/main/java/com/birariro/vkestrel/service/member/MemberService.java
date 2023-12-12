@@ -1,4 +1,4 @@
-package com.birariro.vkestrel.service;
+package com.birariro.vkestrel.service.member;
 
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -15,14 +15,14 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class RegMemberService {
+public class MemberService {
 
     private final MemberRepository memberRepository;
 
     @Async
     @AopExecutionTime
     @Transactional
-    public void registration(String url){
+    public void append(String url){
 
         Member member = new Member(url);
         memberRepository.save(member);
@@ -30,7 +30,7 @@ public class RegMemberService {
     }
 
     @Transactional
-    public void delete(String url){
+    public void remove(String url){
 
         Member member = memberRepository.findByUrl(url)
             .orElseThrow(() -> new IllegalStateException());

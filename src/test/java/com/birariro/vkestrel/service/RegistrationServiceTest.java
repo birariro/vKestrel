@@ -7,6 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 class RegistrationServiceTest {
 
     @Autowired
-	RegStaffService regStaffService;
+    StaffService staffService;
 
 }
